@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../style/Button.css";
 
 function getVariant(variant) {
@@ -22,7 +22,7 @@ export function DashboardButton({ onClick, iconPath, text, variant }) {
     return (
         <button onClick={onClick} className={`dashboard-btn-body ${getVariant(variant)}`}>
             <div className="dashboard-btn-inner">
-                <img src={iconPath} alt="" width={32} height={32} />
+                {iconPath ? <img src={iconPath} alt="" width={32} height={32} /> : null}
                 {text}
             </div>
         </button>
