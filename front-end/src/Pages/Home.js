@@ -1,26 +1,17 @@
 import React from "react";
 import { DashboardButton, FormButton } from "../components/Button";
 import { FormInput, SelectInput } from "../components/FormInput";
+import { useNavigate } from "react-router-dom";
 
 export default function Home( params ) {
 
+    const navigate = useNavigate();
+
     return (
-        <div style={{ display: "flex", flexDirection: "column" }}>
-            <DashboardButton
-                text={"Dashboard Button"}
-                iconPath={"/icons/plus.png"}
-            />
-            <FormInput legend={"Champ de texte"} type={"text"} placeholder={"Placeholder..."}/>
-            <SelectInput 
-                legend={"Champ de sélection"} 
-                options={[
-                    "Option 1",
-                    "Option 2",
-                    "Option 3",
-                    "Option 4"
-                ]}
-            />
-            <FormButton text={"Bouton de formulaire"} variant={"blue"}/>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
+            <DashboardButton text={"S'inscrire"} onClick={() => navigate("/sign-up")}/>
+            <p style={{ margin: "0 20px" }}>ou</p>
+            <DashboardButton text={"Se connecter"} onClick={() => navigate("/sign-in")}/>
         </div>
     )
 }
