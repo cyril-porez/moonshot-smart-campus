@@ -6,7 +6,7 @@ button {
 }
 
 .dashboard-btn-body {
-    border: 1px solid grey;
+    border: 1px solid var(--bg-primary-color);
     border-radius: 5px;
     width: 200px;
     height: 80px;
@@ -14,10 +14,6 @@ button {
 
 .dashboard-btn-body img {
     margin-right: 10px;
-}
-
-.dashboard-btn-body:hover {
-    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-btn-inner {
@@ -40,20 +36,17 @@ button:hover {
 }
 
 .variant-blue {
-    border-color: rgb(0, 77, 210);
-    background-color: rgb(0, 94, 255);
+    background-color: var(--blue);
     color: white;
 }
 
 .variant-green {
-    border-color: rgb(0, 144, 7);
-    background-color: rgb(0, 181, 9);
+    background-color: var(--green);
     color: white;
 }
 
 .variant-red {
-    border-color: rgb(173, 10, 10);
-    background-color: rgb(217, 12, 12);
+    background-color: var(--red);
     color: white;
 }
 
