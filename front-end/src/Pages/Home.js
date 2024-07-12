@@ -2,6 +2,7 @@ import React from "react";
 import { DashboardButton } from "../components/Button";
 import { TagSelector } from "../components/FormInput";
 import { useNavigate } from "react-router-dom";
+import { ActivityTable } from "../components/Tables";
 
 export default function Home( params ) {
 
