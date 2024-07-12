@@ -28,6 +28,13 @@ export default function Home( params ) {
                     "Tag 3",
                 ]}
                 />
+                <ActivityTable type={"suivi"} data={[
+                    { id: 1, subject: "Sockets C++", promo: "B2 Logiciel", date: "12/07/24", time: "16:45" },
+                    { id: 1, subject: "Sockets C++", promo: "B2 Logiciel", date: "12/07/24", time: "16:45" },
+                    { id: 1, subject: "Sockets C++", promo: "B2 Logiciel", date: "12/07/24", time: "16:45" },
+                    { id: 1, subject: "Sockets C++", promo: "B2 Logiciel", date: "12/07/24", time: "16:45" },
+                    { id: 1, subject: "Sockets C++", promo: "B2 Logiciel", date: "12/07/24", time: "16:45" },
+                ]} />
             </div>  
         </>
     )
