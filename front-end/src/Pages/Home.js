@@ -14,8 +14,6 @@ export default function Home( params ) {
                 <p style={{ margin: "0 20px" }}>ou</p>
                 <DashboardButton text={"Se connecter"} onClick={() => navigate("/sign-in")}/>
             </div>
-
-            <TagSelector legend={"Sélectionnez une promo"}/>
         </>
     )
 }
