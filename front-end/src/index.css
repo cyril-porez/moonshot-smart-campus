@@ -1,3 +1,18 @@
+@import "rsuite/dist/rsuite.css";
+
+:root {
+    --bg-primary-color: #ffffff;   /* A changer plus tard */
+    --bg-secondary-color: #eeeeee;   /* A changer plus tard */
+
+    --red: rgb(200, 0, 0);
+    --green: rgb(0, 211, 0);
+    --blue: rgb(0, 110, 255);
+    --yellow: rgb(255, 234, 0);
+
+    --btn-hover: rgba(0, 0, 0, 0.1);
+}
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -20,6 +35,7 @@ a {
 
 button:hover {
     cursor: pointer;
+    background-color: var(--btn-hover);
 }
 
 .main-content {

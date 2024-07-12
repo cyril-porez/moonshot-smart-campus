@@ -1,4 +1,5 @@
 import React from "react";
+import { TagPicker } from 'rsuite';
 import "../style/FormInput.css";
 
 export function FormInput({ legend, type, placeholder }) {
@@ -23,5 +24,21 @@ export function SelectInput({ legend, name, options = [], hasDefaultOption = fal
                 ))}
             </select>
         </div>
+    )
+}
+
+export function TagSelector({ legend, width = 300 }) {
+
+    const data = [
+        "Promo 1", 
+        "Promo 2", 
+        "Promo 3", 
+    ].map(item => ({ label: item, value: item }));
+
+    return (
+        <>
+            <label>{legend}</label>
+            <TagPicker data={data} size="md" style={{ width: `${width}px` }} block/>
+        </>
     )
 }
