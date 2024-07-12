@@ -7,7 +7,7 @@ export default function Header({ logo, currentUser, toggleSidebar }) {
     return (
         <header>
             <button className="borderless round burger" onClick={toggleSidebar}>
-                <img src="/icons/menu.png" width={32} height={32} alt=""/>
+                <img src="/icons/burger.png" width={32} height={32} alt=""/>
             </button>
             <a href="/" style={{ height: "80%", display: "flex", justifyContent: "center", alignItems: "center" }}>
                 {logo ? <img src={logo} alt="" height="100%"/> : null}
