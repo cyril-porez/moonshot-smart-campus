@@ -1,3 +1,5 @@
+@import "rsuite/dist/rsuite.css";
+
 :root {
     --bg-primary-color: #ffffff;   /* A changer plus tard */
     --bg-secondary-color: #eeeeee;   /* A changer plus tard */
