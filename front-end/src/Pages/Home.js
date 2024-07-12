@@ -15,7 +15,7 @@ export default function Home( params ) {
                 <DashboardButton text={"Se connecter"} onClick={() => navigate("/sign-in")}/>
             </div>
 
-            <TagSelector/>
+            <TagSelector legend={"Sélectionnez une promo"}/>
         </>
     )
 }
