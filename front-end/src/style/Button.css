@@ -35,6 +35,10 @@ button:hover {
     cursor: pointer;
 }
 
+.burger:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 .variant-blue {
     background-color: var(--blue);
     color: white;
