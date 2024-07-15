@@ -1,0 +1,9 @@
+.dashboard {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: calc((200px * 2) + 50px);
+    height: fit-content;
+}

@@ -23,7 +23,7 @@ export function DashboardButton({ onClick, iconPath, text, variant }) {
         <button onClick={onClick} className={`dashboard-btn-body ${getVariant(variant)}`}>
             <div className="dashboard-btn-inner">
                 {iconPath ? <img src={iconPath} alt="" width={32} height={32} /> : null}
-                {text}
+                <p>{text}</p>
             </div>
         </button>
     )
@@ -34,7 +34,7 @@ export function FormButton({ onClick, text, variant }) {
 
     return (
         <button onClick={onClick} className={`form-btn ${getVariant(variant)}`}>
-            {text}
+            <p>{text}</p>
         </button>
     )
 }
