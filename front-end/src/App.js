@@ -8,6 +8,7 @@ import Home from "./Pages/Home";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Modal from "./components/Modal";
+import SuggestActivityForm from "./components/NewActivity";
 
 function App() {
 
@@ -34,7 +35,7 @@ function App() {
 
             {/* Modal is here because it is called by the sidebar */}
             <Modal isOpen={isModalOpen_SuggestActivity} onClose={closeModal_SuggestActivity}>
-                {/* <SuggestActivityForm /> */}
+               <SuggestActivityForm/>
             </Modal>
 
             {/*  If there is need for another modal in the slidebar, it will be used like this
@@ -42,7 +43,7 @@ function App() {
                content 
             </Modal>
             */}
-            
+
             <Sidebar
                 isOpen={isSidebarOpen}
                 onOpenModal_SuggestActivity={openModal_SuggestActivity}
