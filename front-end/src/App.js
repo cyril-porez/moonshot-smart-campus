@@ -10,6 +10,8 @@ import Sidebar from "./components/Sidebar";
 import { Dashboard } from "./Pages/Staff/Dashboard";
 import { Calendar } from "rsuite";
 import { SelectInput } from "./components/FormInput";
+import Modal from "./components/Modal";
+import SuggestActivityForm from "./components/NewActivity";
 
 function App() {
 
@@ -19,12 +21,38 @@ function App() {
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
     }
+    // one set of those for each modal
+    const [isModalOpen_SuggestActivity, setModalOpen_SuggestActivity] = useState(false);
+    const openModal_SuggestActivity = () => setModalOpen_SuggestActivity(true);
+    const closeModal_SuggestActivity = () => setModalOpen_SuggestActivity(false);
+
+    // one set of those for each modal
+    const [isModalOpen_Test, setModalOpen_Test] = useState(false);
+    const openModal_Test = () => setModalOpen_Test(true);
+    const closeModal_Test = () => setModalOpen_Test(false);
+
+
 
     return (
         <div className="App">
+
             <Header currentUser={"Ibrahim"} toggleSidebar={toggleSidebar} />
+
+            {/* Modal is here because it is called by the sidebar */}
+            <Modal isOpen={isModalOpen_SuggestActivity} onClose={closeModal_SuggestActivity}>
+               <SuggestActivityForm/>
+            </Modal>
+
+            {/*  If there is need for another modal in the slidebar, it will be used like this
+            <Modal isOpen={isModalOpen_Test} onClose={closeModal_Test}>
+               content 
+            </Modal>
+            */}
+
             <Sidebar
                 isOpen={isSidebarOpen}
+                onOpenModal_SuggestActivity={openModal_SuggestActivity}
+                onOpenModal_Test={openModal_Test}
                 links={[
                     { icon: "/icons/plus.png", href: "/", text: "Nouveau lien" },
                     { icon: "/icons/plus.png", href: "/", text: "Nouveau lien" },
