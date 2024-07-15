@@ -27,18 +27,12 @@ export function SelectInput({ legend, name, options = [], hasDefaultOption = fal
     )
 }
 
-export function TagSelector({ legend, width = 300 }) {
-
-    const data = [
-        "Promo 1", 
-        "Promo 2", 
-        "Promo 3", 
-    ].map(item => ({ label: item, value: item }));
+export function TagSelector({ legend, data, width = 300 }) {
 
     return (
         <>
             <label>{legend}</label>
-            <TagPicker data={data} size="md" style={{ width: `${width}px` }} block/>
+            <TagPicker data={data.map(item => ({ label: item, value: item }))} size="md" style={{ width: `${width}px` }} block/>
         </>
     )
 }
