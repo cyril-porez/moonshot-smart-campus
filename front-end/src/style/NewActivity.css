@@ -1,0 +1,44 @@
+.ActivityForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+
+    width: 75vw;
+    height: 70vh;
+}
+
+h2{
+    margin-bottom: 30px;
+}
+
+input,select,TagPicker{
+    margin: 0 10px 20px 10px;
+    padding: 3% 5%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-weight: 500;
+}
+
+.ActivityType{
+    margin: 0 10px 20px 10px;
+    padding: 2% 4%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.TagPicker{
+    margin: 0 10px 20px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.Column{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+.Row{
+    display: flex;
+    flex-direction: row;
+}
