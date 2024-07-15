@@ -1,5 +1,5 @@
 {
-  "name": "back-end",
+  "name": "back",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -8,28 +8,28 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "deploy": "strapi deploy"
+    "vault": "export VAULT_ADDR='https://vault.atelier.ovh' && (ls ./agent-config.hcl || node init.js) && (vault token lookup || vault login -method=oidc) && vault agent -config=agent-config.hcl -log-level=error"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "4.25.3",
-    "@strapi/plugin-i18n": "4.25.3",
-    "@strapi/plugin-users-permissions": "4.25.3",
-    "@strapi/strapi": "4.25.3",
-    "better-sqlite3": "8.6.0",
+    "@strapi/plugin-i18n": "4.12.0",
+    "@strapi/plugin-users-permissions": "4.12.0",
+    "@strapi/provider-email-nodemailer": "^4.12.0",
+    "@strapi/strapi": "4.12.0",
+    "better-sqlite3": "7.4.6",
     "mysql": "^2.18.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "5.3.4",
-    "styled-components": "5.3.3"
+    "mysql2": "^3.10.2",
+    "nodemailer": "^6.8.0",
+    "strapi-plugin-sso": "^0.2.1",
+    "strapi-provider-upload-minio-ce": "^1.1.0"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "12ca139a-49d8-4ebd-a754-562ee6bfb6c4"
+    "uuid": "a5310c1c-97d5-409c-a683-d1d379eb8e0f"
   },
   "engines": {
-    "node": ">=18.0.0 <=20.x.x",
+    "node": ">=14.19.1 <=18.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT"
