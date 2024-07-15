@@ -7,11 +7,11 @@ import "../style/NewActivity.css";
 export default function NewActivity({ }) {
 
     /* Replace by db pull of activity types */
-    const ActivityTypes = ["test1", "test2", "test3"];
-    const Room = ["test1", "test2", "test3"];
+    const ActivityTypes = ["Cours", "HowTo", "Corrections","Execution Publique"];
+    const Room = ["301", "201", "202","203","204","La Cave","205"];
     const EspectedTime = ["15min", "30min", "45min", "60min", "90min", "120min"];
     const Helper = ["RUBEN", "HABIB", "HABIBIIIIIIIII"];
-    const Data = ["Tag1", "Tag2", "Tag3"]
+    const Data = ["C", "C++", "Java","Web"]
 
     return (
         <div className="ActivityForm">
