@@ -1,10 +1,10 @@
-.legend, .react-tags__label {
+.legend {
     font-size: 14px;
     margin: 0;
     margin-bottom: 5px;
 }
 
-.form-input, .select, .react-tags__combobox-input {
+.form-input, .select {
     border: none;
     border-radius: 5px;
     box-shadow: 
