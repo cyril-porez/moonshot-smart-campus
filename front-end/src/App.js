@@ -7,12 +7,17 @@ import SignUp from "./Pages/Auth/sign-up";
 import Home from "./Pages/Home";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import { Dashboard } from "./Pages/Staff/Dashboard";
+import { Calendar } from "rsuite";
+import { SelectInput } from "./components/FormInput";
 import Modal from "./components/Modal";
 import SuggestActivityForm from "./components/NewActivity";
 
 function App() {
 
     const [isSidebarOpen, setSidebarOpen] = useState(false);
+    const [userType, setUserType] = useState("student");
+
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
     }
@@ -55,11 +60,23 @@ function App() {
                 ]}
             />
             <main className={`main-content ${isSidebarOpen ? 'shifted' : ''}`}>
+
+                {/* A CHANGER QUAND ON AURA MIS EN PLACE LE SYSTEME D'AUTH */}
+                <SelectInput
+                    legend={"Change user"}
+                    options={[
+                        "student", "accompagnateur", "responsable"
+                    ]}
+                    onChange={(e) => setUserType(e.target.value)}
+                />
+                
                 <Router>
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Dashboard props={{ user: userType }} />} />
+                        {/* <Route path="/" element={<Home />} /> */}
                         <Route path="/sign-in" element={<SignIn />} />
                         <Route path="/sign-up" element={<SignUp />} />
+                        <Route path="/calendar" element={<Calendar />} />
                     </Routes>
                 </Router>
             </main>
