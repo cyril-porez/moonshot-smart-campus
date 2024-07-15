@@ -3,6 +3,7 @@ import { DashboardButton } from "../components/Button";
 import { TagSelector } from "../components/FormInput";
 import { useNavigate } from "react-router-dom";
 import { ActivityTable } from "../components/Tables";
+import Range from "../components/Range";
 
 export default function Home( params ) {
 
@@ -15,6 +16,7 @@ export default function Home( params ) {
                 <p style={{ margin: "0 20px" }}>ou</p>
                 <DashboardButton text={"Se connecter"} onClick={() => navigate("/sign-in")}/>
             </div>
+            <Range />
         </>
     )
 }
