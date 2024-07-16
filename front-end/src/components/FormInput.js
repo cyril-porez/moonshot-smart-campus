@@ -4,8 +4,8 @@ import "../style/FormInput.css";
 
 export function FormInput({ legend, type, placeholder }) {
     return (
-        <div>
-            <p className="legend">{legend}</p>
+        <div className="align-input">
+            <label className="legend">{legend}</label>
 
             <input className="form-input" type={type} placeholder={placeholder} />
         </div>

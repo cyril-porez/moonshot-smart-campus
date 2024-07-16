@@ -16,3 +16,8 @@
 .select option:hover {
     background-color: var(--bg-secondary-color);
 }
+
+.align-input{
+    display: flex;
+    flex-direction: column;
+}

@@ -63,3 +63,32 @@ button:hover {
     width: 50px;
     height: 50px;
 }
+
+.google-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EA4335;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    width: 200px;
+    height: 50px;
+}
+
+.google-btn:hover {
+    background-color: #D4372D;
+}
+
+.google-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+}
