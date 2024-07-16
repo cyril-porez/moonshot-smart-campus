@@ -14,9 +14,11 @@ export default function NewActivity({ }) {
     const Data = ["C", "C++", "Java","Web"]
 
     return (
-        <div className="ActivityForm">
+        <div >
             <h2>Créer une nouvelle activité</h2>
+            <form className="ActivityForm">
 
+           
             <select className="ActivityType" name="ActivityType" id="ActivityType-select">
                 <option hidden value="">Type d'activité</option>
                 {ActivityTypes.map((type, index) => (
@@ -40,7 +42,7 @@ export default function NewActivity({ }) {
                 </div>
 
                 <div className='Column'>
-                    <TagPicker className='TagPicker' data={Data.map(item => ({ label: item, value: item }))} />
+                    <TagPicker className='TagPicker' placeholder="Promo" data={Data.map(item => ({ label: item, value: item }))} />
 
                     <select name="Room" id="Room-select">
                         <option hidden value="">Salle</option>
@@ -58,7 +60,8 @@ export default function NewActivity({ }) {
                 </div>
 
             </div>
-
+            <input className='SubmitButton' type="submit" value="Valider" />
+            </form>
 
         </div>
     );
