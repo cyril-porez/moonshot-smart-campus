@@ -7,7 +7,7 @@ import SignUp from "./Pages/Auth/sign-up";
 import Home from "./Pages/Home";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import { Dashboard } from "./Pages/Staff/Dashboard";
+import { Dashboard } from "./Pages/Dashboard";
 import { Calendar } from "rsuite";
 import { SelectInput } from "./components/FormInput";
 import Modal from "./components/Modal";
@@ -31,6 +31,28 @@ function App() {
     const openModal_Test = () => setModalOpen_Test(true);
     const closeModal_Test = () => setModalOpen_Test(false);
 
+    const navbarLinks = {
+        students: [
+            { icon: "/icons/liste-de-controle.png", href: "/", text: "Mes activités" },
+            { icon: "/icons/activite.png", href: "/", text: "Voir les activités terminées" },
+            { icon: "/icons/notification.png", href: "/", text: "Notifications" },
+            { icon: "/icons/agenda.png", href: "/", text: "Voir mon planning" },
+        ],
+        responsable: [
+            { icon: "/icons/liste-de-controle.png", href: "/", text: "Mes activités" },
+            { icon: "/icons/activite.png", href: "/", text: "Voir les activités terminées" },
+            { icon: "/icons/notification.png", href: "/", text: "Notifications" },
+            { icon: "/icons/agenda.png", href: "/", text: "Voir mon planning" },
+        ],
+        accompagnateur: [
+            { icon: "/icons/liste-de-controle.png", href: "/", text: "Suivi de présence" },
+            { icon: "/icons/activite.png", href: "/", text: "Voir les activités terminées" },
+            { icon: "/icons/notification.png", href: "/", text: "Notifications" },
+            { icon: "/icons/agenda.png", href: "/", text: "Voir mon planning" },
+            { icon: "/icons/remarques.png", href: "/", text: "Note activité élève" },
+        ]
+    }
+    
 
 
     return (
@@ -53,11 +75,16 @@ function App() {
                 isOpen={isSidebarOpen}
                 onOpenModal_SuggestActivity={openModal_SuggestActivity}
                 onOpenModal_Test={openModal_Test}
-                links={[
-                    { icon: "/icons/plus.png", href: "/", text: "Nouveau lien" },
-                    { icon: "/icons/plus.png", href: "/", text: "Nouveau lien" },
-                    { icon: "/icons/plus.png", href: "/", text: "Nouveau lien" }
-                ]}
+                userType={userType}
+                links={
+                    userType === "student" ? 
+                        navbarLinks.students :
+                    userType === "accompagnateur" ?
+                        navbarLinks.accompagnateur :
+                    userType === "responsable" ?
+                        navbarLinks.responsable :
+                        null
+                }
             />
             <main className={`main-content ${isSidebarOpen ? 'shifted' : ''}`}>
 

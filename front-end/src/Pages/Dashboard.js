@@ -1,7 +1,7 @@
 import React from "react";
-import { DashboardButton } from "../../components/Button";
+import { DashboardButton } from "../components/Button";
 import { useNavigate } from "react-router-dom";
-import "../../style/Dashboard.css"
+import "../style/Dashboard.css"
 
 export function Dashboard({ props }) {
 

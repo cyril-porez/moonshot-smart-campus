@@ -1,7 +1,8 @@
 import React from "react";
 import "../style/Sidebar.css";
 
-export default function Sidebar({ onOpenModal_SuggestActivity,onOpenModal_Test, isOpen, logo, links = [] }) {
+export default function Sidebar({ onOpenModal_SuggestActivity, isOpen, logo, links = [], userType }) {
+    __dir
     return (
         <aside className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
             {logo ? <img src={logo} alt="" width="90%" /> : null}
@@ -12,11 +13,18 @@ export default function Sidebar({ onOpenModal_SuggestActivity,onOpenModal_Test, 
                 </div>
             </a>
 
-
-            <div className="navbar-link" onClick={onOpenModal_SuggestActivity}>
-                <img src={"/icons/plus.png"} className="navbar-icon" alt="" width={32} height={32} />
-                <b>Proposition d'activité</b>
-            </div>
+            {/* Si c'est un étudiant ou un responsable pédagogique, ils ont la possibilité de proposer/créer une activité */}
+            {userType === "student" ? (
+                <div className="navbar-link" onClick={onOpenModal_SuggestActivity}>
+                    <img src={"/icons/plus.png"} className="navbar-icon" alt="" width={32} height={32} />
+                    <b>Proposition d'activité</b>
+                </div>
+            ) : userType === "responsable" ? (
+                <div className="navbar-link" onClick={onOpenModal_SuggestActivity}>
+                    <img src={"/icons/plus.png"} className="navbar-icon" alt="" width={32} height={32} />
+                    <b>Créer une nouvelle activité</b>
+                </div>
+            ) : null}
             
             {/* 
             <div className="navbar-link" onClick={onOpenModal_Test}>
