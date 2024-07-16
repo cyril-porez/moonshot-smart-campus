@@ -27,7 +27,7 @@ export function SelectInput({ legend, name, options = [], hasDefaultOption = fal
     )
 }
 
-export function TagSelector({ legend, data, width = 300 }) {
+export function TagSelector({ legend, data = [], width = 300 }) {
 
     return (
         <>
