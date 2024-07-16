@@ -2,7 +2,6 @@ import React from "react";
 import "../style/Sidebar.css";
 
 export default function Sidebar({ onOpenModal_SuggestActivity, isOpen, logo, links = [], userType }) {
-    __dir
     return (
         <aside className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
             {logo ? <img src={logo} alt="" width="90%" /> : null}
