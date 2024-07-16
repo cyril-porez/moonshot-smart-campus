@@ -1,10 +1,10 @@
-.legend {
+.legend, .react-tags__label {
     font-size: 14px;
     margin: 0;
     margin-bottom: 5px;
 }
 
-.form-input, .select {
+.form-input, .select, .react-tags__combobox-input {
     border: none;
     border-radius: 5px;
     box-shadow: 
@@ -15,4 +15,9 @@
 
 .select option:hover {
     background-color: var(--bg-secondary-color);
+}
+
+.align-input{
+    display: flex;
+    flex-direction: column;
 }
