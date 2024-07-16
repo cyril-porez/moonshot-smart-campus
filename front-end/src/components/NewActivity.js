@@ -14,10 +14,12 @@ export default function NewActivity({ }) {
     const Data = ["C", "C++", "Java","Web"]
 
     return (
-        <div className="ActivityForm">
+        <div >
             <h2>Créer une nouvelle activité</h2>
+            <form className="ActivityForm">
 
-            <select className="ActivityType" name="ActivityType" id="ActivityType-select">
+           
+            <select className="ActivityType" name="ActivityType" id="ActivityType-select" required>
                 <option hidden value="">Type d'activité</option>
                 {ActivityTypes.map((type, index) => (
                     <option key={index} value={type}>{type}</option>
@@ -27,11 +29,11 @@ export default function NewActivity({ }) {
 
             <div className='Row'>
                 <div className='Column'>
-                    <input type="text" placeholder="Sujet" />
+                    <input type="text" placeholder="Sujet" required />
 
-                    <input type="datetime-local" placeholder="Date" />
+                    <input type="datetime-local" placeholder="Date" required />
 
-                    <select name="EspectedTime" id="EspectedTime-select">
+                    <select name="EspectedTime" id="EspectedTime-select" required>
                         <option hidden value="">Temp Estimé</option>
                         {EspectedTime.map((type, index) => (
                             <option key={index} value={type}>{type}</option>
@@ -40,16 +42,16 @@ export default function NewActivity({ }) {
                 </div>
 
                 <div className='Column'>
-                    <TagPicker className='TagPicker' data={Data.map(item => ({ label: item, value: item }))} />
+                    <TagPicker className='TagPicker' placeholder="Promo" data={Data.map(item => ({ label: item, value: item }))} required/>
 
-                    <select name="Room" id="Room-select">
+                    <select name="Room" id="Room-select" required>
                         <option hidden value="">Salle</option>
                         {Room.map((type, index) => (
                             <option key={index} value={type}>{type}</option>
                         ))}
                     </select>
 
-                    <select name="Helper" id="Helper-select">
+                    <select name="Helper" id="Helper-select" required>
                         <option hidden value="">Accompagnateur</option>
                         {Helper.map((type, index) => (
                             <option key={index} value={type}>{type}</option>
@@ -58,7 +60,8 @@ export default function NewActivity({ }) {
                 </div>
 
             </div>
-
+            <input className='SubmitButton' type="submit" value="Valider" />
+            </form>
 
         </div>
     );
