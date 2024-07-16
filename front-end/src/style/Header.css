@@ -1,0 +1,10 @@
+header {
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: var(--bg-primary-color);
+    box-shadow: 0 2px 5px var(--bg-secondary-color);
+}
