@@ -9,7 +9,7 @@
     height: 70vh;
 }
 
-h2{
+.NewActivityTitle{
     margin-bottom: 30px;
 }
 
@@ -17,17 +17,17 @@ h2{
     margin: 0 10px 20px 10px;
     padding: 3% 5%;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     font-weight: 500;
-    background-color: #999999;
-    color: #FFFFFF;
+    background-color: #FFFFFF;
+    color: #000000;
 }
 
 .ActivityForm .ActivityType{
     margin: 0 10px 20px 10px;
     padding: 2% 4%;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
 }
 .ActivityForm .TagPicker{
     margin: 0 10px 20px 10px;

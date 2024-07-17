@@ -11,7 +11,7 @@ import { Dashboard } from "./Pages/Dashboard";
 import { Calendar } from "rsuite";
 import { SelectInput } from "./components/FormInput";
 import Modal from "./components/Modal";
-import SuggestActivityForm from "./components/NewActivity";
+import SuggestActivityForm from "./components/modals/NewActivity";
 
 import { ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone" 
 import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/ActivityReview"
@@ -71,7 +71,7 @@ function App() {
 
             {/* Modal is here because it is called by the sidebar */}
             <Modal isOpen={isModalOpen_SuggestActivity} onClose={closeModal_SuggestActivity}>
-               <SuggestActivityForm/>
+               <SuggestActivityForm Name={"IBRAAAAA"} Reason={"Lebron James"}/>
             </Modal>
 
             {/*  If there is need for another modal in the slidebar, it will be used like this

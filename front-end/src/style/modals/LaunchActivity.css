@@ -1,0 +1,23 @@
+.LaunchActivityBody{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 70vh;
+}
+.H2LaunchActivity{
+    margin-bottom: 30px;
+}
+.LaunchActivityBody p{
+    margin : 20px;
+    font-weight: 500;
+    font-size: larger;
+    font-weight: 500;
+}
+.ButtonLaunchActivity{
+    margin: 30px 10px 20px 10px;
+    padding: 3% 5%;
+    border-radius: 5px;
+    font-weight: 500;
+}
