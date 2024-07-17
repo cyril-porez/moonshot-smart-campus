@@ -7,11 +7,16 @@ import SignUp from "./Pages/Auth/sign-up";
 import Home from "./Pages/Home";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import { Dashboard } from "./Pages/Staff/Dashboard";
+import { Dashboard } from "./Pages/Dashboard";
 import { Calendar } from "rsuite";
 import { SelectInput } from "./components/FormInput";
 import Modal from "./components/Modal";
 import SuggestActivityForm from "./components/modals/NewActivity";
+
+import { ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone" 
+import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/ActivityReview"
+import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/ActivityStatus"
+import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote"
 
 function App() {
 
@@ -31,6 +36,32 @@ function App() {
     const openModal_Test = () => setModalOpen_Test(true);
     const closeModal_Test = () => setModalOpen_Test(false);
 
+    const navbarLinks = {
+        students: [
+            { icon: "/icons/activite.png", href: "/my-activites", text: "Mes activités" },
+            { icon: "/icons/liste-de-controle.png", href: "/activites-terminees", text: "Voir les activités terminées" },
+            { icon: "/icons/agenda.png", href: "/calendar", text: "Voir mon planning" },
+            { icon: "/icons/notification.png", href: "/", text: "Notifications" },
+        ],
+        responsable: [
+            { icon: "/icons/stats.png", href: "/suivi-participation", text: "Suivi de participation" },
+            { icon: "/icons/liste-de-controle.png", href: "/activites-terminees", text: "Voir les activités terminées" },
+            { icon: "/icons/agenda.png", href: "/calendar", text: "Voir mon planning" },
+            { icon: "/icons/livre.png", href: "/propositions", text: "Consulter les propositions d'activité" },
+            { icon: "/icons/remarques.png", href: "/notes-activite", text: "Note d'activité élève" },
+            { icon: "/icons/notification.png", href: "/", text: "Notifications" },
+        ],
+        accompagnateur: [
+            { icon: "/icons/stats.png", href: "/suivi-participation", text: "Suivi de participation" },
+            { icon: "/icons/activite.png", href: "/activites-terminees", text: "Voir les activités terminées" },
+            { icon: "/icons/agenda.png", href: "/calendar", text: "Voir mon planning" },
+            { icon: "/icons/livre.png", href: "/propositions", text: "Consulter les propositions d'activité" },
+            { icon: "/icons/remarques.png", href: "/notes-activite", text: "Note activité élève" },
+            { icon: "/icons/emotion.png", href: "/ressenti", text: "Ressenti accompagnateur" },
+            { icon: "/icons/notification.png", href: "/", text: "Notifications" },
+        ]
+    }
+    
 
 
     return (
@@ -53,11 +84,16 @@ function App() {
                 isOpen={isSidebarOpen}
                 onOpenModal_SuggestActivity={openModal_SuggestActivity}
                 onOpenModal_Test={openModal_Test}
-                links={[
-                    { icon: "/icons/plus.png", href: "/", text: "Nouveau lien" },
-                    { icon: "/icons/plus.png", href: "/", text: "Nouveau lien" },
-                    { icon: "/icons/plus.png", href: "/", text: "Nouveau lien" }
-                ]}
+                userType={userType}
+                links={
+                    userType === "student" ? 
+                        navbarLinks.students :
+                    userType === "accompagnateur" ?
+                        navbarLinks.accompagnateur :
+                    userType === "responsable" ?
+                        navbarLinks.responsable :
+                        null
+                }
             />
             <main className={`main-content ${isSidebarOpen ? 'shifted' : ''}`}>
 
@@ -77,6 +113,27 @@ function App() {
                         <Route path="/sign-in" element={<SignIn />} />
                         <Route path="/sign-up" element={<SignUp />} />
                         <Route path="/calendar" element={<Calendar />} />
+
+                        {/* Routes étudiants */}
+                        {userType === "student" ? (
+                            <>
+                                <Route path="/activity-done" element={<ActivityDoneStudent/>} />
+                                <Route path="/activity-review" element={<ActivityReviewStudent/>} />
+                                <Route path="/activity-status" element={<ActivityStatusStudent/>} />
+                                <Route path="/activity-vote" element={<ActivityVoteStudent/>} />
+                            </>
+                        ) : null}
+
+                        {/* Routes staff */}
+                        {userType === "responsable" ? (
+                            <>
+
+                            </>
+                        ) : userType === "accompagnateur" ? (
+                            <>
+
+                            </>
+                        ) : null}
                     </Routes>
                 </Router>
             </main>

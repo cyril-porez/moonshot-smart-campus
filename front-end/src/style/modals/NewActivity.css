@@ -13,14 +13,23 @@
     margin-bottom: 30px;
 }
 
+<<<<<<< HEAD:front-end/src/style/modals/NewActivity.css
 .ActivityForm input, .ActivityForm select{
+=======
+.ActivityForm input, .ActivityForm select, .ActivityForm TagPicker{
+>>>>>>> front-end:front-end/src/style/NewActivity.css
     margin: 0 10px 20px 10px;
     padding: 3% 5%;
     border-radius: 5px;
     border: 2px solid #ccc;
     font-weight: 500;
+<<<<<<< HEAD:front-end/src/style/modals/NewActivity.css
     background-color: #FFFFFF;
     color: #000000;
+=======
+    background-color: #999999;
+    color: #FFFFFF;
+>>>>>>> front-end:front-end/src/style/NewActivity.css
 }
 
 .ActivityForm .ActivityType{

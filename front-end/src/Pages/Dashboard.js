@@ -1,7 +1,7 @@
 import React from "react";
-import { DashboardButton } from "../../components/Button";
+import { DashboardButton } from "../components/Button";
 import { useNavigate } from "react-router-dom";
-import "../../style/Dashboard.css"
+import "../style/Dashboard.css"
 
 export function Dashboard({ props }) {
 
@@ -45,12 +45,43 @@ export function Dashboard({ props }) {
                 />
                 <DashboardButton
                     onClick={() => navigate("/suivi-participation")}
-                    iconPath={"/icons/graphique.png"}
+                    iconPath={"/icons/stats.png"}
                     text={"Suivi de participation"}
                 />
                 <DashboardButton
                     onClick={() => navigate("/activites-terminees")}
                     iconPath={"/icons/liste-de-controle.png"}
+                    text={"Voir les activités terminées"}
+                />
+                <DashboardButton
+                    onClick={() => navigate("/calendar")}
+                    iconPath={"/icons/agenda.png"}
+                    text={"Voir mon planning"}
+                />
+                <DashboardButton
+                    onClick={() => navigate("/propositions")}
+                    iconPath={"/icons/livre.png"}
+                    text={"Consulter les propositions d'activité"}
+                />
+                <DashboardButton
+                    onClick={() => navigate("/notes-activite")}
+                    iconPath={"/icons/remarques.png"}
+                    text={"Note d'activité élève"}
+                />
+            </div>
+            
+        )
+    } else if(userType === "accompagnateur") {
+        return (
+            <div className="dashboard">
+                <DashboardButton
+                    onClick={() => navigate("/suivi-participation")}
+                    iconPath={"/icons/stats.png"}
+                    text={"Suivi de participation"}
+                />
+                <DashboardButton
+                    onClick={() => navigate("/activites-terminees")}
+                    iconPath={"/icons/activite.png"}
                     text={"Voir les activités terminées"}
                 />
                 <DashboardButton
@@ -72,37 +103,6 @@ export function Dashboard({ props }) {
                     onClick={() => navigate("/ressenti")}
                     iconPath={"/icons/emotion.png"}
                     text={"Ressenti accompagnateur"}
-                />
-            </div>
-            
-        )
-    } else if(userType === "accompagnateur") {
-        return (
-            <div className="dashboard">
-                <DashboardButton
-                    onClick={() => navigate("/suivi-participation")}
-                    iconPath={"/icons/graphique.png"}
-                    text={"Suivi de participation"}
-                />
-                <DashboardButton
-                    onClick={() => navigate("/activites-terminees")}
-                    iconPath={"/icons/liste-de-controle.png"}
-                    text={"Voir les activités terminées"}
-                />
-                <DashboardButton
-                    onClick={() => navigate("/calendar")}
-                    iconPath={"/icons/agenda.png"}
-                    text={"Voir mon planning"}
-                />
-                <DashboardButton
-                    onClick={() => navigate("/propositions")}
-                    iconPath={"/icons/livre.png"}
-                    text={"Consulter les propositions d'activité"}
-                />
-                <DashboardButton
-                    onClick={() => navigate("/notes-activite")}
-                    iconPath={"/icons/remarques.png"}
-                    text={"Note d'activité élève"}
                 />
             </div>
         )
