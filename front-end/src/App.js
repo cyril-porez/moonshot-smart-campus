@@ -18,6 +18,11 @@ import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/Activi
 import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/ActivityStatus"
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote"
 
+import SuiviPresence from "./Pages/Staff/SuiviPresence";
+import ActivityTimer from "./Pages/Staff/ActivityTimer";
+import ActivityPropositions from "./Pages/Staff/ActivityPropositions";
+import { ActivityDone, ActivityLauncher, ActivityNotes } from "./Pages/Staff/ActivityList";
+
 function App() {
 
     const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -127,11 +132,17 @@ function App() {
                         {/* Routes staff */}
                         {userType === "responsable" ? (
                             <>
-
+                                <Route path="/suivi-presence" element={<SuiviPresence />} />
+                                <Route path="/activity-propositions" element={<ActivityPropositions />} />
+                                <Route path="/absent-student" element={<AbsentStudent />} />
                             </>
                         ) : userType === "accompagnateur" ? (
                             <>
-
+                                <Route path="/suivi-presence" element={<SuiviPresence />} />
+                                <Route path="/activity-note" element={<ActivityNotes />} />
+                                <Route path="/activity-timer" element={<ActivityTimer />} />
+                                <Route path="/launch-activity" element={<ActivityLauncher />} />
+                                <Route path="/activity-done" element={<ActivityDone />} />
                             </>
                         ) : null}
                     </Routes>
