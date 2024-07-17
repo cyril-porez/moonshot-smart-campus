@@ -13,6 +13,11 @@ import { SelectInput } from "./components/FormInput";
 import Modal from "./components/Modal";
 import SuggestActivityForm from "./components/NewActivity";
 
+import { ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone" 
+import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/ActivityReview"
+import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/ActivityStatus"
+import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote"
+
 function App() {
 
     const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -108,6 +113,27 @@ function App() {
                         <Route path="/sign-in" element={<SignIn />} />
                         <Route path="/sign-up" element={<SignUp />} />
                         <Route path="/calendar" element={<Calendar />} />
+
+                        {/* Routes étudiants */}
+                        {userType === "student" ? (
+                            <>
+                                <Route path="/activity-done" element={<ActivityDoneStudent/>} />
+                                <Route path="/activity-review" element={<ActivityReviewStudent/>} />
+                                <Route path="/activity-status" element={<ActivityStatusStudent/>} />
+                                <Route path="/activity-vote" element={<ActivityVoteStudent/>} />
+                            </>
+                        ) : null}
+
+                        {/* Routes staff */}
+                        {userType === "responsable" ? (
+                            <>
+
+                            </>
+                        ) : userType === "accompagnateur" ? (
+                            <>
+
+                            </>
+                        ) : null}
                     </Routes>
                 </Router>
             </main>
