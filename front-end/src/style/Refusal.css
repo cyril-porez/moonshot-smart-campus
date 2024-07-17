@@ -5,9 +5,8 @@
     align-items: center;
     width: 75vw;
     height: 70vh;
-    background-color: #f5f5f5;
 }
-h2{
+.H2Refusal{
     margin-bottom: 30px;
 }
 .ButtonRefusal{
@@ -16,4 +15,7 @@ h2{
     border-radius: 5px;
     border: 1px solid #ccc;
     font-weight: 500;
+}
+.textareaRefusal{
+    margin-top: 15px;
 }

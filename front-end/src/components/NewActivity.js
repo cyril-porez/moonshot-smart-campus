@@ -15,7 +15,7 @@ export default function NewActivity({ }) {
 
     return (
         <div className="ActivityForm">
-            <h2>Créer une nouvelle activité</h2>
+            <h2 className='H2NewActivity'>Créer une nouvelle activité</h2>
 
             <select className="ActivityType" name="ActivityType" id="ActivityType-select">
                 <option hidden value="">Type d'activité</option>
