@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "promos_activities",
+  "info": {
+    "singularName": "promos-activitie",
+    "pluralName": "promos-activities",
+    "displayName": "Promos_Activitie"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "promos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::promo.promo",
+      "mappedBy": "promos_activitie"
+    },
+    "activities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::activity.activity",
+      "mappedBy": "promos_activitie"
+    }
+  }
+}

@@ -4,15 +4,22 @@
   "info": {
     "singularName": "activity-type",
     "pluralName": "activity-types",
-    "displayName": "Activity_type"
+    "displayName": "Activity_type",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "sujet": {
+    "name": {
       "type": "string"
+    },
+    "activities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::activity.activity",
+      "mappedBy": "activity_type"
     }
   }
 }

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "staff-evaluation",
     "pluralName": "staff-evaluations",
-    "displayName": "Staff_evaluation"
+    "displayName": "Staff_evaluation",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,10 +13,37 @@
   "pluginOptions": {},
   "attributes": {
     "comment": {
-      "type": "string"
+      "type": "text"
     },
     "Date": {
       "type": "date"
+    },
+    "activity": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::activity.activity",
+      "mappedBy": "staff_evaluation"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "staff_evaluations"
+    },
+    "relevance_presentation": {
+      "type": "integer"
+    },
+    "estimated_presentation_time": {
+      "type": "integer"
+    },
+    "quality_support": {
+      "type": "integer"
+    },
+    "technical_agreement": {
+      "type": "integer"
+    },
+    "student_interest": {
+      "type": "integer"
     }
   }
 }
