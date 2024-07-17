@@ -22,6 +22,35 @@ import SuiviPresence from "./Pages/Staff/SuiviPresence";
 import ActivityTimer from "./Pages/Staff/ActivityTimer";
 import ActivityPropositions from "./Pages/Staff/ActivityPropositions";
 import { ActivityDone, ActivityLauncher, ActivityNotes } from "./Pages/Staff/ActivityList";
+import AbsentReview from "./Pages/Staff/AbsentStudents";
+import SitePlan from "./Pages/SitePlan";
+
+export const routes = {
+    common: [
+        { path: "/", title: "Dashboard" },
+        { path: "/sign-up", title: "Sign up" },
+        { path: "/sign-in", title: "Sign in" },
+        { path: "/calendar", title: "Calendrier" },
+        { path: "/site-plan", title: "Plan du site" },
+    ],
+    student: [
+        { path: "/activity-done", title: "Activités terminées" },
+        { path: "/activity-review", title: "Donner son avis sur une activité" },
+        { path: "/activity-status", title: "Voir le status des activités" },
+        { path: "/activity-vote", title: "Voter pour les activités proposées" },
+    ],
+    accompagnateur: [
+        { path: "/suivi-presence", title: "Suivi des présences et des absences" },
+        { path: "/activity-note", title: "Voir les votes des activités" },
+        { path: "/activity-timer", title: "Le timer d'une activité (temps restant pour badger, temps restant avant la fin de l'activité, etc)" },
+        { path: "/activity-launcher", title: "Liste des activités avec la possibilité de les lancer" },
+        { path: "/activity-launcher", title: "Liste des activités terminées" },
+    ],
+    responsable: [
+        { path: "/suivi-presence", title: "Suivi des présences et des absences" },
+        { path: "/activity-propositions", title: "Liste des activités proposées" },
+    ]
+}
 
 function App() {
 
@@ -31,6 +60,7 @@ function App() {
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
     }
+
     // one set of those for each modal
     const [isModalOpen_SuggestActivity, setModalOpen_SuggestActivity] = useState(false);
     const openModal_SuggestActivity = () => setModalOpen_SuggestActivity(true);
@@ -67,7 +97,6 @@ function App() {
         ]
     }
     
-
 
     return (
         <div className="App">
@@ -118,6 +147,7 @@ function App() {
                         <Route path="/sign-in" element={<SignIn />} />
                         <Route path="/sign-up" element={<SignUp />} />
                         <Route path="/calendar" element={<Calendar />} />
+                        <Route path="/site-plan" element={<SitePlan />} />
 
                         {/* Routes étudiants */}
                         {userType === "student" ? (
@@ -134,7 +164,7 @@ function App() {
                             <>
                                 <Route path="/suivi-presence" element={<SuiviPresence />} />
                                 <Route path="/activity-propositions" element={<ActivityPropositions />} />
-                                <Route path="/absent-student" element={<AbsentStudent />} />
+                                <Route path="/absent-student" element={<AbsentReview />} />
                             </>
                         ) : userType === "accompagnateur" ? (
                             <>
