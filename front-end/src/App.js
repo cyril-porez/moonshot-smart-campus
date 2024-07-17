@@ -33,23 +33,27 @@ function App() {
 
     const navbarLinks = {
         students: [
-            { icon: "/icons/liste-de-controle.png", href: "/", text: "Mes activités" },
-            { icon: "/icons/activite.png", href: "/", text: "Voir les activités terminées" },
+            { icon: "/icons/activite.png", href: "/my-activites", text: "Mes activités" },
+            { icon: "/icons/liste-de-controle.png", href: "/activites-terminees", text: "Voir les activités terminées" },
+            { icon: "/icons/agenda.png", href: "/calendar", text: "Voir mon planning" },
             { icon: "/icons/notification.png", href: "/", text: "Notifications" },
-            { icon: "/icons/agenda.png", href: "/", text: "Voir mon planning" },
         ],
         responsable: [
-            { icon: "/icons/liste-de-controle.png", href: "/", text: "Mes activités" },
-            { icon: "/icons/activite.png", href: "/", text: "Voir les activités terminées" },
+            { icon: "/icons/stats.png", href: "/suivi-participation", text: "Suivi de participation" },
+            { icon: "/icons/liste-de-controle.png", href: "/activites-terminees", text: "Voir les activités terminées" },
+            { icon: "/icons/agenda.png", href: "/calendar", text: "Voir mon planning" },
+            { icon: "/icons/livre.png", href: "/propositions", text: "Consulter les propositions d'activité" },
+            { icon: "/icons/remarques.png", href: "/notes-activite", text: "Note d'activité élève" },
             { icon: "/icons/notification.png", href: "/", text: "Notifications" },
-            { icon: "/icons/agenda.png", href: "/", text: "Voir mon planning" },
         ],
         accompagnateur: [
-            { icon: "/icons/liste-de-controle.png", href: "/", text: "Suivi de présence" },
-            { icon: "/icons/activite.png", href: "/", text: "Voir les activités terminées" },
+            { icon: "/icons/stats.png", href: "/suivi-participation", text: "Suivi de participation" },
+            { icon: "/icons/activite.png", href: "/activites-terminees", text: "Voir les activités terminées" },
+            { icon: "/icons/agenda.png", href: "/calendar", text: "Voir mon planning" },
+            { icon: "/icons/livre.png", href: "/propositions", text: "Consulter les propositions d'activité" },
+            { icon: "/icons/remarques.png", href: "/notes-activite", text: "Note activité élève" },
+            { icon: "/icons/emotion.png", href: "/ressenti", text: "Ressenti accompagnateur" },
             { icon: "/icons/notification.png", href: "/", text: "Notifications" },
-            { icon: "/icons/agenda.png", href: "/", text: "Voir mon planning" },
-            { icon: "/icons/remarques.png", href: "/", text: "Note activité élève" },
         ]
     }
     
