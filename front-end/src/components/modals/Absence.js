@@ -2,21 +2,19 @@ import React from 'react';
 
 import "../../style/modals/Absence.css";
 
-export default function Absence({ Name, Reason }) {
+export default function Absence({ name, reason, closeModal }) {
 
     return (
-        <div >
-            <form className="AbsenceBody">
-                <h3 className='AbsenceName'>{Name}</h3>
-                <h2 className='H2Absence'>Motif d'abscence</h2>
+        <div className="absence-body">
+           
+                <h3 className='absence-name'>{name ? name : "Erreur - pas de Nom"}</h3>
+
+                <h2 className='h2-absence'>Motif d'abscence</h2>
                 
+                <p className='absence-reason'>{reason ? reason : "Erreur - pas de raison" }</p>
 
-                <p className='AbsenceReason'>{Reason}</p>
-
-                <input className="ButtonAbsence" type="submit" value="Valider" />
-            </form>
-
-
+                <button className="button-Absence" value="Fermer" onClick={closeModal}>Fermer</button>
+            
         </div>
     );
 }

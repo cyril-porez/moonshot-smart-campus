@@ -1,4 +1,4 @@
-.AbsenceBody{
+.absence-body{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,17 +7,17 @@
     height: 70vh;
 }
 
-.AbsenceName{
+.absence-name{
     position: absolute;
     top: 50px;
     left: 50px;
 }
 
-.H2Absence{
+.h2-absence{
     margin-bottom: 30px;
 }
 
-.AbsenceReason{
+.absence-reason{
     width: 25vw;
     height: 20vh;
     overflow: scroll;
@@ -29,7 +29,7 @@
     border-radius: 5px;
 }
 
-.ButtonAbsence{
+.button-Absence{
     margin: 30px 10px 20px 10px;
     padding: 3% 5%;
     border-radius: 5px;
