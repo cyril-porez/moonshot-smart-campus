@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "../style/Refusal.css";
+import "../../style/modals/Refusal.css";
 
 export default function Refusal({ Promo, Subject}) {
 
