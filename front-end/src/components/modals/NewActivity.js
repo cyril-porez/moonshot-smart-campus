@@ -4,62 +4,56 @@ import { TagPicker } from 'rsuite';
 
 import "../../style/modals/NewActivity.css";
 
-export default function NewActivity({ }) {
-
-    /* Replace by db pull of activity types */
-    const ActivityTypes = ["Cours", "HowTo", "Corrections", "Execution Publique"];
-    const Room = ["301", "201", "202", "203", "204", "La Cave", "205"];
-    const EspectedTime = ["15min", "30min", "45min", "60min", "90min", "120min"];
-    const Helper = ["RUBEN", "HABIB", "HABIBIIIIIIIII"];
-    const Data = ["C", "C++", "Java", "Web"]
+export default function NewActivity({ activityTypes, room , expectedTime, helper, promo, closeModal}) {
 
     return (
         <div >
-            <form className="ActivityForm">
-                <h2 className="NewActivityTitle">Créer une nouvelle activité</h2>
+            <form className="activity-form">
+                <h2 className="new-activity-title">Créer une nouvelle activité</h2>
 
-                <select className="ActivityType" name="ActivityType" id="ActivityType-select" required>
+                <select className="activity-type" name="ActivityType" id="ActivityType-select" required>
                     <option hidden value="">Type d'activité</option>
-                    {ActivityTypes.map((type, index) => (
+                    {activityTypes.map((type, index) => (
                         <option key={index} value={type}>{type}</option>
                     ))}
                 </select>
 
 
-                <div className='Row'>
-                    <div className='Column'>
+                <div className='row'>
+                    <div className='column'>
                         <input type="text" placeholder="Sujet" required />
 
                         <input type="datetime-local" placeholder="Date" required />
 
-                        <select name="EspectedTime" id="EspectedTime-select" required>
+                        <select name="expectedTime" id="expectedTime-select" required>
                             <option hidden value="">Temp Estimé</option>
-                            {EspectedTime.map((type, index) => (
+                            {expectedTime.map((type, index) => (
                                 <option key={index} value={type}>{type}</option>
                             ))}
                         </select>
                     </div>
 
-                    <div className='Column'>
-                        <TagPicker className='TagPicker' placeholder="Promo" data={Data.map(item => ({ label: item, value: item }))} required />
+                    <div className='column'>
+                        <TagPicker className='tag-picker' placeholder="Promo" data={promo.map(item => ({ label: item, value: item }))} required />
 
-                        <select name="Room" id="Room-select" required>
+                        <select name="room" id="room-select" required>
                             <option hidden value="">Salle</option>
-                            {Room.map((type, index) => (
+                            {room.map((type, index) => (
                                 <option key={index} value={type}>{type}</option>
                             ))}
                         </select>
 
-                        <select name="Helper" id="Helper-select" required>
+                        <select name="helper" id="helperSelect" required>
                             <option hidden value="">Accompagnateur</option>
-                            {Helper.map((type, index) => (
+                            {helper.map((type, index) => (
                                 <option key={index} value={type}>{type}</option>
                             ))}
                         </select>
                     </div>
 
                 </div>
-                <input className='SubmitButton' type="submit" value="Valider" />
+                <input className='button-new-activity' type="submit" value="Valider" />
+                <button className='button-new-activity' value="Fermer" onClick={closeModal}>Fermer</button>
             </form>
 
         </div>

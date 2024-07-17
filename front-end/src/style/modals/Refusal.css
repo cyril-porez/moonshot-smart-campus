@@ -1,4 +1,4 @@
-.RefusalBody{
+.body-refusal{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,16 +6,16 @@
     width: 75vw;
     height: 70vh;
 }
-.H2Refusal{
+.h2-refusal{
     margin-bottom: 30px;
 }
-.ButtonRefusal{
-    margin: 30px 10px 20px 10px;
+.text-area-refusal{
+    margin: 20px 0 20px 0;
+}
+.button-refusal{
+    margin: 10px 10px 20px 10px;
     padding: 2% 5%;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-weight: 500;
-}
-.textareaRefusal{
-    margin-top: 15px;
 }
