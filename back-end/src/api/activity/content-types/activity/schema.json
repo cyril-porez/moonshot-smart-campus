@@ -4,7 +4,8 @@
   "info": {
     "singularName": "activity",
     "pluralName": "activities",
-    "displayName": "Activity"
+    "displayName": "Activity",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,57 @@
   "attributes": {
     "subject": {
       "type": "string"
+    },
+    "users_activities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::users-activitie.users-activitie",
+      "mappedBy": "activity"
+    },
+    "activity_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::activity-type.activity-type",
+      "inversedBy": "activities"
+    },
+    "room": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::room.room",
+      "inversedBy": "activities"
+    },
+    "promos_activitie": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::promos-activitie.promos-activitie",
+      "inversedBy": "activities"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "activities"
+    },
+    "staff_evaluation": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::staff-evaluation.staff-evaluation",
+      "inversedBy": "activity"
+    },
+    "student_evaluations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::student-evaluation.student-evaluation",
+      "mappedBy": "activity"
+    },
+    "Hourly": {
+      "type": "datetime"
+    },
+    "time_activity": {
+      "type": "integer"
+    },
+    "time_to_badge": {
+      "type": "integer"
     }
   }
 }

@@ -4,15 +4,22 @@
   "info": {
     "singularName": "room",
     "pluralName": "rooms",
-    "displayName": "Room"
+    "displayName": "Room",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "nom": {
+    "name": {
       "type": "string"
+    },
+    "activities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::activity.activity",
+      "mappedBy": "room"
     }
   }
 }

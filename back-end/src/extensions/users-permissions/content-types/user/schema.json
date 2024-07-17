@@ -1,0 +1,118 @@
+{
+  "kind": "collectionType",
+  "collectionName": "up_users",
+  "info": {
+    "name": "user",
+    "description": "",
+    "singularName": "user",
+    "pluralName": "users",
+    "displayName": "User"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "timestamps": true
+  },
+  "attributes": {
+    "username": {
+      "type": "string",
+      "minLength": 3,
+      "unique": true,
+      "configurable": false,
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "minLength": 6,
+      "configurable": false,
+      "required": true
+    },
+    "provider": {
+      "type": "string",
+      "configurable": false
+    },
+    "password": {
+      "type": "password",
+      "minLength": 6,
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "resetPasswordToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "confirmationToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "role": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.role",
+      "inversedBy": "users",
+      "configurable": false
+    },
+    "badge": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::badge.badge",
+      "mappedBy": "users_permissions_user"
+    },
+    "users_activitie": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::users-activitie.users-activitie",
+      "inversedBy": "users_permissions_users"
+    },
+    "cursus": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::cursus.cursus",
+      "inversedBy": "users_permissions_users"
+    },
+    "promo": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::promo.promo",
+      "inversedBy": "users_permissions_users"
+    },
+    "activities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::activity.activity",
+      "mappedBy": "users_permissions_user"
+    },
+    "student_evaluations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::student-evaluation.student-evaluation",
+      "mappedBy": "users_permissions_user"
+    },
+    "staff_evaluations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::staff-evaluation.staff-evaluation",
+      "mappedBy": "users_permissions_user"
+    },
+    "status_role": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::status-role.status-role",
+      "inversedBy": "users_permissions_users"
+    }
+  }
+}

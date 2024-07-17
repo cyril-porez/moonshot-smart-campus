@@ -4,7 +4,8 @@
   "info": {
     "singularName": "student-evaluation",
     "pluralName": "student-evaluations",
-    "displayName": "Student_evaluation"
+    "displayName": "Student_evaluation",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,33 @@
     },
     "Date": {
       "type": "date"
+    },
+    "activity": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::activity.activity",
+      "inversedBy": "student_evaluations"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "student_evaluations"
+    },
+    "comprehension": {
+      "type": "integer"
+    },
+    "subject": {
+      "type": "integer"
+    },
+    "pedagogy": {
+      "type": "integer"
+    },
+    "eloquence": {
+      "type": "integer"
+    },
+    "relevance": {
+      "type": "integer"
     }
   }
 }

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "badges",
+  "collectionName": "status_roles",
   "info": {
-    "singularName": "badge",
-    "pluralName": "badges",
-    "displayName": "Badge",
+    "singularName": "status-role",
+    "pluralName": "status-roles",
+    "displayName": "Status_Role",
     "description": ""
   },
   "options": {
@@ -12,14 +12,14 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "uid_crypt": {
+    "name": {
       "type": "string"
     },
-    "users_permissions_user": {
+    "users_permissions_users": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "badge"
+      "mappedBy": "status_role"
     }
   }
 }
