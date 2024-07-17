@@ -2,12 +2,14 @@ import React from "react";
 import { TagPicker } from 'rsuite';
 import "../style/FormInput.css";
 
-export function FormInput({ legend, type, placeholder }) {
+
+
+export function FormInput({ legend, type, placeholder}) {
     return (
         <div>
             <p className="legend">{legend}</p>
 
-            <input className="form-input" type={type} placeholder={placeholder} />
+            <input className="form-input" type={type} placeholder={placeholder}/>
         </div>
     )
 }

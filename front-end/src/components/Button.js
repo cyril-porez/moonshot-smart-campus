@@ -33,7 +33,7 @@ export function DashboardButton({ onClick, iconPath, text, variant }) {
 export function FormButton({ onClick, text, variant }) {
 
     return (
-        <button onClick={onClick} className={`form-btn ${getVariant(variant)}`}>
+        <button type="submit" onClick={onClick} className={`form-btn ${getVariant(variant)}`}>
             {text}
         </button>
     )
