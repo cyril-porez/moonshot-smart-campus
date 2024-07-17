@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "../style/LaunchActivity.css";
+import "../../style/modals/LaunchActivity.css";
 
 export default function LaunchActivity({ Subject, DateTime, EspectedTime, Room }) {
 

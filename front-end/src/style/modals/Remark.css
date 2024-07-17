@@ -1,0 +1,18 @@
+.remark-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 70vh;
+}
+.h2-remark{
+    margin-bottom: 30px;
+}
+.remark-content{
+    margin: 30px 10px 20px 10px;
+    padding: 2% 5%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-weight: 500;
+}
