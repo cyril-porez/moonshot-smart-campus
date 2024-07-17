@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    justify-content: space-between;
+  }
+  
+  .timer-container {
+    align-self: flex-end; /* Aligns the Timer to the right */
+    padding: 20px; /* Optional: Adds some padding for better positioning */
+  }
+  
+  .hourglass-container {
+    display: flex;
+    justify-content: center; /* Centers the Hourglass horizontally */
+    padding-bottom: 20px; /* Optional: Adds some padding at the bottom */
+  }
+  

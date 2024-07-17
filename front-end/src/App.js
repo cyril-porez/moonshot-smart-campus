@@ -7,6 +7,9 @@ import SignUp from "./Pages/Auth/sign-up";
 import Home from "./Pages/Home";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import Suivi from "./Pages/Staff/Suivi";
+import Suivi2 from "./Pages/Staff/Suivi2";
+
 
 function App() {
 
@@ -33,6 +36,9 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/sign-in" element={<SignIn />} />
                         <Route path="/sign-up" element={<SignUp />} />
+                        <Route path="/Suivi" element={<Suivi />} />
+                        <Route path="/Suivi2" element={<Suivi2 />} />
+
                     </Routes>
                 </Router>
             </main>
