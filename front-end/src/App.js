@@ -18,8 +18,10 @@ import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/Activi
 import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/ActivityStatus"
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote"
 
-function App() {
+import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff/ActivityPropositions"
 
+function App() {
+    
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [userType, setUserType] = useState("student");
 
@@ -66,11 +68,6 @@ const closeModal_SuggestActivity = () => setModalOpen_SuggestActivity(false);
             <Modal isOpen={isModalOpen_SuggestActivity} onClose={closeModal_SuggestActivity}>
                 <SuggestActivityForm
                     closeModal={closeModal_SuggestActivity}
-                    activityTypes={["Howto", "cours", "Execution publique"]}
-                    room={["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","la Cave"]}
-                    expectedTime={[15,30,45,60,90,120]}
-                    helper={["Ruben", "Habib", "HABIBIIIIIIIIIII"]}
-                    promo={["B1","B2","B3"]}
                 />
             </Modal>
             <Sidebar
@@ -119,11 +116,13 @@ const closeModal_SuggestActivity = () => setModalOpen_SuggestActivity(false);
                         {/* Routes staff */}
                         {userType === "responsable" ? (
                             <>
+                                 <Route path="/activity-propositions" element={<ActivityPropositionsStaff/>} />
+                                
 
                             </>
                         ) : userType === "accompagnateur" ? (
                             <>
-
+                                <Route path="/activity-propositions" element={<ActivityPropositionsStaff/>} />
                             </>
                         ) : null}
                     </Routes>

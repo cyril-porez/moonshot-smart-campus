@@ -1,11 +1,18 @@
 import React from "react";
+import { ActivityTable } from "../../components/Tables";
 
-/**
- * Page où les responsables/accompagnateurs pourront voir les activités proposées avec leurs votes, ainsi que la possibilité de 
- * les accepter/refuser
- */
-export default function ActivityPropositions() {
+const data=[
+    { id: 1, subject: "I want to kill myself", promo: "B2", activityTypes : "HowTo", helper : "Habib" , datetime: "2024-07-18T14:30", expectedTime: 30, room: "A2" },
+    
+]
+
+export function ActivityPropositions() {
+
     return (
-        <h1>{__filename}</h1>
+        <>
+            <h1>Activités terminées</h1>
+            <ActivityTable type={"proposition"} data={data} />
+        </>
+
     )
 }
