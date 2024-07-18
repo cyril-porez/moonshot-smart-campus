@@ -1,8 +1,18 @@
 import axios from 'axios';
+import bcrypt from 'bcryptjs';
+
 
 async function authRegister(data){
     try {
-        const response = await axios.post("", data, { headers: { "Content-Type": "application/json" } });
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(data.password, salt);
+
+        const modifiedData = {
+            ...data,
+            password: hashedPassword
+        };
+
+        const response = await axios.post("", modifiedData, { headers: { "Content-Type": "application/json" } });
         console.log(response);
         return {
             status: response.status,

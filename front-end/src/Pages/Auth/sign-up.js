@@ -19,7 +19,7 @@ export default function SignUp(params) {
   });
   const onSubmit = (data) =>{
     console.log(data);
-     authRegister(data);
+    authRegister(data);
   }
 
 
