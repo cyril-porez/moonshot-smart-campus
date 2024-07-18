@@ -2,22 +2,24 @@ import React from "react";
 import { TagPicker } from 'rsuite';
 import "../style/FormInput.css";
 
-export function FormInput({ legend, type, placeholder }) {
+
+
+export function FormInput({ legend, type, placeholder}) {
     return (
         <div>
             <p className="legend">{legend}</p>
 
-            <input className="form-input" type={type} placeholder={placeholder} />
+            <input className="form-input" type={type} placeholder={placeholder}/>
         </div>
     )
 }
 
-export function SelectInput({ legend, name, options = [], hasDefaultOption = false }) {
+export function SelectInput({ legend, name, options = [], hasDefaultOption = false, onChange }) {
     return (
         <div>
             <p className="legend">{legend}</p>
 
-            <select name={name} className="select">
+            <select name={name} className="select" onChange={onChange}>
                 {hasDefaultOption ? <option name="default">-- Sélectionnez --</option> : null}
                 {options.map(option => (
                     <option value={option.toLowerCase()}>{option}</option>
