@@ -41,6 +41,27 @@ export default function Sidebar({ onOpenModal_SuggestActivity, isOpen, logo, lin
                 </a>
             ))}
 
-        </aside>
-    )
+      {/* 
+            <div className="navbar-link" onClick={onOpenModal_Test}>
+                <img src={"/icons/plus.png"} className="navbar-icon" alt="" width={32} height={32} />
+                <p>Test</p>
+            </div>
+            */}
+
+      {links.map((link) => (
+        <a href={link.href}>
+          <div className="navbar-link">
+            <img
+              src={link?.icon}
+              className="navbar-icon"
+              alt=""
+              width={32}
+              height={32}
+            />
+            <p>{link?.text}</p>
+          </div>
+        </a>
+      ))}
+    </aside>
+  );
 }

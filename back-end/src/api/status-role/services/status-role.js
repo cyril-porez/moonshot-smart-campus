@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * test service
+ * status-role service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::test.test');
+module.exports = createCoreService('api::status-role.status-role');
