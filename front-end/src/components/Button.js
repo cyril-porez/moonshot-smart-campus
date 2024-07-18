@@ -18,15 +18,6 @@ function getVariant(variant) {
 }
 
 export function DashboardButton({ onClick, iconPath, text, variant }) {
-
-    return (
-        <button onClick={onClick} className={`dashboard-btn-body ${getVariant(variant)}`}>
-            <div className="dashboard-btn-inner">
-                {iconPath ? <img src={iconPath} alt="" width={32} height={32} /> : null}
-                <p>{text}</p>
-            </div>
-        </button>
-    )
   return (
     <button
       onClick={onClick}
@@ -46,13 +37,6 @@ export function FormButton({ onClick, text, variant }) {
       {text}
     </button>
   );
-}
-
-    return (
-        <button onClick={onClick} className={`form-btn ${getVariant(variant)}`}>
-            <p>{text}</p>
-        </button>
-    )
 }
 
 export function GoogleButton({ onClick }) {
