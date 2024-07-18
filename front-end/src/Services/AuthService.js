@@ -6,12 +6,13 @@ async function authRegister(data){
     try {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(data.password, salt);
+        console.log(hashedPassword);
 
         const modifiedData = {
             ...data,
             password: hashedPassword
         };
-
+        // TO DO : RECUPERER URL UNE FOIS§ SERVEUR EN PLACE ET ENLEVER CONSOLE.LOG
         const response = await axios.post("", modifiedData, { headers: { "Content-Type": "application/json" } });
         console.log(response);
         return {
