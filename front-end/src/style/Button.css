@@ -6,10 +6,11 @@ button {
 }
 
 .dashboard-btn-body {
-    border: 1px solid var(--bg-primary-color);
+    border: 1px solid grey;
     border-radius: 5px;
     width: 200px;
     height: 80px;
+    margin: 5px;
 }
 
 .dashboard-btn-body img {
@@ -19,8 +20,13 @@ button {
 .dashboard-btn-inner {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+}
+
+.dashboard-btn-inner p {
+    margin: auto;
 }
 
 .form-btn {
