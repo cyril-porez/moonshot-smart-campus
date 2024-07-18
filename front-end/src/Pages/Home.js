@@ -3,6 +3,10 @@ import { DashboardButton, FormButton } from "../components/Button";
 import { FormInput, SelectInput, TagSelector } from "../components/FormInput";
 import { useNavigate } from "react-router-dom";
 import { ActivityTable } from "../components/Tables";
+import Range from "../components/Range";
+
+import "../style/Button.css";
+import "../style/FormInput.css";
 
 import "../style/Button.css";
 import "../style/FormInput.css";
