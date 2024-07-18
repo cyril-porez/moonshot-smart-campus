@@ -40,13 +40,10 @@ export function FormButton({ onClick, text, variant }) {
 }
 
 export function GoogleButton({ onClick }) {
-
-    return (
-
-        <button className="google-btn" onClick={onClick}>
-            <img src="/icons/google.png" alt="Google Icon" class="google-icon"/>
-
-            Continuez avec Google
-        </button>
-    )
+  return (
+    <button className="google-btn" onClick={onClick}>
+      <img src="/icons/google.png" alt="Google Icon" className="google-icon" />
+      Continuez avec Google
+    </button>
+  );
 }
