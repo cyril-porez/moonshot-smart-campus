@@ -90,7 +90,7 @@ export function Dashboard({ props }) {
                     text={"Voir mon planning"}
                 />
                 <DashboardButton
-                    onClick={() => navigate("/propositions")}
+                    onClick={() => navigate("/activity-propositions")}
                     iconPath={"/icons/livre.png"}
                     text={"Consulter les propositions d'activité"}
                 />
