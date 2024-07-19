@@ -1,0 +1,12 @@
+.common-table-body{
+    display : flex;
+    flex-direction: column;
+    text-align: center;
+}
+.common-table-title{
+    margin: 30px;
+}
+.common-table-container{
+    height: 50vh;
+    overflow-x: scroll;
+}
