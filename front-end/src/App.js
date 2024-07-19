@@ -13,10 +13,11 @@ import { SelectInput } from "./components/FormInput";
 import Modal from "./components/Modal";
 import SuggestActivityForm from "./components/modals/NewActivity";
 
-import { ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone" 
+import { ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone"
 import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/ActivityReview"
 import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/ActivityStatus"
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote"
+import { ActivityReview as ActivityReviewStaff } from "./Pages/Staff/ActivityReview"
 
 function App() {
 
@@ -27,10 +28,10 @@ function App() {
         setSidebarOpen(!isSidebarOpen);
     }
 
-// one set of those for each modal
-const [isModalOpen_SuggestActivity, setModalOpen_SuggestActivity] = useState(false);
-const openModal_SuggestActivity = () => setModalOpen_SuggestActivity(true);
-const closeModal_SuggestActivity = () => setModalOpen_SuggestActivity(false);
+    // one set of those for each modal
+    const [isModalOpen_SuggestActivity, setModalOpen_SuggestActivity] = useState(false);
+    const openModal_SuggestActivity = () => setModalOpen_SuggestActivity(true);
+    const closeModal_SuggestActivity = () => setModalOpen_SuggestActivity(false);
 
     const navbarLinks = {
         students: [
@@ -57,7 +58,7 @@ const closeModal_SuggestActivity = () => setModalOpen_SuggestActivity(false);
             { icon: "/icons/notification.png", href: "/", text: "Notifications" },
         ]
     }
-    
+
 
 
     return (
@@ -67,10 +68,10 @@ const closeModal_SuggestActivity = () => setModalOpen_SuggestActivity(false);
                 <SuggestActivityForm
                     closeModal={closeModal_SuggestActivity}
                     activityTypes={["Howto", "cours", "Execution publique"]}
-                    room={["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","la Cave"]}
-                    expectedTime={[15,30,45,60,90,120]}
+                    room={["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "la Cave"]}
+                    expectedTime={[15, 30, 45, 60, 90, 120]}
                     helper={["Ruben", "Habib", "HABIBIIIIIIIIIII"]}
-                    promo={["B1","B2","B3"]}
+                    promo={["B1", "B2", "B3"]}
                 />
             </Modal>
             <Sidebar
@@ -78,13 +79,13 @@ const closeModal_SuggestActivity = () => setModalOpen_SuggestActivity(false);
                 onOpenModal_SuggestActivity={openModal_SuggestActivity}
                 userType={userType}
                 links={
-                    userType === "student" ? 
+                    userType === "student" ?
                         navbarLinks.students :
-                    userType === "accompagnateur" ?
-                        navbarLinks.accompagnateur :
-                    userType === "responsable" ?
-                        navbarLinks.responsable :
-                        null
+                        userType === "accompagnateur" ?
+                            navbarLinks.accompagnateur :
+                            userType === "responsable" ?
+                                navbarLinks.responsable :
+                                null
                 }
             />
             <main className={`main-content ${isSidebarOpen ? 'shifted' : ''}`}>
@@ -97,7 +98,7 @@ const closeModal_SuggestActivity = () => setModalOpen_SuggestActivity(false);
                     ]}
                     onChange={(e) => setUserType(e.target.value)}
                 />
-                
+
                 <Router>
                     <Routes>
                         <Route path="/" element={<Dashboard props={{ user: userType }} />} />
@@ -109,10 +110,10 @@ const closeModal_SuggestActivity = () => setModalOpen_SuggestActivity(false);
                         {/* Routes étudiants */}
                         {userType === "student" ? (
                             <>
-                                <Route path="/activity-done" element={<ActivityDoneStudent/>} />
-                                <Route path="/activity-review" element={<ActivityReviewStudent/>} />
-                                <Route path="/activity-status" element={<ActivityStatusStudent/>} />
-                                <Route path="/activity-vote" element={<ActivityVoteStudent/>} />
+                                <Route path="/activity-done" element={<ActivityDoneStudent />} />
+                                <Route path="/activity-review" element={<ActivityReviewStudent />} />
+                                <Route path="/activity-status" element={<ActivityStatusStudent />} />
+                                <Route path="/activity-vote" element={<ActivityVoteStudent />} />
                             </>
                         ) : null}
 
@@ -123,7 +124,7 @@ const closeModal_SuggestActivity = () => setModalOpen_SuggestActivity(false);
                             </>
                         ) : userType === "accompagnateur" ? (
                             <>
-
+                                <Route path="/activity-review" element={<ActivityReviewStaff />} />
                             </>
                         ) : null}
                     </Routes>
