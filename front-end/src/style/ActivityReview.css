@@ -1,0 +1,26 @@
+.range-align{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.remarque {
+    width: 30vw;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #f9f9f9; /* Fond contrasté */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2); /* Légère ombre pour le faire ressortir */
+}
+
+.remarque:focus {
+    border-color: #0056b3; /* Bordure plus foncée lors du focus */
+    box-shadow: 0 0 10px rgba(0, 86, 179, 0.3); /* Ombre plus marquée lors du focus */
+    outline: none;
+}
