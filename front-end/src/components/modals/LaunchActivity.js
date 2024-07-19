@@ -14,7 +14,7 @@ export default function LaunchActivity({data, closeModal}) {
                 <p>Durée : {data.expectedTime ? data.expectedTime+"min" : "Erreur - pas de duration" }</p>
                 <p>Salle {data.room ? data.room : "Erreur - pas de salle"}</p>
 
-                <input className="button-activity-body" type="submit" value="Valider" />
+                <input className="button-activity-body" type="submit" value="Lancer" />
                 <button className="button-activity-body" value="Fermer" onClick={closeModal}>Fermer</button>
             </form>
 
