@@ -19,6 +19,7 @@ import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/Activi
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote"
 
 import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff/ActivityPropositions"
+import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList"
 
 function App() {
     
@@ -116,13 +117,12 @@ const closeModal_SuggestActivity = () => setModalOpen_SuggestActivity(false);
                         {/* Routes staff */}
                         {userType === "responsable" ? (
                             <>
-                                 <Route path="/activity-propositions" element={<ActivityPropositionsStaff/>} />
-                                
 
                             </>
                         ) : userType === "accompagnateur" ? (
                             <>
                                 <Route path="/activity-propositions" element={<ActivityPropositionsStaff/>} />
+                                <Route path="/activity-list" element={<ActivityListStaff/>} />
                             </>
                         ) : null}
                     </Routes>
