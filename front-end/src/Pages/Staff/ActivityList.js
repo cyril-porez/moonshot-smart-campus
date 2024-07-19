@@ -22,7 +22,7 @@ export function ActivityList() {
         <div className="common-table-body">
             <h1 className="common-table-title">{"Suivie d’activité"}</h1>
             <div className="common-table-container">
-                <ActivityTable type={"proposition"} data={data} />
+                <ActivityTable type={"suivi"} data={data} />
             </div>
         </div>
 

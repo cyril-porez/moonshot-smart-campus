@@ -3,7 +3,8 @@ import { FormButton } from "./Button";
 import Modal from "../components/Modal";
 import { useNavigate } from "react-router-dom";
 import Refusal from "../components/modals/Refusal";
-import NewActivity from "../components/modals/NewActivity"; // Assuming the NewActivity component is here
+import NewActivity from "../components/modals/NewActivity"; 
+import LaunchActivity from "../components/modals/LaunchActivity"; 
 
 import "../style/Tables.css";
 
@@ -11,33 +12,37 @@ export function ActivityTable({ data = [], type }) {
 
     const navigate = useNavigate();
 
-    const [isModalOpen, setModalOpen] = useState(false);
-    const [selectedActivity, setSelectedActivity] = useState(null);
-    const [isNewActivityModalOpen, setNewActivityModalOpen] = useState(false);
+    const [modalState, setModalState] = useState({ isOpen: false, type: null, activity: null });
 
-    const openModal = () => setModalOpen(true);
-    const closeModal = () => setModalOpen(false);
+    const openModal = (type, activity) => setModalState({ isOpen: true, type, activity });
+    const closeModal = () => setModalState({ isOpen: false, type: null, activity: null });
 
-    const openNewActivityModal = () => setNewActivityModalOpen(true);
-    const closeNewActivityModal = () => setNewActivityModalOpen(false);
+    const handleRefuseActivity = (activity) => openModal('refusal', activity);
+    const handleValidateActivity = (activity) => openModal('newActivity', activity);
+    const handleSuiviActivity = (activity) => openModal('suivi', activity);
 
-    const handleRefuseActivity = (activity) => {
-        setSelectedActivity(activity);
-        openModal();
-    };
-
-    const handleValidateActivity = (activity) => {
-        setSelectedActivity(activity);
-        openNewActivityModal();
-    };
-
-    function startActivity(id) {
-        // startActivity logic
+    // Staff opinion of the activity
+    function evaluateActivity(id) {
+        navigate("/EvaluateActivity?id=" + id);
     }
-
+    // Student opinion of the activity
     function rateActivity(id) {
         navigate("/ActivityReview?id=" + id);
     }
+
+    const renderModalContent = () => {
+        const { type, activity } = modalState;
+        switch (type) {
+            case 'refusal':
+                return <Refusal closeModal={closeModal} data={activity} />;
+            case 'newActivity':
+                return <NewActivity closeModal={closeModal} data={activity} />;
+            case 'suivi':
+                return <LaunchActivity closeModal={closeModal} data={activity} />;
+            default:
+                return null;
+        }
+    };
 
     return (
         <>
@@ -61,14 +66,14 @@ export function ActivityTable({ data = [], type }) {
                             <td>
                                 {
                                     type === "suivi" ?
-                                        (<FormButton text={"Lancer"} onClick={() => startActivity(activity.id)} />)
+                                        (<FormButton text={"Lancer"} onClick={() => handleSuiviActivity(activity)} />)
                                         : type === "proposition" ?
                                             (<>
                                                 <FormButton text={"Valider"} onClick={() => handleValidateActivity(activity)} />
                                                 <FormButton text={"Refuser"} onClick={() => handleRefuseActivity(activity)} />
                                             </>)
                                             : type === "evaluer" ?
-                                                (<FormButton text={"Evaluer"} onClick={() => rateActivity(activity.id)} />)
+                                                (<FormButton text={"Evaluer"} onClick={() => evaluateActivity()} />)
                                                 : null
                                 }
                             </td>
@@ -77,21 +82,9 @@ export function ActivityTable({ data = [], type }) {
                 </tbody>
             </table>
 
-            {selectedActivity && (
-                <Modal isOpen={isModalOpen} onClose={closeModal}>
-                    <Refusal
-                        closeModal={closeModal}
-                        data={selectedActivity}
-                    />
-                </Modal>
-            )}
-
-            {selectedActivity && (
-                <Modal isOpen={isNewActivityModalOpen} onClose={closeNewActivityModal}>
-                    <NewActivity
-                        closeModal={closeNewActivityModal}
-                        data={selectedActivity}
-                    />
+            {modalState.isOpen && (
+                <Modal isOpen={modalState.isOpen} onClose={closeModal}>
+                    {renderModalContent()}
                 </Modal>
             )}
         </>
