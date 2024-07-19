@@ -5,7 +5,7 @@ import "../../style/AuthForm.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import authRegister from "../../Services/AuthService";
+import { authRegister } from "../../Services/AuthService";
 
 export default function SignUp(params) {
   const navigate = useNavigate();
@@ -17,11 +17,22 @@ export default function SignUp(params) {
     resolver: yupResolver(schema),
     mode: 'onChange',
   });
-  const onSubmit = (data) =>{
-    console.log(data);
-    authRegister(data);
+
+  async function handleRegister(data) {
+    const result = await authRegister(data);
+
+    if (result.status >= 200 && result.status < 300) {
+      console.log("Success:", result.data);
+      navigate("/sign-up");
+    } else {
+      console.log("Error:", result.data);
+    }
   }
 
+  const onSubmit = (data) => {
+    console.log(data);
+    handleRegister(data);
+  }
 
   return (
     <div className="container">
@@ -30,14 +41,14 @@ export default function SignUp(params) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-container">
 
-            <input className="form-input" type="text" placeholder="email" {...register("email")}/>
+            <input className="form-input" type="text" placeholder="email" {...register("email")} />
             {errors.email && <p className="error-message">{errors.email.message}</p>}
 
-            <input className="form-input" type="password" placeholder="password" {...register("password")}/>
+            <input className="form-input" type="password" placeholder="password" {...register("password")} />
             {errors.password && <p className="error-message">{errors.password.message}</p>}
 
             <div className="button-container">
-              <input type="submit" />
+              <input className="form-btn" type="submit" />
             </div>
             <p>Vous avez déja un compte ? <a onClick={() => navigate("/sign-in")}> Connecter-vous ici</a></p>
             <GoogleButton />
