@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import SignIn from "./Pages/Auth/sign-in";
 import SignUp from "./Pages/Auth/sign-up";
-import Home from "./Pages/Home";
+// import Home from "./Pages/Home";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { Dashboard } from "./Pages/Dashboard";
@@ -12,6 +12,7 @@ import { Calendar } from "rsuite";
 import { SelectInput } from "./components/FormInput";
 import Modal from "./components/Modal";
 import SuggestActivityForm from "./components/modals/NewActivity";
+import TestNfc from "./Pages/test-nfc";
 
 import { ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone"
 import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/ActivityReview"
@@ -23,13 +24,18 @@ import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff
 import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList"
 
 function App() {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [userType, setUserType] = useState("student");
 
-    const [isSidebarOpen, setSidebarOpen] = useState(false);
-    const [userType, setUserType] = useState("student");
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
 
-    const toggleSidebar = () => {
-        setSidebarOpen(!isSidebarOpen);
-    }
+  // one set of those for each modal
+  const [isModalOpen_SuggestActivity, setModalOpen_SuggestActivity] =
+    useState(false);
+  const openModal_SuggestActivity = () => setModalOpen_SuggestActivity(true);
+  const closeModal_SuggestActivity = () => setModalOpen_SuggestActivity(false);
 
     // one set of those for each modal
     const [isModalOpen_SuggestActivity, setModalOpen_SuggestActivity] = useState(false);
@@ -86,15 +92,18 @@ function App() {
                                 null
                 }
             />
-            <main className={`main-content ${isSidebarOpen ? 'shifted' : ''}`}>
+            {/* <Route path="/" element={<Home />} /> */}
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/nfc" element={<TestNfc />} />
 
-                {/* A CHANGER QUAND ON AURA MIS EN PLACE LE SYSTEME D'AUTH */}
-                <SelectInput
-                    legend={"Change user"}
-                    options={[
-                        "student", "accompagnateur", "responsable"
-                    ]}
-                    onChange={(e) => setUserType(e.target.value)}
+            {/* Routes étudiants */}
+            {userType === "student" ? (
+              <>
+                <Route
+                  path="/activity-done"
+                  element={<ActivityDoneStudent />}
                 />
 
                 <Router>
