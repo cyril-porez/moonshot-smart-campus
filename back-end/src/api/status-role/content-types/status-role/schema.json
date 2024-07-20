@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "status_roles",
+  "info": {
+    "singularName": "status-role",
+    "pluralName": "status-roles",
+    "displayName": "Status_Role",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "users_permissions_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "status_role"
+    }
+  }
+}

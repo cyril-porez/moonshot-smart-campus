@@ -4,7 +4,8 @@
   "info": {
     "singularName": "promo",
     "pluralName": "promos",
-    "displayName": "Promo"
+    "displayName": "Promo",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,6 +14,24 @@
   "attributes": {
     "name": {
       "type": "string"
+    },
+    "cursus": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::cursus.cursus",
+      "inversedBy": "promos"
+    },
+    "users_permissions_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "promo"
+    },
+    "promos_activitie": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::promos-activitie.promos-activitie",
+      "inversedBy": "promos"
     }
   }
 }

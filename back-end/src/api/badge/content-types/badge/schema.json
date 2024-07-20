@@ -4,15 +4,22 @@
   "info": {
     "singularName": "badge",
     "pluralName": "badges",
-    "displayName": "Badge"
+    "displayName": "Badge",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "number": {
-      "type": "integer"
+    "uid_crypt": {
+      "type": "string"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "badge"
     }
   }
 }
