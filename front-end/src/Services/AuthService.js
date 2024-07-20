@@ -1,8 +1,7 @@
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
 
-
-async function authRegister(data){
+export async function authRegister(data) {
     try {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(data.password, salt);
@@ -28,4 +27,15 @@ async function authRegister(data){
     }
 };
 
-export default authRegister;
+export async function authLogin(data) {
+    return await axios.post("", data, { headers: { "Content-Type": "application/json" } })
+        .then(async response => {
+            console.log(response);
+            console.log(response.data.token);
+            localStorage.setItem("token", response.data.token);
+        })
+        .catch(error => {
+            console.log('ERR LOGIN ==', error.response);
+            return error.response
+        });
+}
