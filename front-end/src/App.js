@@ -23,6 +23,9 @@ import { ActivityReview as ActivityReviewStaff } from "./Pages/Staff/ActivityRev
 import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff/ActivityPropositions";
 import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList";
 
+import Suivi from "./Pages/Staff/Suivi";
+import Suivi2 from "./Pages/Staff/Suivi2";
+
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [userType, setUserType] = useState("student");
@@ -143,49 +146,69 @@ function App() {
         }
       />
 
-      <Router>
-        <Routes>
-          <Route path="/" element={<Dashboard props={{ user: userType }} />} />
-          {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/calendar" element={<Calendar />} />
-          <Route path="/nfc" element={<TestNfc />} />
+      <main className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
+        {/* A CHANGER QUAND ON AURA MIS EN PLACE LE SYSTEME D'AUTH */}
+        <SelectInput
+          legend={"Change user"}
+          options={["student", "accompagnateur", "responsable"]}
+          onChange={(e) => setUserType(e.target.value)}
+        />
 
-          {/* Routes étudiants */}
-          {userType === "student" ? (
-            <>
-              <Route path="/activity-done" element={<ActivityDoneStudent />} />
-              <Route
-                path="/activity-review"
-                element={<ActivityReviewStudent />}
-              />
-              <Route
-                path="/activity-status"
-                element={<ActivityStatusStudent />}
-              />
-              <Route path="/activity-vote" element={<ActivityVoteStudent />} />
-            </>
-          ) : null}
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={<Dashboard props={{ user: userType }} />}
+            />
+            {/* <Route path="/" element={<Home />} /> */}
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/nfc" element={<TestNfc />} />
+            <Route path="/Suivi" element={<Suivi />} />
+            <Route path="/Suivi2" element={<Suivi2 />} />
 
-          {/* Routes staff */}
-          {userType === "responsable" ? (
-            <></>
-          ) : userType === "accompagnateur" ? (
-            <>
-              <Route
-                path="/activity-review"
-                element={<ActivityReviewStaff />}
-              />
-              <Route
-                path="/activity-propositions"
-                element={<ActivityPropositionsStaff />}
-              />
-              <Route path="/activity-list" element={<ActivityListStaff />} />
-            </>
-          ) : null}
-        </Routes>
-      </Router>
+            {/* Routes étudiants */}
+            {userType === "student" ? (
+              <>
+                <Route
+                  path="/activity-done"
+                  element={<ActivityDoneStudent />}
+                />
+                <Route
+                  path="/activity-review"
+                  element={<ActivityReviewStudent />}
+                />
+                <Route
+                  path="/activity-status"
+                  element={<ActivityStatusStudent />}
+                />
+                <Route
+                  path="/activity-vote"
+                  element={<ActivityVoteStudent />}
+                />
+              </>
+            ) : null}
+
+            {/* Routes staff */}
+            {userType === "responsable" ? (
+              <></>
+            ) : userType === "accompagnateur" ? (
+              <>
+                <Route
+                  path="/activity-review"
+                  element={<ActivityReviewStaff />}
+                />
+                <Route
+                  path="/activity-propositions"
+                  element={<ActivityPropositionsStaff />}
+                />
+                <Route path="/activity-list" element={<ActivityListStaff />} />
+              </>
+            ) : null}
+          </Routes>
+        </Router>
+      </main>
     </div>
   );
 }
