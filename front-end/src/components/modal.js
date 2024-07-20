@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import "../style/Modal.css";
 
 export default function Modal({ isOpen, onClose, children }) {
