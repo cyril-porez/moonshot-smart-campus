@@ -3,27 +3,40 @@ import { GoogleButton } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import "../../style/AuthForm.css";
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { authRegister } from "../../Services/AuthService";
 
 export default function SignUp(params) {
   const navigate = useNavigate();
   const schema = yup.object().shape({
-    email: yup.string().email('Email invalide').required('Email est requis'),
-    password: yup.string().min(6, 'Le mot de passe doit contenir au moins 6 caractères').required('Le mot de passe est requis'),
+    username: yup
+      .string()
+      .min(3, "*Le username doit contenir au moins 3 caractères")
+      .required("*Le username est requis"),
+    email: yup.string().email("*Email invalide").required("*Email est requis"),
+    password: yup
+      .string()
+      .min(8, "*Le mot de passe doit contenir au moins 8 caractères")
+      .required("*Le mot de passe est requis"),
   });
-  const { handleSubmit, register, formState: { errors } } = useForm({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
-    mode: 'onChange',
+    mode: "onChange",
   });
 
   async function handleRegister(data) {
     const result = await authRegister(data);
+    console.log("result sign in js =>", result);
+    console.log(result.status);
 
-    if (result.status >= 200 && result.status < 300) {
+    if (result.status === 200) {
       console.log("Success:", result.data);
-      navigate("/sign-up");
+      navigate("/sign-in");
     } else {
       console.log("Error:", result.data);
     }
@@ -32,7 +45,7 @@ export default function SignUp(params) {
   const onSubmit = (data) => {
     console.log(data);
     handleRegister(data);
-  }
+  };
 
   return (
     <div className="container">
@@ -40,17 +53,43 @@ export default function SignUp(params) {
       <div className="align-form">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-container">
+            <input
+              className="form-input"
+              type="text"
+              placeholder="username"
+              {...register("username")}
+            />
+            {errors.username && (
+              <p className="error-message">{errors.username.message}</p>
+            )}
 
-            <input className="form-input" type="text" placeholder="email" {...register("email")} />
-            {errors.email && <p className="error-message">{errors.email.message}</p>}
+            <input
+              className="form-input"
+              type="text"
+              placeholder="email"
+              {...register("email")}
+            />
+            {errors.email && (
+              <p className="error-message">{errors.email.message}</p>
+            )}
 
-            <input className="form-input" type="password" placeholder="password" {...register("password")} />
-            {errors.password && <p className="error-message">{errors.password.message}</p>}
+            <input
+              className="form-input"
+              type="password"
+              placeholder="password"
+              {...register("password")}
+            />
+            {errors.password && (
+              <p className="error-message">{errors.password.message}</p>
+            )}
 
             <div className="button-container">
               <input className="form-btn" type="submit" />
             </div>
-            <p>Vous avez déja un compte ? <a onClick={() => navigate("/sign-in")}> Connecter-vous ici</a></p>
+            <p>
+              Vous avez déja un compte ?{" "}
+              <a onClick={() => navigate("/sign-in")}> Connecter-vous ici</a>
+            </p>
             <GoogleButton />
           </div>
         </form>

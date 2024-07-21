@@ -1,41 +1,53 @@
-import axios from 'axios';
-import bcrypt from 'bcryptjs';
+import axios from "axios";
+import bcrypt from "bcryptjs";
+
+const address_server = process.env.REACT_APP_ADRESS_SERVER;
 
 export async function authRegister(data) {
-    try {
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(data.password, salt);
-        console.log(hashedPassword);
+  try {
+    // const salt = await bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(data.password, salt);
 
-        const modifiedData = {
-            ...data,
-            password: hashedPassword
-        };
-        // TO DO : RECUPERER URL UNE FOIS§ SERVEUR EN PLACE ET ENLEVER CONSOLE.LOG
-        const response = await axios.post("", modifiedData, { headers: { "Content-Type": "application/json" } });
-        console.log(response);
-        return {
-            status: response.status,
-            data: response.data
-        };
-    } catch (error) {
-        console.log("ERR RES REGISTER ====", error.response);
-        return {
-            status: error.response ? error.response.status : 500,
-            data: error.response ? error.response.data : "Unknown error"
-        };
-    }
-};
+    const requestBody = {
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      status_role: 1,
+    };
+
+    console.log("Request body:", requestBody);
+    const response = await axios.post(
+      `${address_server}/auth/local/register`,
+      requestBody
+    );
+    console.log(response.data);
+    return response;
+  } catch (error) {
+    console.log("ERR RES REGISTER === ", error.response);
+    return error.response;
+  }
+}
 
 export async function authLogin(data) {
-    return await axios.post("", data, { headers: { "Content-Type": "application/json" } })
-        .then(async response => {
-            console.log(response);
-            console.log(response.data.token);
-            localStorage.setItem("token", response.data.token);
-        })
-        .catch(error => {
-            console.log('ERR LOGIN ==', error.response);
-            return error.response
-        });
+  try {
+    // const salt = await bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(data.password, salt);
+    // console.log(hashedPassword);
+    console.log(data);
+
+    const requestBody = {
+      identifier: data.email,
+      password: data.password,
+    };
+    console.log(data);
+    const response = await axios.post(
+      `${address_server}/auth/local/`,
+      requestBody
+    );
+
+    return response;
+  } catch (error) {
+    console.log("ERR LOGIN ==", error);
+    return error.response;
+  }
 }

@@ -49,17 +49,20 @@ export function GoogleButton({ onClick }) {
 }
 
 export function ToggleButton({ onClick }) {
-    const [isToggled, setIsToggled] = useState(false);
+  const [isToggled, setIsToggled] = useState(false);
 
-    function handleToggle() {
-        const newToggleState = !isToggled;
-        setIsToggled(newToggleState);
-        onClick(newToggleState)
-    }
+  function handleToggle() {
+    const newToggleState = !isToggled;
+    setIsToggled(newToggleState);
+    onClick(newToggleState);
+  }
 
-    return (
-        <button onClick={handleToggle} className={`${isToggled ? "toggle-on" : "toggle-off"} toggle-btn`}>
-            <div className={`${isToggled ? "toggle-on" : ""} toggle-handle`}></div>
-        </button>
-    )
+  return (
+    <button
+      onClick={handleToggle}
+      className={`${isToggled ? "toggle-on" : "toggle-off"} toggle-btn`}
+    >
+      <div className={`${isToggled ? "toggle-on" : ""} toggle-handle`}></div>
+    </button>
+  );
 }
