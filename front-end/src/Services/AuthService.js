@@ -20,7 +20,6 @@ export async function authRegister(data) {
       `${address_server}/auth/local/register`,
       requestBody
     );
-    console.log(response.data);
     return response;
   } catch (error) {
     console.log("ERR RES REGISTER === ", error.response);
@@ -33,7 +32,6 @@ export async function authLogin(data) {
     // const salt = await bcrypt.genSalt(10);
     // const hashedPassword = await bcrypt.hash(data.password, salt);
     // console.log(hashedPassword);
-    console.log(data);
 
     const requestBody = {
       identifier: data.email,
