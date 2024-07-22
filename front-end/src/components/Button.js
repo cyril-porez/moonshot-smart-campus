@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/Button.css";
 
 function getVariant(variant) {
@@ -44,6 +44,25 @@ export function GoogleButton({ onClick }) {
     <button className="google-btn" onClick={onClick}>
       <img src="/icons/google.png" alt="Google Icon" className="google-icon" />
       Continuez avec Google
+    </button>
+  );
+}
+
+export function ToggleButton({ onClick }) {
+  const [isToggled, setIsToggled] = useState(false);
+
+  function handleToggle() {
+    const newToggleState = !isToggled;
+    setIsToggled(newToggleState);
+    onClick(newToggleState);
+  }
+
+  return (
+    <button
+      onClick={handleToggle}
+      className={`${isToggled ? "toggle-on" : "toggle-off"} toggle-btn`}
+    >
+      <div className={`${isToggled ? "toggle-on" : ""} toggle-handle`}></div>
     </button>
   );
 }
