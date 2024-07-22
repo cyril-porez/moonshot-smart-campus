@@ -1,9 +1,11 @@
 import React from 'react';
 
 import "../../style/modals/LaunchActivity.css";
+import { useNavigate } from "react-router-dom";
 
 export default function LaunchActivity({data, closeModal}) {
-
+    const navigate = useNavigate();
+    
     return (
         <div >
             <form className="launch-activity-body">
@@ -14,7 +16,8 @@ export default function LaunchActivity({data, closeModal}) {
                 <p>Durée : {data.expectedTime ? data.expectedTime+"min" : "Erreur - pas de duration" }</p>
                 <p>Salle {data.room ? data.room : "Erreur - pas de salle"}</p>
 
-                <input className="button-activity-body" type="submit" value="Lancer" />
+                
+                <button className="button-activity-body" onClick={() => navigate("/Suivi?activityId="+data.id)}>Lancer</button>
                 <button className="button-activity-body" value="Fermer" onClick={closeModal}>Fermer</button>
             </form>
 
