@@ -4,7 +4,7 @@ import '../style/Sablier.css'; // Assurez-vous que le chemin vers votre fichier 
 
 const Sablier = () => {
   return (
-    <div id="hourglass" className="fa-stack fa-4x">
+    <div id="hourglass" className="fa-stack fa-4x body1">
       <i className="fa fa-stack-1x fa-hourglass-start"></i>
       <i className="fa fa-stack-1x fa-hourglass-half"></i>
       <i className="fa fa-stack-1x fa-hourglass-end"></i>
