@@ -2,40 +2,10 @@ import React, { useEffect, useState } from "react";
 import { SelectInput } from "../../components/FormInput";
 import { ToggleButton } from "../../components/Button";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import LineChart from '../../components/LineChart'; // Assurez-vous d'importer le composant correctement
+import { StudentTable, generateFakeStudentData } from "../../components/Tables";
+import LineChart from '../../components/LineChart';
 import 'react-circular-progressbar/dist/styles.css';
 import '../../style/SuiviPresence.css';
-
-// Composant de tableau de liste d'élèves pour l'affichage en mode liste
-function StudentList() {
-    const students = [
-        { id: 1, name: "John Doe", presence: "80%" },
-        { id: 2, name: "Jane Smith", presence: "90%" },
-        { id: 3, name: "Sam Johnson", presence: "85%" },
-        // Ajoutez d'autres élèves ici
-    ];
-
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Presence</th>
-                </tr>
-            </thead>
-            <tbody>
-                {students.map(student => (
-                    <tr key={student.id}>
-                        <td>{student.id}</td>
-                        <td>{student.name}</td>
-                        <td>{student.presence}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    );
-}
 
 /**
  * Page d'où les responsables/accompagnateurs pourront suivre la présence des élèves
@@ -72,6 +42,8 @@ export function AccompanyingPresence() {
         setIsGraphView(!isToggled);
     };
 
+    const fakeStudentData = generateFakeStudentData(10);
+
     return (
         <div className="suivi-presence-container">
             <div className="filters">
@@ -85,25 +57,25 @@ export function AccompanyingPresence() {
                 <span className="toggle-label">Liste</span>
             </div>
             <div className="content">
-                <div className="circular-bar">
-                    <h3>Taux de présence</h3>
-                    <CircularProgressbar
-                        value={percentage}
-                        text={`${Math.round(percentage)}%`}
-                        styles={buildStyles({
-                            pathTransitionDuration: 0.15,
-                        })}
-                    />
-                </div>
                 {isGraphView ? (
                     <>
+                        <div className="circular-bar">
+                            <h3>Taux de présence</h3>
+                            <CircularProgressbar
+                                value={percentage}
+                                text={`${Math.round(percentage)}%`}
+                                styles={buildStyles({
+                                    pathTransitionDuration: 0.15,
+                                })}
+                            />
+                        </div>
                         <div className="line-chart">
                             <LineChart labels={labels} data={data} label={chartLabel} />
                         </div>
                     </>
                 ) : (
                     <div className="student-list">
-                        <StudentList />
+                        <StudentTable data={fakeStudentData} />
                     </div>
                 )}
             </div>

@@ -203,6 +203,7 @@ function App() {
                   path="/notes-activite"
                   element={<ActivityNotesStaff userType={userType} />}
                 />
+                <Route path="/responsible-presence" element={<ResponsiblePresence />} />
               </>
             ) : userType === "accompagnateur" ? (
               <>
@@ -216,7 +217,6 @@ function App() {
                 />
                 <Route path="/activity-list" element={<ActivityListStaff />} />
                 <Route path="/accompanying-presence" element={<AccompanyingPresence />} />
-                <Route path="/responsible-presence" element={<ResponsiblePresence />} />
               </>
             ) : null}
           </Routes>
