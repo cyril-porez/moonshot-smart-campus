@@ -25,6 +25,7 @@ import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList";
 
 import Suivi from "./Pages/Staff/SuiviPresence";
 import Suivi2 from "./Pages/Staff/Suivi2";
+import { StudentTable } from "./components/Tables";
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -147,6 +148,7 @@ function App() {
       />
 
       <main className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
+      
         {/* A CHANGER QUAND ON AURA MIS EN PLACE LE SYSTEME D'AUTH */}
         <SelectInput
           legend={"Change user"}
