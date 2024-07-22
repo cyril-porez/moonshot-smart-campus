@@ -5,7 +5,7 @@ import "../style/Dashboard.css"
 
 export function Dashboard({ props }) {
 
-    let userType = props.user ?? "student";
+    let userRole = props.user.status_role;
     const navigate = useNavigate();
 
     function summonModal() {}
@@ -16,7 +16,7 @@ export function Dashboard({ props }) {
     //     setIsToggled(newToggleState)
     // }
 
-    if(userType === "student") {
+    if(userRole?.name === "étudiant") {
         return (
             <>
                 {/* <ToggleButton onClick={handleToggle}/>
@@ -45,7 +45,7 @@ export function Dashboard({ props }) {
                 </div>
             </>
         )
-    } else if(userType === "responsable") {
+    } else if(userRole?.name === "responsable") {
         return (
             <div className="dashboard">
                 <DashboardButton
@@ -81,7 +81,7 @@ export function Dashboard({ props }) {
             </div>
             
         )
-    } else if(userType === "accompagnateur") {
+    } else if(userRole?.name === "Accompagnateur") {
         return (
             <div className="dashboard">
                 <DashboardButton
