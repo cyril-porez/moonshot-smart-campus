@@ -19,8 +19,11 @@ import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/Activi
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote"
 import { ActivityReview as ActivityReviewStaff } from "./Pages/Staff/ActivityReview"
 
-import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff/ActivityPropositions"
-import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList"
+import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff/ActivityPropositions";
+import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList";
+
+import Suivi from "./Pages/Staff/SuiviPresence";
+import Suivi2 from "./Pages/Staff/Suivi2";
 
 function App() {
 
