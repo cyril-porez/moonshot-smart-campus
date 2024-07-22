@@ -22,6 +22,7 @@ import { ActivityReview as ActivityReviewStaff } from "./Pages/Staff/ActivityRev
 
 import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff/ActivityPropositions";
 import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList";
+import { ActivityNotes as ActivityNotesStaff } from "./Pages/Staff/ActivityNotes";
 
 import Suivi from "./Pages/Staff/SuiviPresence";
 import Suivi2 from "./Pages/Staff/Suivi2";
@@ -140,10 +141,10 @@ function App() {
           userType === "student"
             ? navbarLinks.students
             : userType === "accompagnateur"
-            ? navbarLinks.accompagnateur
-            : userType === "responsable"
-            ? navbarLinks.responsable
-            : null
+              ? navbarLinks.accompagnateur
+              : userType === "responsable"
+                ? navbarLinks.responsable
+                : null
         }
       />
 
@@ -194,7 +195,12 @@ function App() {
 
             {/* Routes staff */}
             {userType === "responsable" ? (
-              <></>
+              <>
+                <Route
+                  path="/notes-activite"
+                  element={<ActivityNotesStaff userType={userType}/>}
+                />
+              </>
             ) : userType === "accompagnateur" ? (
               <>
                 <Route
@@ -205,7 +211,14 @@ function App() {
                   path="/activity-propositions"
                   element={<ActivityPropositionsStaff />}
                 />
-                <Route path="/activity-list" element={<ActivityListStaff />} />
+                <Route
+                  path="/activity-list"
+                  element={<ActivityListStaff />}
+                />
+                <Route
+                  path="/notes-activite"
+                  element={<ActivityNotesStaff userType={userType} />}
+                />
               </>
             ) : null}
           </Routes>
