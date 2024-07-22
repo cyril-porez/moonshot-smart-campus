@@ -159,3 +159,18 @@ export function StudentTable({ data = [] }) {
         </>
     );
 }
+
+export function generateFakeStudentData(numStudents = 10) {
+    const promos = ["B2 Logiciel", "B3 Logiciel", "M1 Logiciel"];
+    const subjects = ["HOW TO Python", "HOW TO JAVA", "HOW TO C", "HOW TO CPP"];
+    const reasons = ["Maladie", "Voyage", "Problème familial", "Autre"];
+
+    return Array.from({ length: numStudents }, (_, index) => ({
+        id: index + 1,
+        name: `Étudiant ${index + 1}`,
+        promo: promos[Math.floor(Math.random() * promos.length)],
+        date: new Date(Date.now() - Math.random() * 1e10).toLocaleDateString("fr-FR"),
+        subject: subjects[Math.floor(Math.random() * subjects.length)],
+        reason: reasons[Math.floor(Math.random() * reasons.length)],
+    }));
+}

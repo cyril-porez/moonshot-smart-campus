@@ -19,6 +19,9 @@ import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/Activi
 import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/ActivityStatus";
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote";
 import { ActivityReview as ActivityReviewStaff } from "./Pages/Staff/ActivityReview";
+import { AccompanyingPresence } from "./Pages/Staff/AccompanyingPresence";
+import { ResponsiblePresence } from "./Pages/Staff/ResponsiblePresence";
+
 
 import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff/ActivityPropositions";
 import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList";
@@ -149,7 +152,7 @@ function App() {
       />
 
       <main className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
-      
+
         {/* A CHANGER QUAND ON AURA MIS EN PLACE LE SYSTEME D'AUTH */}
         <SelectInput
           legend={"Change user"}
@@ -198,8 +201,9 @@ function App() {
               <>
                 <Route
                   path="/notes-activite"
-                  element={<ActivityNotesStaff userType={userType}/>}
+                  element={<ActivityNotesStaff userType={userType} />}
                 />
+                <Route path="/responsible-presence" element={<ResponsiblePresence />} />
               </>
             ) : userType === "accompagnateur" ? (
               <>
@@ -211,14 +215,8 @@ function App() {
                   path="/activity-propositions"
                   element={<ActivityPropositionsStaff />}
                 />
-                <Route
-                  path="/activity-list"
-                  element={<ActivityListStaff />}
-                />
-                <Route
-                  path="/notes-activite"
-                  element={<ActivityNotesStaff userType={userType} />}
-                />
+                <Route path="/activity-list" element={<ActivityListStaff />} />
+                <Route path="/accompanying-presence" element={<AccompanyingPresence />} />
               </>
             ) : null}
           </Routes>
