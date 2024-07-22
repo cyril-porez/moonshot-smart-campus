@@ -83,7 +83,7 @@ export function ActivityNotes(userType) {
                                 </option>
                             ))}
                         </select>
-                        <ActivityTable type={"note"} data={dataSet1} />
+                        <ActivityTable type={"notes"} data={dataSet1} />
                     </>
                 ) : null}
         </div>
