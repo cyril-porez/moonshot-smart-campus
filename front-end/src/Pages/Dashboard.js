@@ -90,6 +90,11 @@ export function Dashboard({ props }) {
                     text={"Suivi de participation"}
                 />
                 <DashboardButton
+                    onClick={() => navigate("/activity-list")}
+                    iconPath={"/icons/agenda.png"}
+                    text={"Voir les activités à venir"}
+                />
+                <DashboardButton
                     onClick={() => navigate("/activites-terminees")}
                     iconPath={"/icons/activite.png"}
                     text={"Voir les activités terminées"}
