@@ -57,18 +57,18 @@ export function ResponsiblePresence() {
                 <span className="toggle-label">Liste</span>
             </div>
             <div className="content">
+                <div className="circular-bar">
+                    <h3>Taux de présence</h3>
+                    <CircularProgressbar
+                        value={percentage}
+                        text={`${Math.round(percentage)}%`}
+                        styles={buildStyles({
+                            pathTransitionDuration: 0.15,
+                        })}
+                    />
+                </div>
                 {isGraphView ? (
                     <>
-                        <div className="circular-bar">
-                            <h3>Taux de présence</h3>
-                            <CircularProgressbar
-                                value={percentage}
-                                text={`${Math.round(percentage)}%`}
-                                styles={buildStyles({
-                                    pathTransitionDuration: 0.15,
-                                })}
-                            />
-                        </div>
                         <div className="line-chart">
                             <LineChart labels={labels} data={data} label={chartLabel} />
                         </div>
