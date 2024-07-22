@@ -19,6 +19,8 @@ import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/Activi
 import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/ActivityStatus";
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote";
 import { ActivityReview as ActivityReviewStaff } from "./Pages/Staff/ActivityReview";
+import { SuiviPresence } from "./Pages/Staff/SuiviPresence";
+
 
 import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff/ActivityPropositions";
 import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList";
@@ -204,6 +206,7 @@ function App() {
                   element={<ActivityPropositionsStaff />}
                 />
                 <Route path="/activity-list" element={<ActivityListStaff />} />
+                <Route path="/suivi-presence" element={<SuiviPresence />} />
               </>
             ) : null}
           </Routes>

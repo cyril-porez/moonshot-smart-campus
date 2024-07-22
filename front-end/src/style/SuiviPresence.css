@@ -1,4 +1,3 @@
-/* SuiviPresence.css */
 .suivi-presence-container {
     display: flex;
     flex-direction: column;
@@ -11,6 +10,18 @@
     width: 100%;
     gap: 50px;
     margin-bottom: 20px;
+}
+
+.toggle-section {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.toggle-label {
+    font-size: 14px;
+    color: black;
 }
 
 .content {
@@ -34,7 +45,7 @@
 
 .line-chart {
     width: 900px;
-    height: 400px;
+    height: 350px;
     margin-top: 50px;
     margin-left: 10vw;
 }
@@ -42,4 +53,24 @@
 .line-chart canvas {
     width: 100% !important;
     height: 100% !important;
+}
+
+.student-list {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.student-list table {
+    width: 80%;
+    border-collapse: collapse;
+}
+
+.student-list th, .student-list td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.student-list th {
+    background-color: #f2f2f2;
+    text-align: left;
 }
