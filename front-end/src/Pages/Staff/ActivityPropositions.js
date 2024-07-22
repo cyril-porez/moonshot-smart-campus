@@ -19,9 +19,6 @@ const data=[
     
 ]
 
-/**
- * 
- */
 export function ActivityPropositions() {
 
     return (

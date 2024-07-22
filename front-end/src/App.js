@@ -13,17 +13,14 @@ import { SelectInput } from "./components/FormInput";
 import Modal from "./components/Modal";
 import SuggestActivityForm from "./components/modals/NewActivity";
 
-import { ActivityDone } from "./Pages/ActivityDone"
+import { ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone"
 import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/ActivityReview"
 import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/ActivityStatus"
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote"
-import { ActivityReview as ActivityReviewStaff, StaffReviewList, StudentReviewList } from "./Pages/Staff/ActivityReview"
+import { ActivityReview as ActivityReviewStaff } from "./Pages/Staff/ActivityReview"
 
 import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff/ActivityPropositions"
 import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList"
-import Checkpoint from "./Pages/Staff/Checkpoint";
-import ActivityTimer from "./Pages/Staff/ActivityTimer"
-import AbsentStudents from "./Pages/Staff/AbsentStudents";
 
 function App() {
 
@@ -106,14 +103,13 @@ function App() {
                         {/* <Route path="/" element={<Home />} /> */}
                         <Route path="/sign-in" element={<SignIn />} />
                         <Route path="/sign-up" element={<SignUp />} />
-
                         <Route path="/calendar" element={<Calendar />} />
-                        <Route path="/activity-done" element={<ActivityDone />} />
 
                         {/* Routes étudiants */}
                         {userType === "student" ? (
                             <>
-                                <Route path="/activity-review/student" element={<ActivityReviewStudent />} />
+                                <Route path="/activity-done" element={<ActivityDoneStudent />} />
+                                <Route path="/activity-review" element={<ActivityReviewStudent />} />
                                 <Route path="/activity-status" element={<ActivityStatusStudent />} />
                                 <Route path="/activity-vote" element={<ActivityVoteStudent />} />
                             </>
@@ -122,19 +118,13 @@ function App() {
                         {/* Routes staff */}
                         {userType === "responsable" ? (
                             <>
-                                <Route path="/activity-review/student" element={<StudentReviewList />} />
-                                <Route path="/activity-review/staff/" element={<StaffReviewList />} />
-                                <Route path="/activity-propositions" element={<ActivityPropositionsStaff />} />
-                                <Route path="/absent-students" element={<AbsentStudents />} />
+
                             </>
                         ) : userType === "accompagnateur" ? (
                             <>
-                                <Route path="/activity-review/student" element={<StudentReviewList />} />
-                                <Route path="/activity-review/staff" element={<ActivityReviewStaff />} />
+                                <Route path="/activity-review" element={<ActivityReviewStaff />} />
                                 <Route path="/activity-propositions" element={<ActivityPropositionsStaff />} />
                                 <Route path="/activity-list" element={<ActivityListStaff />} />
-                                <Route path="/checkpoint" element={<Checkpoint />} />
-                                <Route path="/timer" element={<ActivityTimer />} />
                             </>
                         ) : null}
                     </Routes>
