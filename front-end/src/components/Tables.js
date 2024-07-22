@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Refusal from "../components/modals/Refusal";
 import NewActivity from "../components/modals/NewActivity";
 import LaunchActivity from "../components/modals/LaunchActivity";
+import Remarks from "../components/modals/Remark";
 
 import "../style/Tables.css";
 
@@ -26,6 +27,7 @@ export function ActivityTable({ data = [], type }) {
   const handleValidateActivity = (activity) =>
     openModal("newActivity", activity);
   const handleSuiviActivity = (activity) => openModal("suivi", activity);
+  const handleNotesActivity = (activity) => openModal("notes", activity);
 
   // Staff opinion of the activity
   function evaluateActivity(id) {
@@ -45,6 +47,8 @@ export function ActivityTable({ data = [], type }) {
         return <NewActivity closeModal={closeModal} data={activity} />;
       case "suivi":
         return <LaunchActivity closeModal={closeModal} data={activity} />;
+      case "notes":
+        return <Remarks closeModal={closeModal} data={activity} />;
       default:
         return null;
     }
@@ -90,6 +94,11 @@ export function ActivityTable({ data = [], type }) {
                   <FormButton
                     text={"Evaluer"}
                     onClick={() => evaluateActivity()}
+                  />
+                ) : type === "notes" ? (
+                  <FormButton
+                    text={"Voir notes"}
+                    onClick={() => handleNotesActivity(activity)}
                   />
                 ) : null}
               </td>
