@@ -41,8 +41,8 @@ function StudentList() {
  * Page d'où les responsables/accompagnateurs pourront suivre la présence des élèves
  * en fonction des différents filtres
  */
-export function SuiviPresence() {
-    const targetPercentage = 72;
+export function ResponsiblePresence() {
+    const targetPercentage = 25;
     const [percentage, setPercentage] = useState(0);
     const [isGraphView, setIsGraphView] = useState(true);
 
@@ -65,7 +65,7 @@ export function SuiviPresence() {
 
     // Exemple de données pour le graphique
     const labels = ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'];
-    const data = [85, 70, 50, 30, 20, 15, 10, 5, 30, 60, 80];
+    const data = [30, 20, 10, 40, 70, 90, 5, 8, 36, 60, 80];
     const chartLabel = 'Data 1';
 
     const handleToggle = (isToggled) => {
