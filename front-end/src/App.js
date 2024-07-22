@@ -148,20 +148,12 @@ function App() {
       />
 
       <main className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
+      
         {/* A CHANGER QUAND ON AURA MIS EN PLACE LE SYSTEME D'AUTH */}
         <SelectInput
           legend={"Change user"}
           options={["student", "accompagnateur", "responsable"]}
           onChange={(e) => setUserType(e.target.value)}
-        />
-
-        <StudentTable
-            data={[
-                { id: 1, name: "Ibra", promo: "B2 logiciel", date: "22/07/24", subject: "Smart Pointers", reason: "S'est Lebron James 39 fois d'affilée" },
-                { id: 2, name: "Ibra", promo: "B2 logiciel", date: "22/07/24", subject: "Smart Pointers", reason: "S'est Lebron James 39 fois d'affilée" },
-                { id: 3, name: "Ibra", promo: "B2 logiciel", date: "22/07/24", subject: "Smart Pointers", reason: "S'est Lebron James 39 fois d'affilée" },
-                { id: 4, name: "Ibra", promo: "B2 logiciel", date: "22/07/24", subject: "Smart Pointers", reason: "S'est Lebron James 39 fois d'affilée" },
-            ]}
         />
 
         <Router>
