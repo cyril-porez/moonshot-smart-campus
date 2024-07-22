@@ -23,7 +23,7 @@ import { ActivityReview as ActivityReviewStaff } from "./Pages/Staff/ActivityRev
 import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff/ActivityPropositions";
 import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList";
 
-import Suivi from "./Pages/Staff/Suivi";
+import Suivi from "./Pages/Staff/SuiviPresence";
 import Suivi2 from "./Pages/Staff/Suivi2";
 
 function App() {
