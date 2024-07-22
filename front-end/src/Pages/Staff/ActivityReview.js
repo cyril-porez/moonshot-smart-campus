@@ -21,3 +21,25 @@ export function ActivityReview() {
         </div>
     )
 }
+
+/**
+ * Page sur laquelle les responsables pourront voir la liste des ressentis d'accompagnateurs
+ */
+export function StaffReviewList({ props }) {
+    const { id } = props;
+    
+    return (
+        <h1>StaffReviewList at id = {id}</h1>
+    )
+}
+
+/**
+ * Page sur laquelle les responsables et accompagnateurs pourront voir la liste des ressentis d'étudiants
+*/
+export function StudentReviewList({ props }) {
+    const { id } = props;
+
+    return (
+        <h1>StudentReviewList at id = {id}</h1>
+    )
+}

@@ -49,6 +49,16 @@ export function Dashboard({ props }) {
                     text={"Suivi de participation"}
                 />
                 <DashboardButton
+                    onClick={() => navigate("/ressenti-accompagnateur")}
+                    iconPath={"/icons/remarques.png"}
+                    text={"Ressenti des accompagnateurs"}
+                />
+                <DashboardButton
+                    onClick={() => navigate("/ressenti-eleve")}
+                    iconPath={"/icons/remarques.png"}
+                    text={"Ressenti des élèves"}
+                />
+                <DashboardButton
                     onClick={() => navigate("/activites-terminees")}
                     iconPath={"/icons/liste-de-controle.png"}
                     text={"Voir les activités terminées"}
@@ -62,11 +72,6 @@ export function Dashboard({ props }) {
                     onClick={() => navigate("/propositions")}
                     iconPath={"/icons/livre.png"}
                     text={"Consulter les propositions d'activité"}
-                />
-                <DashboardButton
-                    onClick={() => navigate("/notes-activite")}
-                    iconPath={"/icons/remarques.png"}
-                    text={"Note d'activité élève"}
                 />
             </div>
             
