@@ -1,4 +1,3 @@
-import React from "react";
 import "../style/Sidebar.css";
 
 export default function Sidebar({ onOpenModal_SuggestActivity, isOpen, logo, links = [], userType }) {
@@ -13,12 +12,12 @@ export default function Sidebar({ onOpenModal_SuggestActivity, isOpen, logo, lin
             </a>
 
             {/* Si c'est un étudiant ou un responsable pédagogique, ils ont la possibilité de proposer/créer une activité */}
-            {userType === "student" ? (
+            {userType?.name === "étudiant" ? (
                 <div className="navbar-link" onClick={onOpenModal_SuggestActivity}>
                     <img src={"/icons/plus.png"} className="navbar-icon" alt="" width={32} height={32} />
                     <b>Proposition d'activité</b>
                 </div>
-            ) : userType === "responsable" ? (
+            ) : userType?.name === "responsable" ? (
                 <div className="navbar-link" onClick={onOpenModal_SuggestActivity}>
                     <img src={"/icons/plus.png"} className="navbar-icon" alt="" width={32} height={32} />
                     <b>Créer une nouvelle activité</b>
@@ -32,14 +31,15 @@ export default function Sidebar({ onOpenModal_SuggestActivity, isOpen, logo, lin
             </div>
             */}
 
-            {links.map(link => (
+            {links.map(link => {
+                return (
                 <a href={link.href}>
                     <div className="navbar-link">
                         <img src={link?.icon} className="navbar-icon" alt="" width={32} height={32}/>
                         <p>{link?.text}</p>
                     </div>
-                </a>
-            ))}
+                </a>)
+            })}
 
       {/* 
             <div className="navbar-link" onClick={onOpenModal_Test}>
@@ -47,21 +47,6 @@ export default function Sidebar({ onOpenModal_SuggestActivity, isOpen, logo, lin
                 <p>Test</p>
             </div>
             */}
-
-      {links.map((link) => (
-        <a href={link.href}>
-          <div className="navbar-link">
-            <img
-              src={link?.icon}
-              className="navbar-icon"
-              alt=""
-              width={32}
-              height={32}
-            />
-            <p>{link?.text}</p>
-          </div>
-        </a>
-      ))}
     </aside>
   );
 }

@@ -1,5 +1,6 @@
 import axios from "axios";
 import bcrypt from "bcryptjs";
+import { getUserInfo } from "./UserInfo";
 
 const address_server = process.env.REACT_APP_ADRESS_SERVER;
 
@@ -42,7 +43,7 @@ export async function authLogin(data) {
       `${address_server}/auth/local/`,
       requestBody
     );
-
+    
     return response;
   } catch (error) {
     console.log("ERR LOGIN ==", error);

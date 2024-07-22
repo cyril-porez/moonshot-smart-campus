@@ -13,7 +13,7 @@ export default function Header({ logo, currentUser, toggleSidebar }) {
                 {logo ? <img src={logo} alt="" height="100%"/> : null}
                 <h1>{"Syllaverse".toUpperCase()}</h1>
             </a>
-            <p style={{ fontSize: "18px" }}>Bonjour, {currentUser}</p>
+            <p style={{ fontSize: "18px" }}>Bonjour, {currentUser.username}</p>
         </header>
     )
 }

@@ -33,6 +33,7 @@ export default function SignIn(params) {
 
     if (result.status === 200) {
       console.log("Success:", result.data);
+      localStorage.setItem('jwt', result.data?.jwt);
       navigate("/");
     } else {
       console.log("Error:", result.data);
