@@ -98,3 +98,50 @@ button:hover {
     height: 30px;
     margin-right: 8px;
 }
+
+.toggle-btn {
+    border: 2px solid white;
+    box-shadow: 0 0 4px grey;
+    padding: 1px;
+    width: 52px;
+    height: 30px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    transition: background-color 0.3s ease;
+    background-color: var(--blue);
+}
+
+.toggle-btn:hover {
+    background-color: var(--blue);
+}
+
+.toggle-btn.toggle-on {
+    background-color: var(--green);
+}
+
+.toggle-btn.toggle-off {
+    background-color: red;
+}
+
+/* .toggle-on {
+    justify-content: end;
+}
+
+.toggle-off {
+    justify-content: start;
+} */
+
+.toggle-handle {
+    background-color: lightgray;
+    width: 25px;
+    height: 25px;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.toggle-handle.toggle-on {
+    transform: translateX(22px);
+}
