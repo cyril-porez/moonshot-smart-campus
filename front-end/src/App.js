@@ -25,9 +25,11 @@ import { ResponsiblePresence } from "./Pages/Staff/ResponsiblePresence";
 
 import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff/ActivityPropositions";
 import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList";
+import { ActivityNotes as ActivityNotesStaff } from "./Pages/Staff/ActivityNotes";
 
-import Suivi from "./Pages/Staff/Suivi";
+import Suivi from "./Pages/Staff/SuiviPresence";
 import Suivi2 from "./Pages/Staff/Suivi2";
+import { StudentTable } from "./components/Tables";
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -150,6 +152,7 @@ function App() {
       />
 
       <main className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
+
         {/* A CHANGER QUAND ON AURA MIS EN PLACE LE SYSTEME D'AUTH */}
         <SelectInput
           legend={"Change user"}
@@ -195,7 +198,12 @@ function App() {
 
             {/* Routes staff */}
             {userType === "responsable" ? (
-              <></>
+              <>
+                <Route
+                  path="/notes-activite"
+                  element={<ActivityNotesStaff userType={userType} />}
+                />
+              </>
             ) : userType === "accompagnateur" ? (
               <>
                 <Route
