@@ -25,6 +25,7 @@ import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList";
 
 import Suivi from "./Pages/Staff/SuiviPresence";
 import Suivi2 from "./Pages/Staff/Suivi2";
+import { StudentTable } from "./components/Tables";
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -152,6 +153,15 @@ function App() {
           legend={"Change user"}
           options={["student", "accompagnateur", "responsable"]}
           onChange={(e) => setUserType(e.target.value)}
+        />
+
+        <StudentTable
+            data={[
+                { id: 1, name: "Ibra", promo: "B2 logiciel", date: "22/07/24", subject: "Smart Pointers", reason: "S'est Lebron James 39 fois d'affilée" },
+                { id: 2, name: "Ibra", promo: "B2 logiciel", date: "22/07/24", subject: "Smart Pointers", reason: "S'est Lebron James 39 fois d'affilée" },
+                { id: 3, name: "Ibra", promo: "B2 logiciel", date: "22/07/24", subject: "Smart Pointers", reason: "S'est Lebron James 39 fois d'affilée" },
+                { id: 4, name: "Ibra", promo: "B2 logiciel", date: "22/07/24", subject: "Smart Pointers", reason: "S'est Lebron James 39 fois d'affilée" },
+            ]}
         />
 
         <Router>
