@@ -8,20 +8,21 @@ import LaunchActivity from "../components/modals/LaunchActivity";
 import Remarks from "../components/modals/Remark";
 
 import "../style/Tables.css";
+import Absence from "./modals/Absence";
 
 export function ActivityTable({ data = [], type }) {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const [modalState, setModalState] = useState({
-    isOpen: false,
-    type: null,
-    activity: null,
-  });
+    const [modalState, setModalState] = useState({
+        isOpen: false,
+        type: null,
+        activity: null,
+    });
 
-  const openModal = (type, activity) =>
-    setModalState({ isOpen: true, type, activity });
-  const closeModal = () =>
-    setModalState({ isOpen: false, type: null, activity: null });
+    const openModal = (type, activity) =>
+        setModalState({ isOpen: true, type, activity });
+    const closeModal = () =>
+        setModalState({ isOpen: false, type: null, activity: null });
 
   const handleRefuseActivity = (activity) => openModal("refusal", activity);
   const handleValidateActivity = (activity) =>
@@ -52,7 +53,6 @@ export function ActivityTable({ data = [], type }) {
       default:
         return null;
     }
-  };
 
   return (
     <>
@@ -107,11 +107,11 @@ export function ActivityTable({ data = [], type }) {
         </tbody>
       </table>
 
-      {modalState.isOpen && (
-        <Modal isOpen={modalState.isOpen} onClose={closeModal}>
-          {renderModalContent()}
-        </Modal>
-      )}
-    </>
-  );
+            {modalState.isOpen && (
+                <Modal isOpen={modalState.isOpen} onClose={closeModal}>
+                    {renderModalContent()}
+                </Modal>
+            )}
+        </>
+    );
 }
