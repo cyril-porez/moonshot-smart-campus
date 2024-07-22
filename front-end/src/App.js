@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import SignIn from "./Pages/Auth/sign-in";
 import SignUp from "./Pages/Auth/sign-up";
 // import Home from "./Pages/Home";
@@ -13,18 +11,16 @@ import { SelectInput } from "./components/FormInput";
 import Modal from "./components/Modal";
 import SuggestActivityForm from "./components/modals/NewActivity";
 import TestNfc from "./Pages/test-nfc";
-
 import { ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone";
 import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/ActivityReview";
 import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/ActivityStatus";
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote";
 import { ActivityReview as ActivityReviewStaff } from "./Pages/Staff/ActivityReview";
-
 import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff/ActivityPropositions";
 import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList";
-
 import Suivi from "./Pages/Staff/SuiviPresence";
 import Suivi2 from "./Pages/Staff/Suivi2";
+import Calendarier from "./Pages/Calendrier/Calendar"
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -160,15 +156,14 @@ function App() {
               path="/"
               element={<Dashboard props={{ user: userType }} />}
             />
-            {/* <Route path="/" element={<Home />} /> */}
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/nfc" element={<TestNfc />} />
-            <Route path="/Suivi" element={<Suivi />} />
-            <Route path="/Suivi2" element={<Suivi2 />} />
+            <Route path="/suivi" element={<Suivi />} />
+            <Route path="/suivi2" element={<Suivi2 />} />
+            <Route path="/calen2" element={<Calendarier />}/>
 
-            {/* Routes étudiants */}
             {userType === "student" ? (
               <>
                 <Route

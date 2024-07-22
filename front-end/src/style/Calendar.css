@@ -1,0 +1,27 @@
+/* src/style/Calendar.css */
+.fc {
+    max-width: 900px;
+    margin: 40px auto;
+  }
+  
+  .fc-event {
+    font-size: 14px;
+  }
+  
+  .fc-resource {
+    font-size: 14px;
+  }
+  
+  .ReactModal__Overlay {
+    background-color: rgba(18, 119, 201, 0.75) !important;
+  }
+  
+  .ReactModal__Content {
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin-right: -50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  
