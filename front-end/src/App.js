@@ -21,6 +21,7 @@ import { ActivityReview as ActivityReviewStaff } from "./Pages/Staff/ActivityRev
 
 import { ActivityPropositions as ActivityPropositionsStaff } from "./Pages/Staff/ActivityPropositions"
 import { ActivityList as ActivityListStaff } from "./Pages/Staff/ActivityList"
+import { SuiviPresence } from "./Pages/Staff/SuiviPresence"
 
 function App() {
 
@@ -125,6 +126,7 @@ function App() {
                                 <Route path="/activity-review" element={<ActivityReviewStaff />} />
                                 <Route path="/activity-propositions" element={<ActivityPropositionsStaff />} />
                                 <Route path="/activity-list" element={<ActivityListStaff />} />
+                                <Route path="/suivi-presence" element={<SuiviPresence />} />
                             </>
                         ) : null}
                     </Routes>
