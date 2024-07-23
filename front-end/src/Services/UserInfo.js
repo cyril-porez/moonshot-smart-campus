@@ -13,7 +13,11 @@ export async function getUserInfo() {
         );
         return response.data;
     } catch (error) {
-        console.log("ERR RES REGISTER === ", error.response);
+        console.log("ERR GET USER INFO === ", error.response);
         return error.response;
     }
+}
+
+export function isLoggedIn() {
+    return (typeof localStorage.getItem('jwt') !== 'undefined') && (localStorage.getItem('jwt') !== null);
 }

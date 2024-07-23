@@ -30,14 +30,16 @@ import { ActivityNotes as ActivityNotesStaff } from "./Pages/Staff/ActivityNotes
 import Suivi from "./Pages/Staff/SuiviPresence";
 import Suivi2 from "./Pages/Staff/Suivi2";
 import { StudentTable } from "./components/Tables";
-import { getUserInfo } from "./Services/UserInfo";
+import { getUserInfo, isLoggedIn } from "./Services/UserInfo";
 
 function App() {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [user, setUser] = useState({});
 
     const initUser = async () => {
-        setUser(await getUserInfo());
+        if(isLoggedIn()) {
+            setUser(await getUserInfo());
+        }
     }
 
     useEffect(() => {
