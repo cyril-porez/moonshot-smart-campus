@@ -18,12 +18,12 @@ export default function SuiviPresence() {
   const [timeout, setTimeoutValue] = useState(500000);
   const [userBadgeMaping, setUserBadgeMapping] = useState([]);
   const [studentCount, setStudentCount] = useState(0);
+  const [initialTime, setInitialTime] = useState(300);
 
   const getBadgesByActities = async (id) => {
     try {
-      const getBadges = await getBadgesByActivity(id);
-      console.log(getBadges, "badges");
-      return getBadges;
+      const response = await getBadgesByActivity(id);
+      return response;
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +32,6 @@ export default function SuiviPresence() {
   const postUserAttendActivity = async (userId, activityId) => {
     try {
       const response = await postUsersActivityService(userId, activityId);
-      console.log(response, "response");
       return response;
     } catch (error) {
       console.log("error test");
@@ -42,18 +41,20 @@ export default function SuiviPresence() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const test = await getBadgesByActities(activityId);
+      const badges = await getBadgesByActities(activityId);
 
-      setBadges(test.attributes);
-
-      console.log("data:", test.attributes);
+      setBadges(badges.attributes);
+      setInitialTime(badges.attributes.time_to_badge * 60);
     };
     fetchData();
   }, [activityId]);
 
   useEffect(() => {
+    console.log("Initial time set to:", initialTime);
+  }, [initialTime]);
+
+  useEffect(() => {
     const promos = badges?.promos_activitie?.data?.attributes?.promos?.data;
-    console.log(promos, "promos");
     if (!Array.isArray(promos)) {
       console.error(
         "La structure de l'objet JSON ne correspond pas à ce qui est attendu ou 'promos' n'est pas un tableau."
@@ -95,7 +96,7 @@ export default function SuiviPresence() {
 
     socket.on("connect", () => {
       console.log("Connecté au serveur Socket.io");
-      socket.emit("set-timeout", timeout);
+      socket.emit("set-timeout", initialTime * 100);
     });
 
     socket.on("nfc-card", (data) => {
@@ -142,10 +143,10 @@ export default function SuiviPresence() {
         </ul>
       </div>
       <div className="timer-container">
-        <Timer />
+        <Timer initialTime={initialTime} />
       </div>
       <div className="hourglass-container">
-        <Hourglass />
+        <Hourglass initialTime={initialTime} />
       </div>
     </div>
   );

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "../style/Timer.css"; // Assurez-vous que le chemin vers votre fichier CSS est correct
+import "../style/Timer.css";
 import Sablier from "./Sablier";
 
-const Hourglass = () => {
-  const [timeLeft, setTimeLeft] = useState(300); // 5 minutes = 300 seconds
+const Hourglass = ({ initialTime }) => {
+  const [timeLeft, setTimeLeft] = useState(initialTime);
+
+  useEffect(() => {
+    setTimeLeft(initialTime);
+  }, [initialTime]);
 
   useEffect(() => {
     if (timeLeft > 0) {
