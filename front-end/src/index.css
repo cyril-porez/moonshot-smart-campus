@@ -44,5 +44,5 @@ button:hover {
 }
 
 .main-content.shifted {
-    margin-left: calc(250px + 20px);
+    margin-left: calc(250px);
 }

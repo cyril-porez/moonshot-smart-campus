@@ -20,13 +20,14 @@ button {
 .dashboard-btn-inner {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
 }
 
 .dashboard-btn-inner p {
     margin: auto;
+    text-align: center;
+    width: 100%;
 }
 
 .form-btn {
