@@ -63,7 +63,11 @@ export function ResponsiblePresence() {
                         value={percentage}
                         text={`${Math.round(percentage)}%`}
                         styles={buildStyles({
-                            pathTransitionDuration: 0.15,
+                            pathTransitionDuration: 0.5,
+                            pathColor: percentage < 50 ? `rgba(255, 0, 0, ${percentage / 100})` : `rgba(10, 54, 157, ${percentage / 100})`,
+                            textColor: '#3e98c7',
+                            trailColor: '#d6d6d6',
+                            textSize: '24px'
                         })}
                     />
                 </div>

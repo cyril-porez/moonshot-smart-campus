@@ -20,7 +20,7 @@ export default function Header({ logo, currentUser, toggleSidebar }) {
             {
                 isLoggedIn() ? (
                     <button className="borderless round burger" onClick={toggleSidebar}>
-                        <img src="/icons/burger.png" width={32} height={32} alt=""/>
+                        <img src="/icons/burger.png" width={32} height={32} alt="" />
                     </button>
                 ) : <div></div>
             }
@@ -30,9 +30,13 @@ export default function Header({ logo, currentUser, toggleSidebar }) {
             </a>
             {
                 isLoggedIn() ?
-                <p style={{ fontSize: "18px" }}>Bonjour, {currentUser.username}</p> :
-                <div></div>
+                    <p style={{ fontSize: "18px" }}>Bonjour, {currentUser.username}</p> :
+                    <div></div>
             }
+            {
+                jwt ? <FormButton onClick={logout} text={"Deconnexion"} /> : ""
+            }
+
         </header>
     );
 }
