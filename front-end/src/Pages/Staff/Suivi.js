@@ -5,7 +5,7 @@ import '../../style/Suivi.css'; // Make sure to create and import this CSS file
 
 const Suivi = () => {
   return (
-    <div className="container">
+    <div className="containerSuivi">
       <div className="timer-container">
         <Timer />
       </div>
