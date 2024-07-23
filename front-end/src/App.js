@@ -42,9 +42,10 @@ function App() {
         }
     }
 
-    // useEffect(() => {
-    //   initUser();
-    // }, [])
+    useEffect(() => {
+        initUser();
+        console.log(user)
+    }, [])
 
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
@@ -149,16 +150,16 @@ function App() {
             >
                 <SuggestActivityForm closeModal={closeModal_SuggestActivity} />
             </Modal>
-            <Sidebar
-                isOpen={isSidebarOpen}
-                onOpenModal_SuggestActivity={openModal_SuggestActivity}
-                userType={userRole}
-                links={navbarLinks[userRole?.id - 1]}
-            />
 
-            <main className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
-                <Router>
-                    <Header currentUser={{ username: "ibra" }} toggleSidebar={toggleSidebar} />
+            <Router>
+                <Header currentUser={user} toggleSidebar={toggleSidebar} />
+                <Sidebar
+                    isOpen={isSidebarOpen}
+                    onOpenModal_SuggestActivity={openModal_SuggestActivity}
+                    userType={user.status_role}
+                    links={navbarLinks[user.status_role?.id - 1]}
+                />
+                <main className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
                     <Routes>
                         <Route
                             path="/"
@@ -218,8 +219,8 @@ function App() {
                             </>
                         ) : null}
                     </Routes>
-                </Router>
-            </main>
+                </main>
+            </Router>
         </div>
     );
 }
