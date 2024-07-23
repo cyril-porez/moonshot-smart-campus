@@ -191,6 +191,7 @@ function App() {
                                     path="/activity-vote"
                                     element={<ActivityVoteStudent />}
                                 />
+                                <Route path="/activity-status" element={<ActivityStatusStudent />} />
                             </>
                         ) : null}
 

@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Range from "../../components/Range"
 import "../../style/ActivityReview.css"
 import { useParams } from "react-router-dom";
+import { getActivityInfo } from "../../Services/ActivityInfo";
 
 /**
  * Là où les élèves pourront donner leur avis sur une activité
  */
 export function ActivityReview() {
+    const [activity, setActivity] = useState({})
+
     const { id } = useParams();
+
+    const initActivity = async () => {
+        setActivity(await getActivityInfo(id));
+    }
+
+    useEffect(() => {
+        initActivity();
+    }, [])
 
     return (
         <div className="range-align">

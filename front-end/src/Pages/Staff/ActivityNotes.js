@@ -17,7 +17,6 @@ export function ActivityNotes(userType) {
     const dataSet1 = [{ id: 1, subject: "I want to kill myself", promo: "B2", activityTypes: "HowTo", helper: "Habib", date: "2024-07-18", time: "09h00", expectedTime: 30, room: "A2", remark: "C'était claqué au sol" }]
     const dataSet2 = [{ id: 1, subject: "I want to kill myself faster", promo: "B2", activityTypes: "HowTo", helper: "Habib", date: "2024-07-18", time: "09h00", expectedTime: 30, room: "A2", remark: "HABIIIIIIIIIIIB" }]
 
-
     return (
         <div>
             {userType.userType === "responsable" ? (
