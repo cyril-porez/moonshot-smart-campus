@@ -17,10 +17,12 @@ export default function SuiviPresence() {
   const [uids, setUids] = useState([]);
   const [timeout, setTimeoutValue] = useState(500000);
   const [userBadgeMaping, setUserBadgeMapping] = useState([]);
+  const [studentCount, setStudentCount] = useState(0);
 
   const getBadgesByActities = async (id) => {
     try {
       const getBadges = await getBadgesByActivity(id);
+      console.log(getBadges, "badges");
       return getBadges;
     } catch (error) {
       console.log(error);
@@ -93,7 +95,7 @@ export default function SuiviPresence() {
 
     socket.on("connect", () => {
       console.log("Connecté au serveur Socket.io");
-      socket.emit("set-timeout", timeout); // envoie au serveur le temps pour badger
+      socket.emit("set-timeout", timeout);
     });
 
     socket.on("nfc-card", (data) => {
@@ -107,11 +109,12 @@ export default function SuiviPresence() {
           setUids((prevUids) => {
             const newUids = [...prevUids, infoUser.username];
             if (newUids.length > 5) {
-              newUids.shift(); // Supprimme le 1 er éléments de la liste
+              newUids.shift();
             }
             return newUids;
           });
           postUserAttendActivity(infoUser.userId, activityId);
+          setStudentCount((prevCount) => prevCount + 1);
         }
       });
     });
@@ -130,12 +133,8 @@ export default function SuiviPresence() {
   }, [timeout, userBadgeMaping]);
   return (
     <div className="content">
-      <div>
-        <h1>Détails de l'activité</h1>
-        <p>ID de l'activité : {activityId}</p>
-      </div>
       <div className="student-info">
-        <span className="student-count">nombre d’élèves : 25</span>
+        <span className="student-count">nombre d’élèves : {studentCount}</span>
         <ul className="student-list">
           {uids.map((uid, index) => (
             <li key={index}>{uid}</li>
