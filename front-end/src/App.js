@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
 import SignIn from "./Pages/Auth/sign-in";
 import SignUp from "./Pages/Auth/sign-up";
@@ -29,7 +29,6 @@ import { ActivityNotes as ActivityNotesStaff } from "./Pages/Staff/ActivityNotes
 
 import Suivi from "./Pages/Staff/SuiviPresence";
 import Suivi2 from "./Pages/Staff/Suivi2";
-import { StudentTable } from "./components/Tables";
 import { getUserInfo } from "./Services/UserInfo";
 
 function App() {
@@ -148,12 +147,17 @@ function App() {
             >
                 <SuggestActivityForm closeModal={closeModal_SuggestActivity} />
             </Modal>
-            <Sidebar
-                isOpen={isSidebarOpen}
-                onOpenModal_SuggestActivity={openModal_SuggestActivity}
-                userType={user.status_role}
-                links={navbarLinks[user.status_role?.id - 1]}
-            />
+            {
+                // Si on connait le role de l'utilisateur
+                user.status_role ?
+                (<Sidebar
+                    isOpen={isSidebarOpen}
+                    onOpenModal_SuggestActivity={openModal_SuggestActivity}
+                    userType={user.status_role}
+                    links={navbarLinks[user.status_role?.id - 1]}
+                />
+                ) : null
+            }
 
             <main className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
                 <Router>
