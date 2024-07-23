@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
 import SignIn from "./Pages/Auth/sign-in";
 import SignUp from "./Pages/Auth/sign-up";
@@ -37,14 +37,14 @@ function App() {
     const [user, setUser] = useState({});
 
     const initUser = async () => {
-        if(isLoggedIn()) {
+        if (isLoggedIn()) {
             setUser(await getUserInfo());
         }
     }
 
-    useEffect(() => {
-        initUser();
-    }, [])
+    // useEffect(() => {
+    //   initUser();
+    // }, [])
 
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
@@ -143,7 +143,6 @@ function App() {
 
     return (
         <div className="App">
-            <Header currentUser={user} toggleSidebar={toggleSidebar} />
             <Modal
                 isOpen={isModalOpen_SuggestActivity}
                 onClose={closeModal_SuggestActivity}
@@ -153,12 +152,13 @@ function App() {
             <Sidebar
                 isOpen={isSidebarOpen}
                 onOpenModal_SuggestActivity={openModal_SuggestActivity}
-                userType={user.status_role}
-                links={navbarLinks[user.status_role?.id - 1]}
+                userType={userRole}
+                links={navbarLinks[userRole?.id - 1]}
             />
 
             <main className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
                 <Router>
+                    <Header currentUser={{ username: "ibra" }} toggleSidebar={toggleSidebar} />
                     <Routes>
                         <Route
                             path="/"
@@ -173,7 +173,7 @@ function App() {
                         <Route path="/Suivi2" element={<Suivi2 />} />
 
                         {/* Routes étudiants */}
-                        {user.status_role?.name === "étudiant" ? (
+                        {user?.status_role?.name === "étudiant" ? (
                             <>
                                 <Route
                                     path="/activity-done"
@@ -195,7 +195,7 @@ function App() {
                         ) : null}
 
                         {/* Routes staff */}
-                        {user.status_role?.name === "responsable" ? (
+                        {user?.status_role?.name === "responsable" ? (
                             <>
                                 <Route
                                     path="/notes-activite"
@@ -203,7 +203,7 @@ function App() {
                                 />
                                 <Route path="/responsible-presence" element={<ResponsiblePresence />} />
                             </>
-                        ) : user.status_role?.name === "Accompagnateur" ? (
+                        ) : user?.status_role?.name === "Accompagnateur" ? (
                             <>
                                 <Route
                                     path="/activity-review"
