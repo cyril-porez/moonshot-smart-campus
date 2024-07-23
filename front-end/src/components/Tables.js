@@ -9,7 +9,7 @@ import LaunchActivity from "../components/modals/LaunchActivity";
 import "../style/Tables.css";
 import Absence from "./modals/Absence";
 
-export function ActivityTable({ data = [], type }) {
+export function ActivityTable({ data = [], type, userRole }) {
     const navigate = useNavigate();
 
     const [modalState, setModalState] = useState({
@@ -30,11 +30,11 @@ export function ActivityTable({ data = [], type }) {
 
     // Staff opinion of the activity
     function evaluateActivity(id) {
-        navigate("/EvaluateActivity?id=" + id);
+        navigate("/evaluate-activity/" + id);
     }
     // Student opinion of the activity
     function rateActivity(id) {
-        navigate("/ActivityReview?id=" + id);
+        navigate("/activity-review/" + id);
     }
 
     const renderModalContent = () => {
@@ -90,7 +90,11 @@ export function ActivityTable({ data = [], type }) {
                                 ) : type === "evaluer" ? (
                                     <FormButton
                                         text={"Evaluer"}
-                                        onClick={() => evaluateActivity()}
+                                        onClick={
+                                            userRole?.name === "étudiant" ? 
+                                            () => rateActivity(activity.id) : 
+                                            () => evaluateActivity(activity.id)
+                                        }
                                     />
                                 ) : null}
                             </td>
@@ -172,5 +176,18 @@ export function generateFakeStudentData(numStudents = 10) {
         date: new Date(Date.now() - Math.random() * 1e10).toLocaleDateString("fr-FR"),
         subject: subjects[Math.floor(Math.random() * subjects.length)],
         reason: reasons[Math.floor(Math.random() * reasons.length)],
+    }));
+}
+
+export function generateFakeActivity(numActivity = 10) {
+    const promos = ["B2 Logiciel", "B3 Logiciel", "M1 Logiciel"];
+    const subjects = ["HOW TO Python", "HOW TO JAVA", "HOW TO C", "HOW TO CPP"];
+
+    return Array.from({ length: numActivity }, (_, index) => ({
+        id: index + 1,
+        promo: promos[Math.floor(Math.random() * promos.length)],
+        subject: subjects[Math.floor(Math.random() * subjects.length)],
+        date: new Date(Date.now() - Math.random() * 1e10).toLocaleDateString("fr-FR"),
+        time: '10:30',
     }));
 }

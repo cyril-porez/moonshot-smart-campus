@@ -41,6 +41,7 @@ function App() {
 
     useEffect(() => {
         initUser();
+        console.log(user)
     }, [])
 
     const toggleSidebar = () => {
@@ -63,7 +64,7 @@ function App() {
             },
             {
                 icon: "/icons/liste-de-controle.png",
-                href: "/activites-terminees",
+                href: "/activity-done",
                 text: "Voir les activités terminées",
             },
             {
@@ -150,13 +151,13 @@ function App() {
             {
                 // Si on connait le role de l'utilisateur
                 user.status_role ?
-                (<Sidebar
-                    isOpen={isSidebarOpen}
-                    onOpenModal_SuggestActivity={openModal_SuggestActivity}
-                    userType={user.status_role}
-                    links={navbarLinks[user.status_role?.id - 1]}
-                />
-                ) : null
+                    (<Sidebar
+                        isOpen={isSidebarOpen}
+                        onOpenModal_SuggestActivity={openModal_SuggestActivity}
+                        userType={user.status_role}
+                        links={navbarLinks[user.status_role?.id - 1]}
+                    />
+                    ) : null
             }
 
             <main className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
@@ -174,17 +175,16 @@ function App() {
                         <Route path="/Suivi" element={<Suivi />} />
                         <Route path="/Suivi2" element={<Suivi2 />} />
 
+                        <Route
+                            path="/activity-done"
+                            element={<ActivityDoneStudent userRole={user?.status_role} />}
+                        />
                         {/* Routes étudiants */}
                         {user.status_role?.name === "étudiant" ? (
                             <>
-                                <Route
-                                    path="/activity-done"
-                                    element={<ActivityDoneStudent />}
-                                />
-                                <Route
-                                    path="/activity-review"
-                                    element={<ActivityReviewStudent />}
-                                />
+                                <Route path="/activity-review">
+                                    <Route path=":id" element={<ActivityReviewStudent />} />
+                                </Route>
                                 <Route
                                     path="/activity-status"
                                     element={<ActivityStatusStudent />}
