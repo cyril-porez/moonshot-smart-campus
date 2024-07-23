@@ -1,0 +1,109 @@
+.activity-rating-container {
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.criteria-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.criteria-list {
+    margin-right: 20px;
+    width: 40vw;
+}
+
+.criteria-header, .criteria-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.criteria-header {
+    font-weight: bold;
+}
+
+.criteria-item {
+    font-size: 1em;
+}
+
+.global-average {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vw;
+}
+
+.global-average h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.circular-bar-container {
+    width: 180px; /* Ajustez cette taille pour rendre les barres circulaires plus petites */
+    height: 180px;
+    margin: auto;
+}
+
+.min-circular-bar-container {
+    width: 60px; /* Ajustez cette taille pour rendre les barres circulaires plus petites */
+    height: 60px;
+}
+
+.remarks-container {
+    margin-top: 20px;
+    max-height: 250px; /* Ajustez la hauteur maximale selon vos besoins */
+    overflow-y: auto; /* Ajoute une barre de défilement verticale */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #CFDEE7; /* Couleur de fond pour la zone de remarques */
+}
+
+.remark-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff; /* Couleur de fond pour chaque remarque */
+}
+
+.remark-item:nth-child(odd) {
+    background-color: #d2e2f8; /* Couleur alternative pour les lignes impaires */
+}
+
+.remark-text {
+    flex: 1;
+    margin-right: 10px;
+    font-size: 1em;
+}
+
+.remarks-header {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.view-more-btn {
+    background-color: #4472CA; /* Couleur bleu pour les boutons "Voir plus" */
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 0.8em;
+    border-radius: 5px; /* Ajout des coins arrondis */
+}
+
+.view-more-btn:hover {
+    background-color: #365A8C; /* Couleur bleu foncé au survol */
+}

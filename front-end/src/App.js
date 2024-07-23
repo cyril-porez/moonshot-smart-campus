@@ -31,6 +31,8 @@ import Suivi from "./Pages/Staff/SuiviPresence";
 import Suivi2 from "./Pages/Staff/Suivi2";
 import { StudentTable } from "./components/Tables";
 import { getUserInfo, isLoggedIn } from "./Services/UserInfo";
+import { FeelingsStudents } from "./Pages/Staff/FeelingsStudents";
+import { FeelingsAccompanying } from "./Pages/Staff/FeelingsAccompanying";
 
 function App() {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -203,6 +205,7 @@ function App() {
                                     element={<ActivityNotesStaff userType={user} />}
                                 />
                                 <Route path="/responsible-presence" element={<ResponsiblePresence />} />
+                                <Route path="/feelings-accompanying" element={<FeelingsAccompanying />} />
                             </>
                         ) : user?.status_role?.name === "Accompagnateur" ? (
                             <>
@@ -216,6 +219,7 @@ function App() {
                                 />
                                 <Route path="/activity-list" element={<ActivityListStaff />} />
                                 <Route path="/accompanying-presence" element={<AccompanyingPresence />} />
+                                <Route path="/feelings-students" element={<FeelingsStudents />} />
                             </>
                         ) : null}
                     </Routes>
