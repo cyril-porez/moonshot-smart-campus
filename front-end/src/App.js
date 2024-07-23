@@ -165,7 +165,7 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/nfc" element={<TestNfc />} />
-            <Route path="/Suivi" element={<Suivi />} />
+            <Route path="/Suivi/activityId/:activityId" element={<Suivi />} />
             <Route path="/Suivi2" element={<Suivi2 />} />
 
             {/* Routes étudiants */}
