@@ -29,14 +29,17 @@ import { ActivityNotes as ActivityNotesStaff } from "./Pages/Staff/ActivityNotes
 
 import Suivi from "./Pages/Staff/SuiviPresence";
 import Suivi2 from "./Pages/Staff/Suivi2";
-import { getUserInfo } from "./Services/UserInfo";
+import { StudentTable } from "./components/Tables";
+import { getUserInfo, isLoggedIn } from "./Services/UserInfo";
 
 function App() {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [user, setUser] = useState({});
 
     const initUser = async () => {
-        setUser(await getUserInfo());
+        if (isLoggedIn()) {
+            setUser(await getUserInfo());
+        }
     }
 
     useEffect(() => {
@@ -141,27 +144,22 @@ function App() {
 
     return (
         <div className="App">
-            <Header currentUser={user} toggleSidebar={toggleSidebar} />
             <Modal
                 isOpen={isModalOpen_SuggestActivity}
                 onClose={closeModal_SuggestActivity}
             >
                 <SuggestActivityForm closeModal={closeModal_SuggestActivity} />
             </Modal>
-            {
-                // Si on connait le role de l'utilisateur
-                user.status_role ?
-                    (<Sidebar
-                        isOpen={isSidebarOpen}
-                        onOpenModal_SuggestActivity={openModal_SuggestActivity}
-                        userType={user.status_role}
-                        links={navbarLinks[user.status_role?.id - 1]}
-                    />
-                    ) : null
-            }
 
-            <main className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
-                <Router>
+            <Router>
+                <Header currentUser={user} toggleSidebar={toggleSidebar} />
+                <Sidebar
+                    isOpen={isSidebarOpen}
+                    onOpenModal_SuggestActivity={openModal_SuggestActivity}
+                    userType={user.status_role}
+                    links={navbarLinks[user.status_role?.id - 1]}
+                />
+                <main className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
                     <Routes>
                         <Route
                             path="/"
@@ -180,7 +178,7 @@ function App() {
                             element={<ActivityDoneStudent userRole={user?.status_role} />}
                         />
                         {/* Routes étudiants */}
-                        {user.status_role?.name === "étudiant" ? (
+                        {user?.status_role?.name === "étudiant" ? (
                             <>
                                 <Route path="/activity-review">
                                     <Route path=":id" element={<ActivityReviewStudent />} />
@@ -197,7 +195,7 @@ function App() {
                         ) : null}
 
                         {/* Routes staff */}
-                        {user.status_role?.name === "responsable" ? (
+                        {user?.status_role?.name === "responsable" ? (
                             <>
                                 <Route
                                     path="/notes-activite"
@@ -205,7 +203,7 @@ function App() {
                                 />
                                 <Route path="/responsible-presence" element={<ResponsiblePresence />} />
                             </>
-                        ) : user.status_role?.name === "Accompagnateur" ? (
+                        ) : user?.status_role?.name === "Accompagnateur" ? (
                             <>
                                 <Route
                                     path="/activity-review"
@@ -220,8 +218,8 @@ function App() {
                             </>
                         ) : null}
                     </Routes>
-                </Router>
-            </main>
+                </main>
+            </Router>
         </div>
     );
 }
