@@ -7,8 +7,6 @@ export default function LaunchActivity({ data, closeModal }) {
   const navigate = useNavigate();
   console.log(data);
 
-  const test = (activityId) => {};
-
   return (
     <div>
       <form className="launch-activity-body">

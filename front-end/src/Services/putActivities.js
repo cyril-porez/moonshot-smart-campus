@@ -1,18 +1,18 @@
 import axios from "axios";
 
 const address_server = process.env.REACT_APP_ADRESS_SERVER;
-const authToken = process.env.REACT_APP_TOKEN_AUTH;
+const authToken = localStorage.getItem("jwt");
 
-export async function getActivitiesListAcc(id) {
+export async function putActivitiesStatus(id, stateActivity) {
   try {
-    const response = await axios.get(
-      `${address_server}/users/${id}?populate[activities][populate][promos_activitie][populate]=promos`,
-      {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      }
-    );
+    const response = await axios.put(`${address_server}/activities/${id}`, {
+      data: {
+        activitistate: stateActivity,
+      },
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
     console.log(response.data);
     return response.data;
   } catch (err) {
