@@ -23,7 +23,10 @@ import SuggestActivityForm from "./components/modals/NewActivity";
 import TestNfc from "./Pages/test-nfc";
 import MyCalendar from "./Pages/Calendar"; // Utiliser default import
 
-import { ActivityDone, ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone";
+import {
+  ActivityDone,
+  ActivityDone as ActivityDoneStudent,
+} from "./Pages/Students/ActivityDone";
 import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/ActivityReview";
 import { ActivityStatus } from "./Pages/Students/ActivityStatus";
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote";
@@ -53,10 +56,10 @@ function App() {
     }
   };
 
-    useEffect(() => {
-        initUser();
-        // console.log(user)
-    }, [])
+  useEffect(() => {
+    initUser();
+    // console.log(user)
+  }, []);
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
@@ -222,68 +225,53 @@ function App() {
               </>
             ) : null}
 
-                        {/* Routes staff */}
-                        {user?.status_role?.name === "responsable" ? (
-                            <>
-                                <Route
-                                    path="/suivi-participation"
-                                    element={<ResponsiblePresence />}
-                                />
-                                <Route
-                                    path="/notes-eleves"
-                                    element={<FeelingsStudents />}
-                                />
-                                <Route
-                                    path="/propositions"
-                                    element={<ActivityPropositionsStaff />}
-                                />
-                                <Route
-                                    path="/notes-accompagnateur"
-                                    element={<FeelingsAccompanying />}
-                                />
-                                <Route
-                                    path="/activites-terminees"
-                                    element={<ActivityDoneStudent />}
-                                />
-                                <Route
-                                    path="/activites-status"
-                                    element={<ActivityStatus />}
-                                />
-                            </>
-                        ) : user?.status_role?.name === "accompagnateur" ? (
-                            <>
-                                <Route path="/activity-over" element={<ActivityAfterTimer />} />
-                                <Route
-                                    path="/activity-review/:id" 
-                                    element={<ActivityReviewStaff />}   
-                                />
-                                <Route
-                                    path="/propositions"
-                                    element={<ActivityPropositionsStaff />}
-                                />
-                                <Route
-                                    path="/suivi-participation"
-                                    element={<AccompanyingPresence />}
-                                />
-                                <Route
-                                    path="/activites-terminees"
-                                    element={<ActivityDone />}
-                                />
-                                <Route
-                                    path="/activity-list"
-                                    element={<ActivityListStaff />}
-                                />
-                                <Route
-                                    path="/notes-eleves"
-                                    element={<FeelingsStudents />}
-                                />
-                            </>
-                        ) : null}
-                    </Routes>
-                </main>
-            </Router>
-        </div>
-    );
+            {/* Routes staff */}
+            {user?.status_role?.name === "responsable" ? (
+              <>
+                <Route
+                  path="/suivi-participation"
+                  element={<ResponsiblePresence />}
+                />
+                <Route path="/notes-eleves" element={<FeelingsStudents />} />
+                <Route
+                  path="/propositions"
+                  element={<ActivityPropositionsStaff />}
+                />
+                <Route
+                  path="/notes-accompagnateur"
+                  element={<FeelingsAccompanying />}
+                />
+                <Route
+                  path="/activites-terminees"
+                  element={<ActivityDoneStudent />}
+                />
+                <Route path="/activites-status" element={<ActivityStatus />} />
+              </>
+            ) : user?.status_role?.name === "accompagnateur" ? (
+              <>
+                <Route path="/activity-over" element={<ActivityAfterTimer />} />
+                <Route
+                  path="/activity-review/:id"
+                  element={<ActivityReviewStaff />}
+                />
+                <Route
+                  path="/propositions"
+                  element={<ActivityPropositionsStaff />}
+                />
+                <Route
+                  path="/suivi-participation"
+                  element={<AccompanyingPresence />}
+                />
+                <Route path="/activites-terminees" element={<ActivityDone />} />
+                <Route path="/activity-list" element={<ActivityListStaff />} />
+                <Route path="/notes-eleves" element={<FeelingsStudents />} />
+              </>
+            ) : null}
+          </Routes>
+        </main>
+      </Router>
+    </div>
+  );
 }
 
 export default App;

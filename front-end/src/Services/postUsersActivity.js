@@ -29,7 +29,23 @@ export async function postUsersActivity(idUser, idActivity) {
 export async function getFinishedActivity() {
     try {
         const response = axios.get(
-            `${address_server}/activities?[filters][activitistate][$eq]=to%20end&populate[room]=*&populate[promos_activitie][populate]=promos`,
+            `${address_server}/activities?[filters][activitistate][$eq]=toend&populate[room]=*&populate[promos_activitie][populate]=promos`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('jwt')}`
+                }
+            }
+        );
+        return (await response).data.data
+    } catch(error) {
+        return error;
+    }
+}
+
+export async function getOnHoldActivity() {
+    try {
+        const response = axios.get(
+            `${address_server}/activities?[filters][activitistate][$eq]=onhold&populate[room]=*&populate[promos_activitie][populate]=promos`,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('jwt')}`

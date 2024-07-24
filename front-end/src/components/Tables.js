@@ -34,6 +34,10 @@ const getPromoNames = (promos) => {
     return "Aucune promotion";
 };
 
+const getPromoNames2 = (promos) => {
+    return promos.map(promo => promo.attributes.name).join(", ");
+}
+
 
 export function ActivityTable({ data = [], type }) {
     const [userRole, setUserRole] = useState("")
@@ -60,11 +64,11 @@ export function ActivityTable({ data = [], type }) {
 
     // Staff opinion of the activity
     function evaluateActivity(id) {
-        navigate("/activity-review?id=" + id);
+        navigate("/activity-review/" + id);
     }
     // Student opinion of the activity
     function rateActivity(id) {
-        navigate("/activites-avis?id=" + id);
+        navigate("/activites-avis/" + id);
     }
 
 
@@ -222,6 +226,46 @@ export function FinishedActivityTable({ data = [] }) {
                             <td>{splitTime(activity.Hourly)}</td>
                             <td>{activity.duration}</td>
                             <td>{activity.room || "Non spécifié"}</td>
+                            <td>
+                                <FormButton
+                                    variant={"jordy-blue"}
+                                    text={"Evaluer"}
+                                    onClick={() => evaluateActivity(activity.id)}
+                                />
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </>
+    );
+}
+
+export function ActivityPropositionsTable({ data = [] }) {
+
+    const navigate = useNavigate();
+
+    function evaluateActivity(id) {
+        navigate("/activity-review?id=" + id);
+    }
+
+    return (
+        <>
+            <table>
+                <thead>
+                    <tr className="line">
+                        <th>Sujet</th>
+                        <th>Promo</th>
+                        <th>Nb votes</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody className="table-body">
+                    {data.map((activity) => (
+                        <tr className="line" key={activity.id}>
+                            <td>{activity.attributes.subject}</td>
+                            <td>{getPromoNames2(activity.attributes.promos_activitie.data.attributes.promos.data)}</td>
+                            <td>{activity.attributes.nb_votes}</td>
                             <td>
                                 <FormButton
                                     variant={"jordy-blue"}
