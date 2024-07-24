@@ -3,10 +3,13 @@ import "../style/Sidebar.css";
 export default function Sidebar({ onOpenModal_SuggestActivity, isOpen, logo, links = [], userType }) {
     return (
         <aside className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
-            {logo ? <img src={logo} alt="" width="90%"/>  : null}
-            <a href="/">
+            {logo ? <img src={logo} alt="" width="90%" /> : null}
+
+            <h3 className="sidebar-title">SYLLAVERSE</h3>
+
+            <a href="/" className="navbar-link-a">
                 <div className="navbar-link">
-                    <img src={"/icons/home.png"} className="navbar-icon" alt="" width={32} height={32}/>
+                    <img src={"/icons/home.png"} className="navbar-icon" alt="" width={32} height={32} />
                     <p>Accueil</p>
                 </div>
             </a>
@@ -26,13 +29,13 @@ export default function Sidebar({ onOpenModal_SuggestActivity, isOpen, logo, lin
 
             {links.map(link => {
                 return (
-                <a href={link.href}>
-                    <div className="navbar-link">
-                        <img src={link?.icon} className="navbar-icon" alt="" width={32} height={32}/>
-                        <p>{link?.text}</p>
-                    </div>
-                </a>)
+                    <a href={link.href} className="navbar-link-a">
+                        <div className="navbar-link">
+                            <img src={link?.icon} className="navbar-icon" alt="" width={32} height={32} />
+                            <p>{link?.text}</p>
+                        </div>
+                    </a>)
             })}
-    </aside>
-  );
+        </aside>
+    );
 }

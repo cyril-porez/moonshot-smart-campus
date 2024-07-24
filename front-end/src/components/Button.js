@@ -12,6 +12,12 @@ function getVariant(variant) {
     case "blue":
       return "variant-blue";
 
+    case "jordy-blue":
+      return "jordy-blue";
+
+    case "white-blue":
+      return "white-blue";
+
     default:
       return "";
   }
@@ -33,7 +39,7 @@ export function DashboardButton({ onClick, iconPath, text, variant }) {
 
 export function FormButton({ onClick, text, variant }) {
   return (
-    <button onClick={onClick} className={`form-btn ${getVariant(variant)}`}>
+    <button onClick={onClick} className={`form-btn-${getVariant(variant)}`}>
       {text}
     </button>
   );
