@@ -8,11 +8,15 @@ import SignUp from "./Pages/Auth/sign-up";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { Dashboard } from "./Pages/Dashboard";
-import { Calendar } from "rsuite";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// import { MyCalendar } from "rsuite";
+
 import { SelectInput } from "./components/FormInput";
 import Modal from "./components/Modal";
 import SuggestActivityForm from "./components/modals/NewActivity";
 import TestNfc from "./Pages/test-nfc";
+import MyCalendar from './Pages/Calendar'; // Utiliser default import
 
 import { ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone";
 import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/ActivityReview";
@@ -35,6 +39,8 @@ import { FeelingsStudents } from "./Pages/Staff/FeelingsStudents";
 import { FeelingsAccompanying } from "./Pages/Staff/FeelingsAccompanying";
 
 function App() {
+
+    
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [user, setUser] = useState({});
 
@@ -74,7 +80,7 @@ function App() {
             },
             {
                 icon: "/icons/agenda.png",
-                href: "/calendar",
+                href: "/MyCalendar",
                 text: "Voir mon planning",
             },
             { icon: "/icons/notification.png", href: "/", text: "Notifications" },
@@ -93,7 +99,7 @@ function App() {
             },
             {
                 icon: "/icons/agenda.png",
-                href: "/calendar",
+                href: "/MyCalendar",
                 text: "Voir mon planning",
             },
             {
@@ -122,7 +128,7 @@ function App() {
             },
             {
                 icon: "/icons/agenda.png",
-                href: "/calendar",
+                href: "/MyCalendar",
                 text: "Voir mon planning",
             },
             {
@@ -170,7 +176,7 @@ function App() {
                         {/* <Route path="/" element={<Home />} /> */}
                         <Route path="/sign-in" element={<SignIn />} />
                         <Route path="/sign-up" element={<SignUp />} />
-                        <Route path="/calendar" element={<Calendar />} />
+                        <Route path="/Calendar" element={<MyCalendar />} />
                         <Route path="/nfc" element={<TestNfc />} />
                         <Route path="/Suivi" element={<Suivi />} />
                         <Route path="/Suivi2" element={<Suivi2 />} />
