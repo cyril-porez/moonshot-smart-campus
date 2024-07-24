@@ -19,7 +19,7 @@
     transform: translateX(-100%);
 }
 .sidebar-title{
-    color: var(--detail-primary-color);
+    color: var(--detail-primary-color)
 }
 
 .navbar-link {
@@ -32,7 +32,7 @@
 
 .navbar-link:hover {
     cursor: pointer;
-    background-color: var(--btn-hover);
+    background-color: var(--detail-primary-hover);
 }
 
 .navbar-link .navbar-icon {
