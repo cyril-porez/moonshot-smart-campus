@@ -28,14 +28,9 @@ export function Dashboard({ props }) {
                         text={"Proposition d'activité"}
                     />
                     <DashboardButton
-                        onClick={() => navigate("/my-activites")}
-                        iconPath={"/icons/activite.png"}
-                        text={"Mes activités"}
-                    />
-                    <DashboardButton
                         onClick={() => navigate("/vote-activites")}
                         iconPath={"/icons/activite.png"}
-                        text={"vote d'activités"}
+                        text={"Voter pour une proposition d’activité"}
                     />
                     <DashboardButton
                         onClick={() => navigate("/activites-terminees")}
@@ -47,6 +42,14 @@ export function Dashboard({ props }) {
                         iconPath={"/icons/agenda.png"}
                         text={"Voir mon planning"}
                     />
+                    <DashboardButton
+                        onClick={() => navigate("/activites-status")}
+                        iconPath={"/icons/activite.png"}
+                        text={"Status des propositions d’activités"}
+                    />
+                    
+                    
+                    
                 </div>
             </>
         )

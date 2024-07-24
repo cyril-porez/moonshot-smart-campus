@@ -165,7 +165,7 @@ function App() {
                     <Routes>
                         <Route
                             path="/"
-                            element={<Dashboard props={{ user: user , onOpenModal:openModal_SuggestActivity }} />}
+                            element={<Dashboard props={{ user: user, onOpenModal: openModal_SuggestActivity }} />}
                         />
                         {/* <Route path="/" element={<Home />} /> */}
                         <Route path="/sign-in" element={<SignIn />} />
@@ -179,24 +179,25 @@ function App() {
                         {user?.status_role?.name === "étudiant" ? (
                             <>
                                 <Route
-                                    path="/activity-done"
+                                    path="/vote-activites"
+                                    element={<ActivityVoteStudent />}
+                                />
+                                <Route
+                                    path="/activites-terminees"
                                     element={<ActivityDoneStudent />}
                                 />
                                 <Route
-                                    path="/activity-review"
+                                    path="/vote-activites"
                                     element={<ActivityReviewStudent />}
                                 />
                                 <Route
-                                    path="/activity-status"
+                                    path="/activites-status"
                                     element={<ActivityStatusStudent />}
                                 />
-                                <Route
-                                    path="/activity-vote"
-                                    element={<ActivityVoteStudent />}
-                                />
+
                             </>
                         ) : null}
-                        
+
                         {/* Routes staff */}
                         {user?.status_role?.name === "responsable" ? (
                             <>
@@ -204,8 +205,14 @@ function App() {
                                     path="/notes-activite"
                                     element={<ActivityNotesStaff userType={user} />}
                                 />
-                                <Route path="/responsible-presence" element={<ResponsiblePresence />} />
-                                <Route path="/feelings-accompanying" element={<FeelingsAccompanying />} />
+                                <Route
+                                    path="/responsible-presence"
+                                    element={<ResponsiblePresence />}
+                                />
+                                <Route
+                                    path="/feelings-accompanying"
+                                    element={<FeelingsAccompanying />}
+                                />
                             </>
                         ) : user?.status_role?.name === "accompagnateur" ? (
                             <>
@@ -217,9 +224,18 @@ function App() {
                                     path="/activity-propositions"
                                     element={<ActivityPropositionsStaff />}
                                 />
-                                <Route path="/activity-list" element={<ActivityListStaff />} />
-                                <Route path="/accompanying-presence" element={<AccompanyingPresence />} />
-                                <Route path="/feelings-students" element={<FeelingsStudents />} />
+                                <Route
+                                    path="/activity-list"
+                                    element={<ActivityListStaff />}
+                                />
+                                <Route
+                                    path="/accompanying-presence"
+                                    element={<AccompanyingPresence />}
+                                />
+                                <Route
+                                    path="/feelings-students"
+                                    element={<FeelingsStudents />}
+                                />
                             </>
                         ) : null}
                     </Routes>
