@@ -221,7 +221,10 @@ function App() {
                                     path="/activites-terminees"
                                     element={<ActivityDoneStudent />}
                                 />
-                                
+                                <Route
+                                    path="/activites-status"
+                                    element={<ActivityStatus />}
+                                />                                
                             </>
                         ) : user?.status_role?.name === "accompagnateur" ? (
                             <>
