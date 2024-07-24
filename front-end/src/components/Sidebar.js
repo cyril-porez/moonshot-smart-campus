@@ -7,7 +7,7 @@ export default function Sidebar({ onOpenModal_SuggestActivity, isOpen, logo, lin
 
             <h3 className="sidebar-title">SYLLAVERSE</h3>
 
-            <a href="/">
+            <a href="/" className="navbar-link-a">
                 <div className="navbar-link">
                     <img src={"/icons/home.png"} className="navbar-icon" alt="" width={32} height={32} />
                     <p>Accueil</p>
@@ -29,7 +29,7 @@ export default function Sidebar({ onOpenModal_SuggestActivity, isOpen, logo, lin
 
             {links.map(link => {
                 return (
-                    <a href={link.href}>
+                    <a href={link.href} className="navbar-link-a">
                         <div className="navbar-link">
                             <img src={link?.icon} className="navbar-icon" alt="" width={32} height={32} />
                             <p>{link?.text}</p>

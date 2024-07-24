@@ -43,6 +43,26 @@ button {
     margin: auto;
     padding: 5px 20px;
 }
+.form-btn-jordy-blue {
+    background-color: var(--jordy-blue);
+    color : white;
+    box-shadow: 0 0 3px gray;
+    border-radius: 10px;
+    min-width: 100px;
+    width: fit-content;
+    margin: auto;
+    padding: 5px 20px;
+}
+.form-btn-white-blue {
+    background-color: white;
+    color : var(--detail-primary-color);
+    box-shadow: 0 0 3px var(--detail-primary-color);
+    border-radius: 10px;
+    min-width: 100px;
+    width: fit-content;
+    margin: auto;
+    padding: 5px 20px;
+}
 
 button:hover {
     cursor: pointer;
