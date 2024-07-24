@@ -249,9 +249,20 @@ function App() {
               </>
             ) : user?.status_role?.name === "accompagnateur" ? (
               <>
-                <Route path="/activity-over" element={<ActivityAfterTimer />} />
                 <Route
-                  path="/activity-review/:id"
+                  path="/activity-over/activityId/:activityId"
+                  element={<ActivityAfterTimer />}
+                />
+                <Route
+                  path="/suivi/activityId/:activityId"
+                  element={<Suivi />}
+                />
+                <Route
+                  path="/timer-activity/activityId/:activityId"
+                  element={<Suivi2 />}
+                />
+                <Route
+                  path="/activity-review"
                   element={<ActivityReviewStaff />}
                 />
                 <Route
@@ -262,9 +273,20 @@ function App() {
                   path="/suivi-participation"
                   element={<AccompanyingPresence />}
                 />
-                <Route path="/activites-terminees" element={<ActivityDone />} />
+                <Route
+                  path="/activites-terminees"
+                  element={<ActivityDoneStudent />}
+                />
                 <Route path="/activity-list" element={<ActivityListStaff />} />
                 <Route path="/notes-eleves" element={<FeelingsStudents />} />
+                <Route
+                  path="/Suivi/activityId/:activityId"
+                  element={<Suivi />}
+                />
+                <Route
+                  path="/timer-activity/activityId/:activityId"
+                  element={<Suivi2 />}
+                />
               </>
             ) : null}
           </Routes>

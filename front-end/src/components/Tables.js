@@ -63,7 +63,7 @@ export function ActivityTable({ data = [], type }) {
     }
     // Student opinion of the activity
     function rateActivity(id) {
-        navigate("/activites-avis/" + id);
+        navigate("/activites-avis?id=" + id);
     }
 
 
