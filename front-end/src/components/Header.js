@@ -30,11 +30,12 @@ export default function Header({ logo, currentUser, toggleSidebar }) {
             </a>
             {
                 isLoggedIn() ?
-                    <p style={{ fontSize: "18px" }}>Bonjour, {currentUser.username}</p> :
+                    <div>
+                        <p style={{ fontSize: "18px", textAlign: "center" }}>Bonjour, {currentUser.username}</p>
+                        <FormButton onClick={logout} text={"Deconnexion"} />
+                    </div> 
+                    :
                     <div></div>
-            }
-            {
-                jwt ? <FormButton onClick={logout} text={"Deconnexion"} /> : ""
             }
 
         </header>
