@@ -202,16 +202,24 @@ function App() {
                         {user?.status_role?.name === "responsable" ? (
                             <>
                                 <Route
-                                    path="/notes-activite"
-                                    element={<ActivityNotesStaff userType={user} />}
+                                    path="/suivi-participation"
+                                    element={<ResponsiblePresence />}
                                 />
                                 <Route
-                                    path="/responsible-presence"
-                                    element={<ResponsiblePresence />}
+                                    path="/notes-activite"
+                                    element={<ActivityNotesStaff userType={user?.status_role?.name} />}
+                                />
+                                <Route
+                                    path="/propositions"
+                                    element={<ActivityPropositionsStaff />}
                                 />
                                 <Route
                                     path="/feelings-accompanying"
                                     element={<FeelingsAccompanying />}
+                                />
+                                <Route
+                                    path="/activites-terminees"
+                                    element={<ActivityDoneStudent />}
                                 />
                             </>
                         ) : user?.status_role?.name === "accompagnateur" ? (

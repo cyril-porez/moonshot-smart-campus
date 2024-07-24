@@ -67,14 +67,9 @@ export function Dashboard({ props }) {
                     text={"Suivi de participation"}
                 />
                 <DashboardButton
-                    onClick={() => navigate("/activites-terminees")}
-                    iconPath={"/icons/liste-de-controle.png"}
-                    text={"Voir les activités terminées"}
-                />
-                <DashboardButton
-                    onClick={() => navigate("/calendar")}
-                    iconPath={"/icons/agenda.png"}
-                    text={"Voir mon planning"}
+                    onClick={() => navigate("/notes-activite")}
+                    iconPath={"/icons/remarques.png"}
+                    text={"Ressenti d'activité"}
                 />
                 <DashboardButton
                     onClick={() => navigate("/propositions")}
@@ -82,10 +77,18 @@ export function Dashboard({ props }) {
                     text={"Consulter les propositions d'activité"}
                 />
                 <DashboardButton
-                    onClick={() => navigate("/notes-activite")}
-                    iconPath={"/icons/remarques.png"}
-                    text={"Note d'activité élève"}
+                    onClick={() => navigate("/calendar")}
+                    iconPath={"/icons/agenda.png"}
+                    text={"Voir mon planning"}
                 />
+                <DashboardButton
+                    onClick={() => navigate("/activites-terminees")}
+                    iconPath={"/icons/liste-de-controle.png"}
+                    text={"Voir les activités terminées"}
+                />
+                
+                
+                
             </div>
 
         )
