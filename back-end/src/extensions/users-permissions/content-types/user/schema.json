@@ -113,6 +113,12 @@
       "relation": "manyToOne",
       "target": "api::status-role.status-role",
       "inversedBy": "users_permissions_users"
+    },
+    "activity_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::activity-type.activity-type",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

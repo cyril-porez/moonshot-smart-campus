@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { act, useEffect, useState } from "react";
 import { FormButton } from "./Button";
 import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
@@ -8,9 +8,17 @@ import LaunchActivity from "../components/modals/LaunchActivity";
 
 import "../style/Tables.css";
 import Absence from "./modals/Absence";
+import ShowRefusal from "./modals/ShowRefusal";
+import { getUserInfo } from "../Services/UserInfo";
 
 export function ActivityTable({ data = [], type }) {
+    const [userRole, setUserRole] = useState("")
+
     const navigate = useNavigate();
+
+    useEffect(() => {
+        getUserInfo().then(data => setUserRole(data.status_role.name))
+    })
 
     const [modalState, setModalState] = useState({
         isOpen: false,
@@ -18,24 +26,43 @@ export function ActivityTable({ data = [], type }) {
         activity: null,
     });
 
-    const openModal = (type, activity) =>
-        setModalState({ isOpen: true, type, activity });
-    const closeModal = () =>
-        setModalState({ isOpen: false, type: null, activity: null });
+    const openModal = (type, activity) => setModalState({ isOpen: true, type, activity });
+    const closeModal = () => setModalState({ isOpen: false, type: null, activity: null });
 
     const handleRefuseActivity = (activity) => openModal("refusal", activity);
-    const handleValidateActivity = (activity) =>
-        openModal("newActivity", activity);
+    const handleValidateActivity = (activity) => openModal("newActivity", activity);
     const handleSuiviActivity = (activity) => openModal("suivi", activity);
+    const handleShowRefusal = (activity) => openModal("showRefusal", activity);
 
     // Staff opinion of the activity
     function evaluateActivity(id) {
-        navigate("/EvaluateActivity?id=" + id);
+        navigate("/activity-review?id=" + id);
     }
     // Student opinion of the activity
     function rateActivity(id) {
-        navigate("/ActivityReview?id=" + id);
+        navigate("/activites-avis?id=" + id);
     }
+
+    const splitHourly = (hourlyString) => {
+        if (!hourlyString) return "Date inconnue";
+        const [datePart] = hourlyString.split("T");
+        const [year, month, day] = datePart.split("-");
+        return `${day}-${month}-${year}`;
+    };
+
+    const splitTime = (hourlyString) => {
+        if (!hourlyString) return "Heure inconnue";
+        const [, timePart] = hourlyString.split("T");
+        const [time] = timePart.split(".");
+        return time;
+    };
+
+    const getPromoNames = (promos) => {
+        if (promos && promos.length > 0) {
+            return promos.map((promo) => promo.name).join(", ");
+        }
+        return "Aucune promotion";
+    };
 
     const renderModalContent = () => {
         const { type, activity } = modalState;
@@ -46,6 +73,8 @@ export function ActivityTable({ data = [], type }) {
                 return <NewActivity closeModal={closeModal} data={activity} />;
             case "suivi":
                 return <LaunchActivity closeModal={closeModal} data={activity} />;
+            case "showRefusal":
+                return <ShowRefusal closeModal={closeModal} data={activity} />
             default:
                 return null;
         }
@@ -58,18 +87,39 @@ export function ActivityTable({ data = [], type }) {
                     <tr className="line">
                         <th>Sujet</th>
                         <th>Promo</th>
-                        <th>Date</th>
-                        <th>Heure</th>
-                        <th></th>
+                        {
+                            type !== "status" ?
+                                <>
+                                    <th>Date</th>
+                                    <th>Heure</th>
+                                    <th>Durée</th>
+                                    <th>Salle</th>
+                                    <th></th>
+                                </>
+                                :
+                                <>
+                                    <th>Statut</th>
+                                </>
+                        }
                     </tr>
                 </thead>
                 <tbody className="table-body">
                     {data.map((activity) => (
                         <tr className="line" key={activity.id}>
                             <td>{activity.subject}</td>
-                            <td>{activity.promo}</td>
-                            <td>{activity.date}</td>
-                            <td>{activity.time}</td>
+                            <td>{getPromoNames(activity.promos_activitie?.promos)}</td>
+                            {
+                                type !== "status" ?
+                                <>
+                                    <td>{splitHourly(activity.Hourly)}</td>
+                                    <td>{splitTime(activity.Hourly)}</td>
+                                    <td>{activity.time_activity}</td>
+                                    <td>{activity.room?.name || "Non spécifié"}</td>
+                                </>
+                                :
+                                <>
+                                </>
+                            }
                             <td>
                                 {type === "suivi" ? (
                                     <FormButton
@@ -90,7 +140,28 @@ export function ActivityTable({ data = [], type }) {
                                 ) : type === "evaluer" ? (
                                     <FormButton
                                         text={"Evaluer"}
-                                        onClick={() => evaluateActivity()}
+                                        onClick={
+                                            userRole === "étudiant" ?
+                                            () => rateActivity(activity.id) :
+                                            () => evaluateActivity(activity.id)
+                                        }
+                                    />
+                                ) : type === "status" ? (
+                                    activity.status === "Validé" ? (
+                                        <td style={{ color: 'green' }}>{activity.status}</td>
+                                    ) :
+                                        activity.status === "En attente" ? (
+                                            <td style={{ fontStyle: 'italic' }}>{activity.status} ({activity.currentVotes} votes)</td>
+                                        ) : (
+                                            <FormButton
+                                                text={"Voir le motif de refus"}
+                                                onClick={() => handleShowRefusal(activity)}
+                                            />
+                                        )
+                                ) : type === "vote" ? (
+                                    <FormButton
+                                        text={"Voter"}
+                                        onClick={() => console.log("add vote to " + activity.id)}
                                     />
                                 ) : null}
                             </td>

@@ -20,7 +20,7 @@ import MyCalendar from './Pages/Calendar'; // Utiliser default import
 
 import { ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone";
 import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/ActivityReview";
-import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/ActivityStatus";
+import { ActivityStatus } from "./Pages/Students/ActivityStatus";
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote";
 import { ActivityReview as ActivityReviewStaff } from "./Pages/Staff/ActivityReview";
 import { AccompanyingPresence } from "./Pages/Staff/AccompanyingPresence";
@@ -37,6 +37,7 @@ import { StudentTable } from "./components/Tables";
 import { getUserInfo, isLoggedIn } from "./Services/UserInfo";
 import { FeelingsStudents } from "./Pages/Staff/FeelingsStudents";
 import { FeelingsAccompanying } from "./Pages/Staff/FeelingsAccompanying";
+import ActivityAfterTimer from "./Pages/Staff/ActivityAfterTimer";
 
 function App() {
 
@@ -70,27 +71,8 @@ function App() {
         [
             {
                 icon: "/icons/activite.png",
-                href: "/my-activites",
-                text: "Mes activités",
-            },
-            {
-                icon: "/icons/liste-de-controle.png",
-                href: "/activites-terminees",
-                text: "Voir les activités terminées",
-            },
-            {
-                icon: "/icons/agenda.png",
-                href: "/MyCalendar",
-                text: "Voir mon planning",
-            },
-            { icon: "/icons/notification.png", href: "/", text: "Notifications" },
-        ],
-        // Responsables
-        [
-            {
-                icon: "/icons/stats.png",
-                href: "/suivi-participation",
-                text: "Suivi de participation",
+                href: "/vote-activites",
+                text: "Voter pour une proposition d'activité",
             },
             {
                 icon: "/icons/liste-de-controle.png",
@@ -103,19 +85,19 @@ function App() {
                 text: "Voir mon planning",
             },
             {
-                icon: "/icons/livre.png",
-                href: "/propositions",
-                text: "Consulter les propositions d'activité",
-            },
-            {
-                icon: "/icons/remarques.png",
-                href: "/notes-activite",
-                text: "Note d'activité élève",
+                icon: "/icons/agenda.png",
+                href: "/activites-status",
+                text: "Voir le statut des activités",
             },
             { icon: "/icons/notification.png", href: "/", text: "Notifications" },
         ],
         // Accompagnateur
         [
+            {
+                icon: "/icons/livre.png",
+                href: "/propositions",
+                text: "Consulter les propositions d'activité",
+            },
             {
                 icon: "/icons/stats.png",
                 href: "/suivi-participation",
@@ -128,8 +110,41 @@ function App() {
             },
             {
                 icon: "/icons/agenda.png",
-                href: "/MyCalendar",
+                href: "/activity-list",
+                text: "Voir les activités à venir",
+            },
+            {
+                icon: "/icons/agenda.png",
+                href: "/calendar",
                 text: "Voir mon planning",
+            },
+            {
+                icon: "/icons/remarques.png",
+                href: "/notes-activite",
+                text: "Ressenti d'activité élève",
+            },
+            { 
+                icon: "/icons/notification.png", 
+                href: "/", 
+                text: "Notifications" 
+            },
+        ],
+        // Responsables
+        [
+            {
+                icon: "/icons/stats.png",
+                href: "/suivi-participation",
+                text: "Suivi de participation",
+            },
+            {
+                icon: "/icons/remarques.png",
+                href: "/notes-eleves",
+                text: "Ressenti d'activité élève",
+            },
+            {
+                icon: "/icons/remarques.png",
+                href: "/notes-accompagnateur",
+                text: "Ressenti d'activité accompagnateur",
             },
             {
                 icon: "/icons/livre.png",
@@ -137,14 +152,14 @@ function App() {
                 text: "Consulter les propositions d'activité",
             },
             {
-                icon: "/icons/remarques.png",
-                href: "/notes-activite",
-                text: "Note activité élève",
+                icon: "/icons/agenda.png",
+                href: "/calendar",
+                text: "Voir mon planning",
             },
             {
-                icon: "/icons/emotion.png",
-                href: "/ressenti",
-                text: "Ressenti accompagnateur",
+                icon: "/icons/liste-de-controle.png",
+                href: "/activites-terminees",
+                text: "Voir les activités terminées",
             },
             { icon: "/icons/notification.png", href: "/", text: "Notifications" },
         ],
@@ -171,7 +186,7 @@ function App() {
                     <Routes>
                         <Route
                             path="/"
-                            element={<Dashboard props={{ user: user }} />}
+                            element={<Dashboard props={{ user: user, onOpenModal: openModal_SuggestActivity }} />}
                         />
                         {/* <Route path="/" element={<Home />} /> */}
                         <Route path="/sign-in" element={<SignIn />} />
@@ -185,21 +200,22 @@ function App() {
                         {user?.status_role?.name === "étudiant" ? (
                             <>
                                 <Route
-                                    path="/activity-done"
+                                    path="/vote-activites"
+                                    element={<ActivityVoteStudent />}
+                                />
+                                <Route
+                                    path="/activites-terminees"
                                     element={<ActivityDoneStudent />}
                                 />
                                 <Route
-                                    path="/activity-review"
+                                    path="/activites-avis"
                                     element={<ActivityReviewStudent />}
                                 />
                                 <Route
-                                    path="/activity-status"
-                                    element={<ActivityStatusStudent />}
+                                    path="/activites-status"
+                                    element={<ActivityStatus />}
                                 />
-                                <Route
-                                    path="/activity-vote"
-                                    element={<ActivityVoteStudent />}
-                                />
+
                             </>
                         ) : null}
 
@@ -207,25 +223,57 @@ function App() {
                         {user?.status_role?.name === "responsable" ? (
                             <>
                                 <Route
-                                    path="/notes-activite"
-                                    element={<ActivityNotesStaff userType={user} />}
+                                    path="/suivi-participation"
+                                    element={<ResponsiblePresence />}
                                 />
-                                <Route path="/responsible-presence" element={<ResponsiblePresence />} />
-                                <Route path="/feelings-accompanying" element={<FeelingsAccompanying />} />
+                                <Route
+                                    path="/notes-eleves"
+                                    element={<FeelingsStudents />}
+                                />
+                                <Route
+                                    path="/propositions"
+                                    element={<ActivityPropositionsStaff />}
+                                />
+                                <Route
+                                    path="/notes-accompagnateur"
+                                    element={<FeelingsAccompanying />}
+                                />
+                                <Route
+                                    path="/activites-terminees"
+                                    element={<ActivityDoneStudent />}
+                                />
+                                <Route
+                                    path="/activites-status"
+                                    element={<ActivityStatus />}
+                                />                                
                             </>
-                        ) : user?.status_role?.name === "Accompagnateur" ? (
+                        ) : user?.status_role?.name === "accompagnateur" ? (
                             <>
+                                <Route path="/activity-over" element={<ActivityAfterTimer />} />
                                 <Route
                                     path="/activity-review"
                                     element={<ActivityReviewStaff />}
                                 />
                                 <Route
-                                    path="/activity-propositions"
+                                    path="/propositions"
                                     element={<ActivityPropositionsStaff />}
                                 />
-                                <Route path="/activity-list" element={<ActivityListStaff />} />
-                                <Route path="/accompanying-presence" element={<AccompanyingPresence />} />
-                                <Route path="/feelings-students" element={<FeelingsStudents />} />
+                                 <Route
+                                    path="/suivi-participation"
+                                    element={<AccompanyingPresence />}
+                                />
+                                <Route
+                                    path="/activites-terminees"
+                                    element={<ActivityDoneStudent />}
+                                />
+                                <Route
+                                    path="/activity-list"
+                                    element={<ActivityListStaff />}
+                                />
+                                <Route
+                                    path="/notes-eleves"
+                                    element={<FeelingsStudents />}
+                                />
                             </>
                         ) : null}
                     </Routes>

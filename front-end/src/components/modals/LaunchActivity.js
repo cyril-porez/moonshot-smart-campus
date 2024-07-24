@@ -1,27 +1,46 @@
-import React from 'react';
+import React from "react";
 
 import "../../style/modals/LaunchActivity.css";
 import { useNavigate } from "react-router-dom";
 
-export default function LaunchActivity({data, closeModal}) {
-    const navigate = useNavigate();
-    
-    return (
-        <div >
-            <form className="launch-activity-body">
-                <h2 className='h2-launch-activity'>Lancer L'activité ?</h2>
-                <h3>{data.subject ? data.subject : "Erreur - pas de sujet"}</h3>
+export default function LaunchActivity({ data, closeModal }) {
+  const navigate = useNavigate();
+  console.log(data);
 
-                <p>le : {data.date && data.time ? data.date+" à "+data.time : "Erreur - pas de date"}</p>
-                <p>Durée : {data.expectedTime ? data.expectedTime+"min" : "Erreur - pas de duration" }</p>
-                <p>Salle {data.room ? data.room : "Erreur - pas de salle"}</p>
+  return (
+    <div>
+      <form className="launch-activity-body">
+        <h2 className="h2-launch-activity">Lancer L'activité ?</h2>
+        <h3>{data.subject ? data.subject : "Erreur - pas de sujet"}</h3>
 
-                
-                <button className="button-activity-body" onClick={() => navigate("/Suivi?activityId="+data.id)}>Lancer</button>
-                <button className="button-activity-body" value="Fermer" onClick={closeModal}>Fermer</button>
-            </form>
+        <p>
+          le :{" "}
+          {data.date && data.time
+            ? data.date + " à " + data.time
+            : "Erreur - pas de date"}
+        </p>
+        <p>
+          Durée :{" "}
+          {data.expectedTime
+            ? data.expectedTime + "min"
+            : "Erreur - pas de duration"}
+        </p>
+        <p>Salle {data.room ? data.room : "Erreur - pas de salle"}</p>
 
-
-        </div>
-    );
+        <button
+          className="button-activity-body"
+          onClick={() => navigate("/Suivi/activityId/" + data.id)}
+        >
+          Lancer
+        </button>
+        <button
+          className="button-activity-body"
+          value="Fermer"
+          onClick={closeModal}
+        >
+          Fermer
+        </button>
+      </form>
+    </div>
+  );
 }

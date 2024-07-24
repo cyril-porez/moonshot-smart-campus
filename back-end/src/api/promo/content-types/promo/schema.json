@@ -32,6 +32,12 @@
       "relation": "manyToOne",
       "target": "api::promos-activitie.promos-activitie",
       "inversedBy": "promos"
+    },
+    "proposition": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::proposition.proposition",
+      "mappedBy": "promo"
     }
   }
 }
