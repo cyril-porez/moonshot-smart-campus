@@ -36,80 +36,27 @@ export function ActivityTable({ data = [], type }) {
         navigate("/ActivityReview?id=" + id);
     }
 
-<<<<<<< HEAD
-  const splitHourly = (hourlyString) => {
-    if (!hourlyString) return "Date inconnue";
-    const [datePart] = hourlyString.split("T");
-    const [year, month, day] = datePart.split("-");
-    return `${day}-${month}-${year}`;
-  };
+    const splitHourly = (hourlyString) => {
+        if (!hourlyString) return "Date inconnue";
+        const [datePart] = hourlyString.split("T");
+        const [year, month, day] = datePart.split("-");
+        return `${day}-${month}-${year}`;
+    };
 
-  const splitTime = (hourlyString) => {
-    if (!hourlyString) return "Heure inconnue";
-    const [, timePart] = hourlyString.split("T");
-    const [time] = timePart.split(".");
-    return time;
-  };
+    const splitTime = (hourlyString) => {
+        if (!hourlyString) return "Heure inconnue";
+        const [, timePart] = hourlyString.split("T");
+        const [time] = timePart.split(".");
+        return time;
+    };
 
-  const getPromoNames = (promos) => {
-    if (promos && promos.length > 0) {
-      return promos.map((promo) => promo.name).join(", ");
-    }
-    return "Aucune promotion";
-  };
+    const getPromoNames = (promos) => {
+        if (promos && promos.length > 0) {
+            return promos.map((promo) => promo.name).join(", ");
+        }
+        return "Aucune promotion";
+    };
 
-  return (
-    <>
-      <table>
-        <thead>
-          <tr className="line">
-            <th>Sujet</th>
-            <th>Promo</th>
-            <th>Date</th>
-            <th>Heure</th>
-            <th>Durée</th>
-            <th>Salle</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody className="table-body">
-          {data.map((activity) => (
-            <tr className="line" key={activity.id}>
-              <td>{activity.subject}</td>
-              <td>{getPromoNames(activity.promos_activitie?.promos)}</td>
-              <td>{splitHourly(activity.Hourly)}</td>
-              <td>{splitTime(activity.Hourly)}</td>
-              <td>{activity.time_activity}</td>
-              <td>{activity.room?.name || "Non spécifié"}</td>
-              <td>
-                {type === "suivi" ? (
-                  <FormButton
-                    text={"Lancer"}
-                    onClick={() => handleSuiviActivity(activity)}
-                  />
-                ) : type === "proposition" ? (
-                  <>
-                    <FormButton
-                      text={"Valider"}
-                      onClick={() => handleValidateActivity(activity)}
-                    />
-                    <FormButton
-                      text={"Refuser"}
-                      onClick={() => handleRefuseActivity(activity)}
-                    />
-                  </>
-                ) : type === "evaluer" ? (
-                  <FormButton
-                    text={"Evaluer"}
-                    onClick={() => evaluateActivity(activity.id)}
-                  />
-                ) : null}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-=======
     const renderModalContent = () => {
         const { type, activity } = modalState;
         switch (type) {
@@ -120,12 +67,11 @@ export function ActivityTable({ data = [], type }) {
             case "suivi":
                 return <LaunchActivity closeModal={closeModal} data={activity} />;
             case "showRefusal":
-                return <ShowRefusal closeModal={closeModal} data={activity}  />
+                return <ShowRefusal closeModal={closeModal} data={activity} />
             default:
                 return null;
         }
     };
->>>>>>> origin/main
 
     return (
         <>
@@ -136,32 +82,30 @@ export function ActivityTable({ data = [], type }) {
                         <th>Promo</th>
                         {
                             type !== "status" ?
-                            <>
-                                <th>Date</th>  
-                                <th>Heure</th>
-                                <th></th>
-                            </>
-                            :
-                            <>
-                                <th>Statut</th>
-                            </>
+                                <>
+                                    <th>Date</th>
+                                    <th>Heure</th>
+                                    <th>Durée</th>
+                                    <th>Salle</th>
+                                    <th></th>
+                                </>
+                                :
+                                <>
+                                    <th>Statut</th>
+                                </>
                         }
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody className="table-body">
                     {data.map((activity) => (
                         <tr className="line" key={activity.id}>
                             <td>{activity.subject}</td>
-                            <td>{activity.promo}</td>
-                            {
-                                type !== "status" ?
-                                <>
-                                    <td>{activity.date}</td>  
-                                    <td>{activity.time}</td>
-                                </>
-                                :
-                                <></>
-                            }
+                            <td>{getPromoNames(activity.promos_activitie?.promos)}</td>
+                            <td>{splitHourly(activity.Hourly)}</td>
+                            <td>{splitTime(activity.Hourly)}</td>
+                            <td>{activity.time_activity}</td>
+                            <td>{activity.room?.name || "Non spécifié"}</td>
                             <td>
                                 {type === "suivi" ? (
                                     <FormButton
@@ -186,23 +130,22 @@ export function ActivityTable({ data = [], type }) {
                                     />
                                 ) : type === "status" ? (
                                     activity.status === "Validé" ? (
-                                        <td style={{color: 'green'}}>{activity.status}</td>
-                                    ) : 
-                                    activity.status === "En attente" ? (
-                                        <td style={{fontStyle: 'italic'}}>{activity.status} ({activity.currentVotes} votes)</td>
-                                    ) : (
-                                        <FormButton
-                                            text={"Voir le motif de refus"}
-                                            onClick={() => handleShowRefusal(activity)}
-                                        />
-                                    )
+                                        <td style={{ color: 'green' }}>{activity.status}</td>
+                                    ) :
+                                        activity.status === "En attente" ? (
+                                            <td style={{ fontStyle: 'italic' }}>{activity.status} ({activity.currentVotes} votes)</td>
+                                        ) : (
+                                            <FormButton
+                                                text={"Voir le motif de refus"}
+                                                onClick={() => handleShowRefusal(activity)}
+                                            />
+                                        )
                                 ) : type === "vote" ? (
                                     <FormButton
                                         text={"Voter"}
-                                        onClick={() =>  console.log("add vote to "+activity.id)}
+                                        onClick={() => console.log("add vote to " + activity.id)}
                                     />
-                                )
-                                : null}
+                                ) : null}
                             </td>
                         </tr>
                     ))}
