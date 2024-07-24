@@ -51,6 +51,7 @@ export default function SignIn(params) {
       <div className="align-form">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-container">
+            <label className="Auth-label">Adresse Email</label>
             <input
               className="form-input"
               type="text"
@@ -60,7 +61,7 @@ export default function SignIn(params) {
             {errors.email && (
               <p className="error-message">{errors.email.message}</p>
             )}
-
+             <label className="Auth-label">Mot de passe</label>
             <input
               className="form-input"
               type="password"
@@ -80,6 +81,7 @@ export default function SignIn(params) {
           Vous n'avez pas encore de compte ?{" "}
           <a onClick={() => navigate("/sign-up")}> Inscrivez-vous ici</a>
         </p>
+        <hr/>
         <GoogleButton />
       </div>
     </div>
