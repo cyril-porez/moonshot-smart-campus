@@ -123,10 +123,10 @@ function App() {
                 href: "/notes-activite",
                 text: "Ressenti d'activité élève",
             },
-            { 
-                icon: "/icons/notification.png", 
-                href: "/", 
-                text: "Notifications" 
+            {
+                icon: "/icons/notification.png",
+                href: "/",
+                text: "Notifications"
             },
         ],
         // Responsables
@@ -245,7 +245,7 @@ function App() {
                                 <Route
                                     path="/activites-status"
                                     element={<ActivityStatus />}
-                                />                                
+                                />
                             </>
                         ) : user?.status_role?.name === "accompagnateur" ? (
                             <>
@@ -258,13 +258,13 @@ function App() {
                                     path="/propositions"
                                     element={<ActivityPropositionsStaff />}
                                 />
-                                 <Route
+                                <Route
                                     path="/suivi-participation"
                                     element={<AccompanyingPresence />}
                                 />
                                 <Route
-                                    path="/activites-terminees"
-                                    element={<ActivityDoneStudent />}
+                                    path="/activite-terminee"
+                                    element={<ActivityAfterTimer />}
                                 />
                                 <Route
                                     path="/activity-list"
