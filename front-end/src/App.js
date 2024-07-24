@@ -166,7 +166,10 @@ function App() {
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/nfc" element={<TestNfc />} />
             <Route path="/Suivi/activityId/:activityId" element={<Suivi />} />
-            <Route path="/Suivi2" element={<Suivi2 />} />
+            <Route
+              path="/timer-activity/activityId/:activityId"
+              element={<Suivi2 />}
+            />
 
             {/* Routes étudiants */}
             {userType === "student" ? (

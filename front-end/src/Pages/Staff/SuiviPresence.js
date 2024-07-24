@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Timer from "../../components/Timer";
 import Hourglass from "../../components/Hourglass";
 import "../../style/Suivi.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getBadgesByActivity } from "../../Services/getBadges";
 import { io } from "socket.io-client";
 import { postUsersActivity as postUsersActivityService } from "../../Services/postUersActivity";
@@ -19,6 +19,8 @@ export default function SuiviPresence() {
   const [userBadgeMaping, setUserBadgeMapping] = useState([]);
   const [studentCount, setStudentCount] = useState(0);
   const [initialTime, setInitialTime] = useState(300);
+  const [timeLeft, setTimeLeft] = useState(initialTime);
+  const navigate = useNavigate();
 
   const getBadgesByActities = async (id) => {
     try {
@@ -42,7 +44,6 @@ export default function SuiviPresence() {
   useEffect(() => {
     const fetchData = async () => {
       const badges = await getBadgesByActities(activityId);
-
       setBadges(badges.attributes);
       setInitialTime(badges.attributes.time_to_badge * 60);
     };
@@ -132,6 +133,19 @@ export default function SuiviPresence() {
       socket.disconnect();
     };
   }, [timeout, userBadgeMaping]);
+
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const timerId = setInterval(() => {
+        setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
+      }, 1000);
+
+      return () => clearInterval(timerId);
+    } else {
+      navigate(`/timer-activity/activityId/${activityId}`);
+    }
+  }, [timeLeft, navigate]);
+
   return (
     <div className="content">
       <div className="student-info">
@@ -143,10 +157,10 @@ export default function SuiviPresence() {
         </ul>
       </div>
       <div className="timer-container">
-        <Timer initialTime={initialTime} />
+        <Timer timeLeft={timeLeft} />
       </div>
       <div className="hourglass-container">
-        <Hourglass initialTime={initialTime} />
+        <Hourglass timeLeft={timeLeft} />
       </div>
     </div>
   );
