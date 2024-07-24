@@ -251,6 +251,14 @@ function App() {
                   element={<ActivityAfterTimer />}
                 />
                 <Route
+                  path="/suivi/activityId/:activityId"
+                  element={<Suivi />}
+                />
+                <Route
+                  path="/timer-activity/activityId/:activityId"
+                  element={<Suivi2 />}
+                />
+                <Route
                   path="/activity-review"
                   element={<ActivityReviewStaff />}
                 />
