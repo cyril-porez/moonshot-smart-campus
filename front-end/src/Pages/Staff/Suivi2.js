@@ -18,10 +18,18 @@ const Suivi2 = () => {
   const getUsers = async (id) => {
     try {
       const response = await getUsersByActivity(id);
-      if (response && response.attributes && response.attributes.promos_activitie && response.attributes.promos_activitie.data) {
+      if (
+        response &&
+        response.attributes &&
+        response.attributes.promos_activitie &&
+        response.attributes.promos_activitie.data
+      ) {
         return response;
       } else {
-        console.error('Unexpected response structure from getUsersByActivity:', response);
+        console.error(
+          "Unexpected response structure from getUsersByActivity:",
+          response
+        );
         return { attributes: { promos_activitie: { data: [] } } }; // Provide a default value
       }
     } catch (error) {
@@ -33,10 +41,17 @@ const Suivi2 = () => {
   const getStudentPresent = async (id) => {
     try {
       const response = await getStudentPresentActivity(id);
-      if (response && response.users_activities && response.users_activities.data) {
+      if (
+        response &&
+        response.users_activities &&
+        response.users_activities.data
+      ) {
         return response;
       } else {
-        console.error('Unexpected response structure from getStudentPresentActivity:', response);
+        console.error(
+          "Unexpected response structure from getStudentPresentActivity:",
+          response
+        );
         return { users_activities: { data: [] } }; // Provide a default value
       }
     } catch (error) {
@@ -51,18 +66,12 @@ const Suivi2 = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-<<<<<<< HEAD
       const getStudentPres = await getStudentPresent(activityId);
       setStudentPres(getStudentPres.users_activities.data.length);
       setInitialTime(getStudentPres.time_activity * 60 * 60);
       console.log(getStudentPres);
-=======
-      const studentPresResponse = await getStudentPresent(activityId);
-      setStudentPres(studentPresResponse.users_activities.data.length || 0);
-      console.log(studentPresResponse.users_activities.data.length || 0);
->>>>>>> 3ab7ab5207a841360a359051bdf0126136b0def6
     };
-  
+
     fetchData();
   }, [activityId]);
 
@@ -128,25 +137,11 @@ const Suivi2 = () => {
         </div>
       </div>
       <div className="timer">
-<<<<<<< HEAD
         <div className="timer-container">
           <Timer timeLeft={timeLeft} />
         </div>
         <div className="hourglass-container">
           <Hourglass timeLeft={timeLeft} />
-=======
-        <Sablier />
-        <div className="time-left">{formatTime(timeLeft)} restantes</div>
-        <div className="progress-bar">
-          <div
-            className="progress"
-            style={{ width: `${(timeLeft / totalTime) * 100}%` }}
-          ></div>
-          <div
-            className="progress-blue"
-            style={{ width: `${((totalTime - timeLeft) / totalTime) * 100}%` }}
-          ></div>
->>>>>>> 3ab7ab5207a841360a359051bdf0126136b0def6
         </div>
       </div>
       <button className="absent-students-btn">Voir les élèves absents</button>
