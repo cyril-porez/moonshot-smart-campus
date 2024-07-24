@@ -29,7 +29,7 @@ export async function postUsersActivity(idUser, idActivity) {
 export async function getFinishedActivity() {
     try {
         const response = axios.get(
-            `${address_server}/activities?[activitistate]="to end"`,
+            `${address_server}/activities?[filters][activitistate][$eq]=to%20end&populate[room]=*&populate[promos_activitie][populate]=promos`,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -41,3 +41,20 @@ export async function getFinishedActivity() {
         return error;
     }
 }
+
+export async function getActivity(id) {
+    try {
+        const response = axios.get(
+            `${address_server}/activitites/${id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('jwt')}`
+                }
+            }
+        )
+        return response;
+    } catch(error) {
+        return error;
+    }
+}
+

@@ -251,8 +251,8 @@ function App() {
                             <>
                                 <Route path="/activity-over" element={<ActivityAfterTimer />} />
                                 <Route
-                                    path="/activity-review"
-                                    element={<ActivityReviewStaff />}
+                                    path="/activity-review/:id" 
+                                    element={<ActivityReviewStaff />}   
                                 />
                                 <Route
                                     path="/propositions"
