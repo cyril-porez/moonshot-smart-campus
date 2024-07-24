@@ -3,9 +3,6 @@ import axios from "axios";
 const address_server = process.env.REACT_APP_ADRESS_SERVER;
 const authToken = process.env.REACT_APP_TOKEN_AUTH;
 
-console.log(address_server, "address");
-console.log(authToken, "authToken");
-
 export async function postUsersActivity(idUser, idActivity) {
   try {
     const response = await axios.post(
@@ -18,7 +15,7 @@ export async function postUsersActivity(idUser, idActivity) {
       },
       {
         headers: {
-          Authorization: `Bearer ${authToken}`,
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`,
         },
       }
     );
@@ -27,4 +24,20 @@ export async function postUsersActivity(idUser, idActivity) {
   } catch (error) {
     return error;
   }
+}
+
+export async function getFinishedActivity() {
+    try {
+        const response = axios.get(
+            `${address_server}/activities?[activitistate]="to end"`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('jwt')}`
+                }
+            }
+        );
+        return (await response).data.data
+    } catch(error) {
+        return error;
+    }
 }
