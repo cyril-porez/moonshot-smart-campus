@@ -1,24 +1,36 @@
 import React, { useState, useEffect } from "react";
 import "../../style/Suivi2.css";
-import Sablier from "../../components/Sablier";
+import Timer from "../../components/Timer";
+import Hourglass from "../../components/Hourglass";
 import { getUsersByActivity } from "../../Services/getUsersByActivities";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getStudentPresentActivity } from "../../Services/getStudentPresentActivities";
+import { putActivitiesStatus } from "../../Services/putActivities";
 
 const Suivi2 = () => {
-  const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
-  const [totalTime] = useState(660); // 11 minutes in seconds
   const { activityId } = useParams();
   const [totalStudents, setTotalStudents] = useState(0);
   const [studentPres, setStudentPres] = useState(0);
+  const [initialTime, setInitialTime] = useState(300);
+  const [timeLeft, setTimeLeft] = useState(initialTime);
+
+  const navigate = useNavigate();
 
   const getUsers = async (id) => {
     try {
       const response = await getUsersByActivity(id);
-      if (response && response.attributes && response.attributes.promos_activitie && response.attributes.promos_activitie.data) {
+      if (
+        response &&
+        response.attributes &&
+        response.attributes.promos_activitie &&
+        response.attributes.promos_activitie.data
+      ) {
         return response;
       } else {
-        console.error('Unexpected response structure from getUsersByActivity:', response);
+        console.error(
+          "Unexpected response structure from getUsersByActivity:",
+          response
+        );
         return { attributes: { promos_activitie: { data: [] } } }; // Provide a default value
       }
     } catch (error) {
@@ -30,10 +42,17 @@ const Suivi2 = () => {
   const getStudentPresent = async (id) => {
     try {
       const response = await getStudentPresentActivity(id);
-      if (response && response.users_activities && response.users_activities.data) {
+      if (
+        response &&
+        response.users_activities &&
+        response.users_activities.data
+      ) {
         return response;
       } else {
-        console.error('Unexpected response structure from getStudentPresentActivity:', response);
+        console.error(
+          "Unexpected response structure from getStudentPresentActivity:",
+          response
+        );
         return { users_activities: { data: [] } }; // Provide a default value
       }
     } catch (error) {
@@ -42,14 +61,34 @@ const Suivi2 = () => {
     }
   };
 
+  const putActivity = async (activityId, activityState) => {
+    try {
+      const response = await putActivitiesStatus();
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    console.log("Initial time set to:", initialTime);
+  }, [initialTime]);
+
   useEffect(() => {
     const fetchData = async () => {
-      const studentPresResponse = await getStudentPresent(activityId);
-      setStudentPres(studentPresResponse.users_activities.data.length || 0);
-      console.log(studentPresResponse.users_activities.data.length || 0);
+      const getStudentPres = await getStudentPresent(activityId);
+      setStudentPres(getStudentPres.users_activities.data.length);
+      setInitialTime(getStudentPres.time_activity * 60 * 60);
+      console.log(getStudentPres);
     };
-  
+
+    const putData = async () => {
+      const response = await putActivity(activityId, "on hold");
+      console.log(response);
+    };
+
     fetchData();
+    putData();
   }, [activityId]);
 
   useEffect(() => {
@@ -91,19 +130,25 @@ const Suivi2 = () => {
   }, [activityId]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+    const putData = async () => {
+      const response = await putActivity(activityId, "to end");
+      console.log(response);
+    };
+    if (timeLeft > 0) {
+      const timerId = setInterval(() => {
+        setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
+      }, 1000);
 
-  const formatTime = (seconds) => {
-    const m = Math.floor(seconds / 60)
-      .toString()
-      .padStart(2, "0");
-    const s = (seconds % 60).toString().padStart(2, "0");
-    return `${m}m ${s}s`;
-  };
+      return () => clearInterval(timerId);
+    } else {
+      putData();
+      navigate(`/activity-over/activityId/${activityId}`);
+    }
+  }, [timeLeft, navigate]);
+
+  useEffect(() => {
+    setTimeLeft(initialTime);
+  }, [initialTime]);
 
   return (
     <div className="app">
@@ -111,20 +156,13 @@ const Suivi2 = () => {
         <div className="student-count">
           nombre d'élèves : {studentPres} / {totalStudents}
         </div>
-        <div className="total-time">{formatTime(totalTime)}</div>
       </div>
       <div className="timer">
-        <Sablier />
-        <div className="time-left">{formatTime(timeLeft)} restantes</div>
-        <div className="progress-bar">
-          <div
-            className="progress"
-            style={{ width: `${(timeLeft / totalTime) * 100}%` }}
-          ></div>
-          <div
-            className="progress-blue"
-            style={{ width: `${((totalTime - timeLeft) / totalTime) * 100}%` }}
-          ></div>
+        <div className="timer-container">
+          <Timer timeLeft={timeLeft} />
+        </div>
+        <div className="hourglass-container">
+          <Hourglass timeLeft={timeLeft} />
         </div>
       </div>
       <button className="absent-students-btn">Voir les élèves absents</button>

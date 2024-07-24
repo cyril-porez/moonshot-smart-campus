@@ -14,8 +14,9 @@ button {
     height: 80px;
     margin: 5px;
 }
+
 .dashboard-btn-body:hover {
-    background-color:  var(--detail-primary-hover);
+    background-color: var(--detail-primary-hover);
 }
 
 .dashboard-btn-body img {
@@ -43,9 +44,10 @@ button {
     margin: auto;
     padding: 5px 20px;
 }
+
 .form-btn-jordy-blue {
     background-color: var(--jordy-blue);
-    color : white;
+    color: white;
     box-shadow: 0 0 3px gray;
     border-radius: 10px;
     min-width: 100px;
@@ -53,9 +55,10 @@ button {
     margin: auto;
     padding: 5px 20px;
 }
+
 .form-btn-white-blue {
     background-color: white;
-    color : var(--detail-primary-color);
+    color: var(--detail-primary-color);
     box-shadow: 0 0 3px var(--detail-primary-color);
     border-radius: 10px;
     min-width: 100px;
@@ -98,26 +101,17 @@ button:hover {
 }
 
 .google-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #EA4335;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-    width: 200px;
-    height: 50px;
+    margin: 10px 100px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border-style: line;
+    background-color: white;
+    border: 1px solid var(--detail-primary-color);
+    box-shadow: 0 0 3px var(--detail-primary-color);
 }
 
 .google-btn:hover {
-    background-color: #D4372D;
+    background-color: var(--detail-primary-hover);
 }
 
 .google-icon {
