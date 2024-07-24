@@ -268,6 +268,10 @@ function App() {
                                     path="/notes-eleves"
                                     element={<FeelingsStudents />}
                                 />
+                                <Route
+                                    path="/activites-terminees"
+                                    element={<ActivityDoneStudent />}
+                                />
                             </>
                         ) : null}
                     </Routes>

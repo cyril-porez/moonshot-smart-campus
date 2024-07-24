@@ -1,4 +1,4 @@
-.range-align{
+.range-align {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,8 +6,28 @@
     gap: 20px;
 }
 
-.remarque {
+.form-range{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.remarque-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 30vw;
+}
+
+.remarque-container label {
+    margin-bottom: 8px;
+}
+
+.remarque-container textarea {
+    margin-bottom: 8px;
+}
+.remarque {
+    width: 100%;
     height: 150px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -16,11 +36,15 @@
     font-family: inherit;
     font-size: inherit;
     background-color: #f9f9f9; /* Fond contrasté */
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2); /* Légère ombre pour le faire ressortir */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
 }
 
 .remarque:focus {
     border-color: #0056b3; /* Bordure plus foncée lors du focus */
     box-shadow: 0 0 10px rgba(0, 86, 179, 0.3); /* Ombre plus marquée lors du focus */
     outline: none;
+}
+
+.form-btn {
+    /* Styles pour le bouton de soumission */
 }

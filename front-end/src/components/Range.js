@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-// import { Slider } from "rsuite";
 import "../style/Range.css";
 
-export default function Range({ props }) {
-
-    let min = props.min ?? 0;
-    let max = props.max ?? 10;
-    let label = props.label ?? "Label";
-
-    const [value, setValue] = useState(5);
+export default function Range({ label, register }) {
+    const min = 0;
+    const max = 10;
 
     return (
         <div className="range-container">
@@ -20,12 +15,12 @@ export default function Range({ props }) {
                     min={min}
                     max={max}
                     step={1}
-                    defaultValue={value}
-                    onChange={e => setValue(e.target.value)}
+                    defaultValue={5}
+                    {...register(label, { valueAsNumber: true })}
                     className="range"
                 />
                 <img src="/icons/heureux.png" className="icon right-icon" />
             </div>
         </div>
-    )
+    );
 }
