@@ -88,6 +88,9 @@ export function Dashboard({ props }) {
                     iconPath={"/icons/liste-de-controle.png"}
                     text={"Voir les activités terminées"}
                 />
+                
+                
+                
             </div>
 
         )
