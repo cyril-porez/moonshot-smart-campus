@@ -5,7 +5,7 @@ import "../../style/Suivi.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { getBadgesByActivity } from "../../Services/getBadges";
 import { io } from "socket.io-client";
-import { postUsersActivity as postUsersActivityService } from "../../Services/postUsersActivity";
+import { postUsersActivity as postUsersActivityService } from "../../Services/postUersActivity";
 
 /**
  * Page d'où les responsables/accompagnateurs pourront suivre la présence des élèves
