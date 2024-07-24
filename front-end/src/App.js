@@ -262,7 +262,7 @@ function App() {
                   element={<Suivi2 />}
                 />
                 <Route
-                  path="/activity-review"
+                  path="/activity-review/:id"
                   element={<ActivityReviewStaff />}
                 />
                 <Route
