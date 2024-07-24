@@ -110,40 +110,45 @@ export function ActivityTable({ data = [], type }) {
                             <td>{getPromoNames(activity.promos_activitie?.promos)}</td>
                             {
                                 type !== "status" ?
-                                <>
-                                    <td>{splitHourly(activity.Hourly)}</td>
-                                    <td>{splitTime(activity.Hourly)}</td>
-                                    <td>{activity.time_activity}</td>
-                                    <td>{activity.room?.name || "Non spécifié"}</td>
-                                </>
-                                :
-                                <>
-                                </>
+                                    <>
+                                        <td>{splitHourly(activity.Hourly)}</td>
+                                        <td>{splitTime(activity.Hourly)}</td>
+                                        <td>{activity.time_activity}</td>
+                                        <td>{activity.room?.name || "Non spécifié"}</td>
+                                    </>
+                                    :
+                                    <>
+                                    </>
                             }
                             <td>
                                 {type === "suivi" ? (
                                     <FormButton
+                                        variant={"jordy-blue"}
                                         text={"Lancer"}
                                         onClick={() => handleSuiviActivity(activity)}
                                     />
                                 ) : type === "proposition" ? (
                                     <>
                                         <FormButton
+                                            variant={"jordy-blue"}
                                             text={"Valider"}
                                             onClick={() => handleValidateActivity(activity)}
                                         />
+                                        &nbsp;&nbsp;
                                         <FormButton
+                                            variant={"white-blue"}
                                             text={"Refuser"}
                                             onClick={() => handleRefuseActivity(activity)}
                                         />
                                     </>
                                 ) : type === "evaluer" ? (
                                     <FormButton
+                                        variant={"jordy-blue"}
                                         text={"Evaluer"}
                                         onClick={
                                             userRole === "étudiant" ?
-                                            () => rateActivity(activity.id) :
-                                            () => evaluateActivity(activity.id)
+                                                () => rateActivity(activity.id) :
+                                                () => evaluateActivity(activity.id)
                                         }
                                     />
                                 ) : type === "status" ? (
@@ -154,12 +159,14 @@ export function ActivityTable({ data = [], type }) {
                                             <td style={{ fontStyle: 'italic' }}>{activity.status} ({activity.currentVotes} votes)</td>
                                         ) : (
                                             <FormButton
+                                                variant={"jordy-blue"}
                                                 text={"Voir le motif de refus"}
                                                 onClick={() => handleShowRefusal(activity)}
                                             />
                                         )
                                 ) : type === "vote" ? (
                                     <FormButton
+                                        variant={"jordy-blue"}
                                         text={"Voter"}
                                         onClick={() => console.log("add vote to " + activity.id)}
                                     />
