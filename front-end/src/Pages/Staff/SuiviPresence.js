@@ -97,7 +97,7 @@ export default function SuiviPresence() {
 
     socket.on("connect", () => {
       console.log("Connecté au serveur Socket.io");
-      socket.emit("set-timeout", initialTime * 100);
+      socket.emit("set-timeout", initialTime * 1000);
     });
 
     socket.on("nfc-card", (data) => {

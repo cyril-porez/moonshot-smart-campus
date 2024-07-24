@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const address_server = process.env.REACT_APP_ADRESS_SERVER;
-const authToken = process.env.REACT_APP_TOKEN_AUTH;
+const authToken = localStorage.getItem("jwt");
 
 export async function getUsersByActivity(id) {
   try {
@@ -13,6 +13,7 @@ export async function getUsersByActivity(id) {
         },
       }
     );
+    console.log(response);
     return response.data.data;
   } catch (err) {
     console.log(err.stack);
