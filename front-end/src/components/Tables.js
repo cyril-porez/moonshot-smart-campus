@@ -94,7 +94,6 @@ export function ActivityTable({ data = [], type }) {
                                     <th>Statut</th>
                                 </>
                         }
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody className="table-body">
@@ -102,10 +101,18 @@ export function ActivityTable({ data = [], type }) {
                         <tr className="line" key={activity.id}>
                             <td>{activity.subject}</td>
                             <td>{getPromoNames(activity.promos_activitie?.promos)}</td>
-                            <td>{splitHourly(activity.Hourly)}</td>
-                            <td>{splitTime(activity.Hourly)}</td>
-                            <td>{activity.time_activity}</td>
-                            <td>{activity.room?.name || "Non spécifié"}</td>
+                            {
+                                type !== "status" ?
+                                <>
+                                    <td>{splitHourly(activity.Hourly)}</td>
+                                    <td>{splitTime(activity.Hourly)}</td>
+                                    <td>{activity.time_activity}</td>
+                                    <td>{activity.room?.name || "Non spécifié"}</td>
+                                </>
+                                :
+                                <>
+                                </>
+                            }
                             <td>
                                 {type === "suivi" ? (
                                     <FormButton
