@@ -20,6 +20,15 @@
       "relation": "oneToMany",
       "target": "api::activity.activity",
       "mappedBy": "activity_type"
+    },
+    "vote": {
+      "type": "integer"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "activity_type"
     }
   }
 }

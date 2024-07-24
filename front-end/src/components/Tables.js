@@ -36,6 +36,80 @@ export function ActivityTable({ data = [], type }) {
         navigate("/ActivityReview?id=" + id);
     }
 
+<<<<<<< HEAD
+  const splitHourly = (hourlyString) => {
+    if (!hourlyString) return "Date inconnue";
+    const [datePart] = hourlyString.split("T");
+    const [year, month, day] = datePart.split("-");
+    return `${day}-${month}-${year}`;
+  };
+
+  const splitTime = (hourlyString) => {
+    if (!hourlyString) return "Heure inconnue";
+    const [, timePart] = hourlyString.split("T");
+    const [time] = timePart.split(".");
+    return time;
+  };
+
+  const getPromoNames = (promos) => {
+    if (promos && promos.length > 0) {
+      return promos.map((promo) => promo.name).join(", ");
+    }
+    return "Aucune promotion";
+  };
+
+  return (
+    <>
+      <table>
+        <thead>
+          <tr className="line">
+            <th>Sujet</th>
+            <th>Promo</th>
+            <th>Date</th>
+            <th>Heure</th>
+            <th>Durée</th>
+            <th>Salle</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody className="table-body">
+          {data.map((activity) => (
+            <tr className="line" key={activity.id}>
+              <td>{activity.subject}</td>
+              <td>{getPromoNames(activity.promos_activitie?.promos)}</td>
+              <td>{splitHourly(activity.Hourly)}</td>
+              <td>{splitTime(activity.Hourly)}</td>
+              <td>{activity.time_activity}</td>
+              <td>{activity.room?.name || "Non spécifié"}</td>
+              <td>
+                {type === "suivi" ? (
+                  <FormButton
+                    text={"Lancer"}
+                    onClick={() => handleSuiviActivity(activity)}
+                  />
+                ) : type === "proposition" ? (
+                  <>
+                    <FormButton
+                      text={"Valider"}
+                      onClick={() => handleValidateActivity(activity)}
+                    />
+                    <FormButton
+                      text={"Refuser"}
+                      onClick={() => handleRefuseActivity(activity)}
+                    />
+                  </>
+                ) : type === "evaluer" ? (
+                  <FormButton
+                    text={"Evaluer"}
+                    onClick={() => evaluateActivity(activity.id)}
+                  />
+                ) : null}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+=======
     const renderModalContent = () => {
         const { type, activity } = modalState;
         switch (type) {
@@ -51,6 +125,7 @@ export function ActivityTable({ data = [], type }) {
                 return null;
         }
     };
+>>>>>>> origin/main
 
     return (
         <>
