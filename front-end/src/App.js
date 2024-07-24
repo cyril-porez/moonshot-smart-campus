@@ -78,6 +78,11 @@ function App() {
                 href: "/calendar",
                 text: "Voir mon planning",
             },
+            {
+                icon: "/icons/agenda.png",
+                href: "/activites-status",
+                text: "Voir le statut des activités",
+            },
             { icon: "/icons/notification.png", href: "/", text: "Notifications" },
         ],
         // Accompagnateur
