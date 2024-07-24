@@ -165,7 +165,7 @@ function App() {
                     <Routes>
                         <Route
                             path="/"
-                            element={<Dashboard props={{ user: user }} />}
+                            element={<Dashboard props={{ user: user , onOpenModal:openModal_SuggestActivity }} />}
                         />
                         {/* <Route path="/" element={<Home />} /> */}
                         <Route path="/sign-in" element={<SignIn />} />

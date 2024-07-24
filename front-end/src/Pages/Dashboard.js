@@ -7,23 +7,23 @@ import { isLoggedIn } from "../Services/UserInfo";
 export function Dashboard({ props }) {
 
     let userRole = props.user.status_role;
+    let onOpenModal = props.onOpenModal;
     const navigate = useNavigate();
 
     useEffect(() => {
         // Si l'user n'est pas connecté, on le redirige tout de suite
-        if(!isLoggedIn()) {
+        if (!isLoggedIn()) {
             navigate("/sign-in");
         }
     }, [])
 
-    function summonModal() {}
 
-    if(userRole?.name === "étudiant") {
+    if (userRole?.name === "étudiant") {
         return (
             <>
                 <div className="dashboard">
                     <DashboardButton
-                        onClick={summonModal}
+                        onClick={onOpenModal}
                         iconPath={"/icons/plus.png"}
                         text={"Proposition d'activité"}
                     />
@@ -32,7 +32,7 @@ export function Dashboard({ props }) {
                         iconPath={"/icons/activite.png"}
                         text={"Mes activités"}
                     />
-                     <DashboardButton
+                    <DashboardButton
                         onClick={() => navigate("/vote-activites")}
                         iconPath={"/icons/activite.png"}
                         text={"vote d'activités"}
@@ -50,11 +50,11 @@ export function Dashboard({ props }) {
                 </div>
             </>
         )
-    } else if(userRole?.name === "responsable") {
+    } else if (userRole?.name === "responsable") {
         return (
             <div className="dashboard">
                 <DashboardButton
-                    onClick={summonModal}
+                    onClick={onOpenModal}
                     iconPath={"/icons/plus.png"}
                     text={"Créer une activité"}
                 />
@@ -84,11 +84,16 @@ export function Dashboard({ props }) {
                     text={"Note d'activité élève"}
                 />
             </div>
-            
+
         )
-    } else if(userRole?.name === "accompagnateur") {
+    } else if (userRole?.name === "accompagnateur") {
         return (
             <div className="dashboard">
+                <DashboardButton
+                    onClick={onOpenModal}
+                    iconPath={"/icons/plus.png"}
+                    text={"Créer une activité"}
+                />
                 <DashboardButton
                     onClick={() => navigate("/suivi-participation")}
                     iconPath={"/icons/stats.png"}
