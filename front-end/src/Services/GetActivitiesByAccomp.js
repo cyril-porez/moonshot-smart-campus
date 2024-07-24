@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const address_server = process.env.REACT_APP_ADRESS_SERVER;
-const authToken = process.env.REACT_APP_TOKEN_AUTH;
+const authToken = localStorage.getItem("jwt");
 
 export async function getActivitiesListAcc(id) {
   try {

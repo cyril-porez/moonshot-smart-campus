@@ -5,6 +5,7 @@ import Hourglass from "../../components/Hourglass";
 import { getUsersByActivity } from "../../Services/getUsersByActivities";
 import { useNavigate, useParams } from "react-router-dom";
 import { getStudentPresentActivity } from "../../Services/getStudentPresentActivities";
+import { putActivitiesStatus } from "../../Services/putActivities";
 
 const Suivi2 = () => {
   const { activityId } = useParams();
@@ -60,6 +61,15 @@ const Suivi2 = () => {
     }
   };
 
+  const putActivity = async (activityId, activityState) => {
+    try {
+      const response = await putActivitiesStatus();
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     console.log("Initial time set to:", initialTime);
   }, [initialTime]);
@@ -72,7 +82,13 @@ const Suivi2 = () => {
       console.log(getStudentPres);
     };
 
+    const putData = async () => {
+      const response = await putActivity(activityId, "on hold");
+      console.log(response);
+    };
+
     fetchData();
+    putData();
   }, [activityId]);
 
   useEffect(() => {
@@ -114,6 +130,10 @@ const Suivi2 = () => {
   }, [activityId]);
 
   useEffect(() => {
+    const putData = async () => {
+      const response = await putActivity(activityId, "to end");
+      console.log(response);
+    };
     if (timeLeft > 0) {
       const timerId = setInterval(() => {
         setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
@@ -121,6 +141,7 @@ const Suivi2 = () => {
 
       return () => clearInterval(timerId);
     } else {
+      putData();
       navigate(`/activity-over/activityId/${activityId}`);
     }
   }, [timeLeft, navigate]);
