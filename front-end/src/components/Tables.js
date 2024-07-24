@@ -11,6 +11,30 @@ import Absence from "./modals/Absence";
 import ShowRefusal from "./modals/ShowRefusal";
 import { getUserInfo } from "../Services/UserInfo";
 
+
+
+const splitHourly = (hourlyString) => {
+    if (!hourlyString) return "Date inconnue";
+    const [datePart] = hourlyString.split("T");
+    const [year, month, day] = datePart.split("-");
+    return `${day}-${month}-${year}`;
+};
+
+const splitTime = (hourlyString) => {
+    if (!hourlyString) return "Heure inconnue";
+    const [, timePart] = hourlyString.split("T");
+    const [time] = timePart.split(".");
+    return time;
+};
+
+const getPromoNames = (promos) => {
+    if (promos && promos.length > 0) {
+        return promos.map((promo) => promo.name).join(", ");
+    }
+    return "Aucune promotion";
+};
+
+
 export function ActivityTable({ data = [], type }) {
     const [userRole, setUserRole] = useState("")
 
@@ -43,26 +67,6 @@ export function ActivityTable({ data = [], type }) {
         navigate("/activites-avis?id=" + id);
     }
 
-    const splitHourly = (hourlyString) => {
-        if (!hourlyString) return "Date inconnue";
-        const [datePart] = hourlyString.split("T");
-        const [year, month, day] = datePart.split("-");
-        return `${day}-${month}-${year}`;
-    };
-
-    const splitTime = (hourlyString) => {
-        if (!hourlyString) return "Heure inconnue";
-        const [, timePart] = hourlyString.split("T");
-        const [time] = timePart.split(".");
-        return time;
-    };
-
-    const getPromoNames = (promos) => {
-        if (promos && promos.length > 0) {
-            return promos.map((promo) => promo.name).join(", ");
-        }
-        return "Aucune promotion";
-    };
 
     const renderModalContent = () => {
         const { type, activity } = modalState;
@@ -182,6 +186,53 @@ export function ActivityTable({ data = [], type }) {
                     {renderModalContent()}
                 </Modal>
             )}
+        </>
+    );
+}
+
+export function FinishedActivityTable({ data = [] }) {
+
+    const navigate = useNavigate();
+
+    function evaluateActivity(id) {
+        navigate("/activity-review?id=" + id);
+    }
+
+    return (
+        <>
+            <table>
+                <thead>
+                    <tr className="line">
+                        <th>Sujet</th>
+                        <th>Promo</th>
+                        <th>Date</th>
+                        <th>Heure</th>
+                        <th>Durée</th>
+                        <th>Salle</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody className="table-body">
+                    {data.map((activity) => (
+                        <tr className="line" key={activity.id}>
+                            <td>{activity.subject}</td>
+                            <td>{activity.promo}</td>
+
+                            <td>{splitHourly(activity.Hourly)}</td>
+                            <td>{splitTime(activity.Hourly)}</td>
+                            <td>{activity.duration}</td>
+                            <td>{activity.room || "Non spécifié"}</td>
+                            <td>
+                                <FormButton
+                                    variant={"jordy-blue"}
+                                    text={"Evaluer"}
+                                    onClick={() => evaluateActivity(activity.id)}
+                                />
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </>
     );
 }

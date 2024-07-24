@@ -23,6 +23,14 @@
       "relation": "oneToOne",
       "target": "api::promo.promo",
       "inversedBy": "proposition"
+    },
+    "proposition_status": {
+      "type": "enumeration",
+      "enum": [
+        "on hold",
+        "in progress",
+        "to end"
+      ]
     }
   }
 }
