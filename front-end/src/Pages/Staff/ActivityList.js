@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ActivityTable } from "../../components/Tables";
 import "../../style/CommonTable.css";
 import { getActivitiesListAcc } from "../../Services/GetActivitiesByAccomp";
+import { jwtDecode } from "jwt-decode";
 
 export function ActivityList() {
   const [activities, setActivities] = useState([]);
@@ -16,8 +17,10 @@ export function ActivityList() {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    const userId = jwtDecode(token).id;
     const fetchData = async () => {
-      const test = await getActivitiesByUser(36);
+      const test = await getActivitiesByUser(userId);
       setActivities(test.activities);
       console.log(test);
     };

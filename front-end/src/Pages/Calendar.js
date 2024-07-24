@@ -104,18 +104,16 @@
 
 // export default MyCalendar;
 
-
-
-import React, { useState } from 'react';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { Modal, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import '../style/MyCalendar.css'; // Importer le fichier CSS
+import React, { useState } from "react";
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import { Modal, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import "../style/MyCalendar.css"; // Importer le fichier CSS
 
 // Configurer moment en français
-moment.locale('fr');
+moment.locale("fr");
 
 // Configurer le localisateur de date avec moment
 const localizer = momentLocalizer(moment);
@@ -123,14 +121,14 @@ const localizer = momentLocalizer(moment);
 // Définir des événements d'exemple
 const events = [
   {
-    title: 'how to java oop',
+    title: "how to java oop",
     start: new Date(),
     end: new Date(),
   },
   {
-    title: 'How to design pattern',
-    start: new Date(moment().add(1, 'days')),
-    end: new Date(moment().add(1, 'days')),
+    title: "How to design pattern",
+    start: new Date(moment().add(1, "days")),
+    end: new Date(moment().add(1, "days")),
   },
 ];
 
@@ -146,18 +144,18 @@ const MyCalendar = () => {
 
   const handleNavigate = () => {
     setShowModal(false); // Fermer la modal
-    navigate('/Suivi2'); // Rediriger vers la page de suivi
+    navigate("/"); // Rediriger vers la page de suivi
   };
 
   const customDayPropGetter = (date) => {
-    const today = moment().startOf('day');
-    const day = moment(date).startOf('day');
+    const today = moment().startOf("day");
+    const day = moment(date).startOf("day");
     const isPast = day.isBefore(today);
     const isFuture = day.isAfter(today);
     const isToday = day.isSame(today);
 
     return {
-      className: isPast ? 'past' : isFuture ? 'future' : isToday ? 'today' : '',
+      className: isPast ? "past" : isFuture ? "future" : isToday ? "today" : "",
     };
   };
 
@@ -168,22 +166,22 @@ const MyCalendar = () => {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 500, width: '100%' }}
+        style={{ height: 500, width: "100%" }}
         onSelectEvent={handleSelectEvent}
         dayPropGetter={customDayPropGetter} // Appliquer les styles personnalisés aux jours
         messages={{
-          allDay: 'Toute la journée',
-          previous: 'Précédent',
-          next: 'Suivant',
+          allDay: "Toute la journée",
+          previous: "Précédent",
+          next: "Suivant",
           today: "le mois actuel",
-          month: 'Mois',
-          week: 'Semaine',
-          day: 'Jour',
-          agenda: 'Agenda',
-          date: 'Date',
-          time: 'Heure',
-          event: 'Événement',
-          noEventsInRange: 'Aucun événement dans cette période',
+          month: "Mois",
+          week: "Semaine",
+          day: "Jour",
+          agenda: "Agenda",
+          date: "Date",
+          time: "Heure",
+          event: "Événement",
+          noEventsInRange: "Aucun événement dans cette période",
         }}
       />
 
@@ -212,7 +210,7 @@ const MyCalendar = () => {
             Fermer
           </Button>
           <Button variant="primary" onClick={handleNavigate}>
-            Go to  Page activity 
+            Go to Page activity
           </Button>
         </Modal.Footer>
       </Modal>
