@@ -36,11 +36,11 @@ export function ActivityTable({ data = [], type }) {
 
     // Staff opinion of the activity
     function evaluateActivity(id) {
-        navigate("/EvaluateActivity?id=" + id);
+        navigate("/activity-review?id=" + id);
     }
     // Student opinion of the activity
     function rateActivity(id) {
-        navigate("/ActivityReview?id=" + id);
+        navigate("/activites-avis?id=" + id);
     }
 
     const splitHourly = (hourlyString) => {

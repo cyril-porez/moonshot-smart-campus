@@ -23,13 +23,6 @@ export default function Sidebar({ onOpenModal_SuggestActivity, isOpen, logo, lin
                     <b>Créer une nouvelle activité</b>
                 </div>
             ) : null}
-            
-            {/* 
-            <div className="navbar-link" onClick={onOpenModal_Test}>
-                <img src={"/icons/plus.png"} className="navbar-icon" alt="" width={32} height={32} />
-                <p>Test</p>
-            </div>
-            */}
 
             {links.map(link => {
                 return (
@@ -40,13 +33,6 @@ export default function Sidebar({ onOpenModal_SuggestActivity, isOpen, logo, lin
                     </div>
                 </a>)
             })}
-
-      {/* 
-            <div className="navbar-link" onClick={onOpenModal_Test}>
-                <img src={"/icons/plus.png"} className="navbar-icon" alt="" width={32} height={32} />
-                <p>Test</p>
-            </div>
-            */}
     </aside>
   );
 }

@@ -80,37 +80,13 @@ function App() {
             },
             { icon: "/icons/notification.png", href: "/", text: "Notifications" },
         ],
-        // Responsables
+        // Accompagnateur
         [
-            {
-                icon: "/icons/stats.png",
-                href: "/suivi-participation",
-                text: "Suivi de participation",
-            },
-            {
-                icon: "/icons/liste-de-controle.png",
-                href: "/activites-terminees",
-                text: "Voir les activités terminées",
-            },
-            {
-                icon: "/icons/agenda.png",
-                href: "/calendar",
-                text: "Voir mon planning",
-            },
             {
                 icon: "/icons/livre.png",
                 href: "/propositions",
                 text: "Consulter les propositions d'activité",
             },
-            {
-                icon: "/icons/remarques.png",
-                href: "/notes-activite",
-                text: "Note d'activité élève",
-            },
-            { icon: "/icons/notification.png", href: "/", text: "Notifications" },
-        ],
-        // Accompagnateur
-        [
             {
                 icon: "/icons/stats.png",
                 href: "/suivi-participation",
@@ -123,8 +99,41 @@ function App() {
             },
             {
                 icon: "/icons/agenda.png",
+                href: "/activity-list",
+                text: "Voir les activités à venir",
+            },
+            {
+                icon: "/icons/agenda.png",
                 href: "/calendar",
                 text: "Voir mon planning",
+            },
+            {
+                icon: "/icons/remarques.png",
+                href: "/notes-activite",
+                text: "Ressenti d'activité élève",
+            },
+            { 
+                icon: "/icons/notification.png", 
+                href: "/", 
+                text: "Notifications" 
+            },
+        ],
+        // Responsables
+        [
+            {
+                icon: "/icons/stats.png",
+                href: "/suivi-participation",
+                text: "Suivi de participation",
+            },
+            {
+                icon: "/icons/remarques.png",
+                href: "/notes-eleves",
+                text: "Ressenti d'activité élève",
+            },
+            {
+                icon: "/icons/remarques.png",
+                href: "/notes-accompagnateur",
+                text: "Ressenti d'activité accompagnateur",
             },
             {
                 icon: "/icons/livre.png",
@@ -132,14 +141,14 @@ function App() {
                 text: "Consulter les propositions d'activité",
             },
             {
-                icon: "/icons/remarques.png",
-                href: "/notes-activite",
-                text: "Note activité élève",
+                icon: "/icons/agenda.png",
+                href: "/calendar",
+                text: "Voir mon planning",
             },
             {
-                icon: "/icons/emotion.png",
-                href: "/ressenti",
-                text: "Ressenti accompagnateur",
+                icon: "/icons/liste-de-controle.png",
+                href: "/activites-terminees",
+                text: "Voir les activités terminées",
             },
             { icon: "/icons/notification.png", href: "/", text: "Notifications" },
         ],
@@ -188,7 +197,7 @@ function App() {
                                     element={<ActivityDoneStudent />}
                                 />
                                 <Route
-                                    path="/vote-activites"
+                                    path="/activites-avis"
                                     element={<ActivityReviewStudent />}
                                 />
                                 <Route
