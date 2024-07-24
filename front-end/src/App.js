@@ -33,6 +33,7 @@ import { StudentTable } from "./components/Tables";
 import { getUserInfo, isLoggedIn } from "./Services/UserInfo";
 import { FeelingsStudents } from "./Pages/Staff/FeelingsStudents";
 import { FeelingsAccompanying } from "./Pages/Staff/FeelingsAccompanying";
+import ActivityAfterTimer from "./Pages/Staff/ActivityAfterTimer";
 
 function App() {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -228,6 +229,7 @@ function App() {
                             </>
                         ) : user?.status_role?.name === "accompagnateur" ? (
                             <>
+                                <Route path="/activity-over" element={<ActivityAfterTimer />} />
                                 <Route
                                     path="/activity-review"
                                     element={<ActivityReviewStaff />}
