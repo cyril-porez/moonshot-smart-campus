@@ -25,7 +25,7 @@ export function DashboardButton({ onClick, iconPath, text, variant }) {
     >
       <div className="dashboard-btn-inner">
         {iconPath ? <img src={iconPath} alt="" width={32} height={32} /> : null}
-        {text}
+        <p>{text}</p>
       </div>
     </button>
   );
@@ -43,7 +43,7 @@ export function GoogleButton({ onClick }) {
   return (
     <button className="google-btn" onClick={onClick}>
       <img src="/icons/google.png" alt="Google Icon" className="google-icon" />
-      Continuez avec Google
+      <p>Continuez avec Google</p>
     </button>
   );
 }

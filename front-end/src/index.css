@@ -1,4 +1,5 @@
 @import "rsuite/dist/rsuite.css";
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
 :root {
     --bg-primary-color: #ffffff;   /* A changer plus tard */
@@ -15,9 +16,7 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Lexend", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 100vw;
@@ -44,5 +43,5 @@ button:hover {
 }
 
 .main-content.shifted {
-    margin-left: calc(250px + 20px);
+    margin-left: calc(250px);
 }

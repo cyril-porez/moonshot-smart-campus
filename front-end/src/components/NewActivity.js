@@ -1,68 +1,69 @@
 import React from 'react';
-
 import { TagPicker } from 'rsuite';
+import "../../style/modals/NewActivity.css";
 
-import "../style/NewActivity.css";
-
-export default function NewActivity({ }) {
-
-    /* Replace by db pull of activity types */
-    const ActivityTypes = ["Cours", "HowTo", "Corrections","Execution Publique"];
-    const Room = ["301", "201", "202","203","204","La Cave","205"];
-    const EspectedTime = ["15min", "30min", "45min", "60min", "90min", "120min"];
-    const Helper = ["RUBEN", "HABIB", "HABIBIIIIIIIII"];
-    const Data = ["C", "C++", "Java","Web"]
-
+export default function NewActivity({ closeModal, data = {} }) {
+    //get all this from db
+    const options = {
+        activityTypes: ["HowTo", "cours", "Execution publique"],
+        room: ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "la Cave"],
+        expectedTime: [15, 30, 45, 60, 90, 120],
+        helper: ["Ruben", "Habib", "HABIBIIIIIIIIIII"],
+        promo: ["B1", "B2", "B3"]
+    };
+    console.log(data)
     return (
-        <div >
-            <h2>Créer une nouvelle activité</h2>
-            <form className="ActivityForm">
+       
+        <div>
+            
+            <form className="activity-form">
+                <h2 className="new-activity-title">Créer une nouvelle activité</h2>
 
-           
-            <select className="ActivityType" name="ActivityType" id="ActivityType-select" required>
-                <option hidden value="">Type d'activité</option>
-                {ActivityTypes.map((type, index) => (
-                    <option key={index} value={type}>{type}</option>
-                ))}
-            </select>
+                <select className="activity-type" name="ActivityType" id="ActivityType-select" defaultValue={data.activityTypes || ""} required>
+                    <option hidden value="">Type d'activité</option>
+                    {options.activityTypes.map((type, index) => (
+                        <option key={index} value={type}>{type}</option>
+                    ))}
+                </select>
 
+                <div className='row'>
+                    <div className='column'>
+                        <input type="text" placeholder="Sujet" defaultValue={data.subject || ""} required />
+                        <input type="datetime-local" placeholder="Date" defaultValue={data.date || ""} required />
 
-            <div className='Row'>
-                <div className='Column'>
-                    <input type="text" placeholder="Sujet" required />
+                        <select name="expectedTime" id="expectedTime-select" defaultValue={data.expectedTime || ""} required>
+                            <option hidden value="">Temp Estimé</option>
+                            {options.expectedTime.map((type, index) => (
+                                <option key={index} value={type}>{type}min</option>
+                            ))}
+                        </select>
+                    </div>
+                    
+                    <div className='column'>
+                        <TagPicker className='tag-picker'
+                            placeholder="Promo"
+                            data={options.promo.map(item => ({ label: item, value: item }))}
+                            required
+                        />
 
-                    <input type="datetime-local" placeholder="Date" required />
+                        <select name="room" id="room-select" defaultValue={data.room || ""} required>
+                            <option hidden value="">Salle</option>
+                            {options.room.map((type, index) => (
+                                <option key={index} value={type}>{type}</option>
+                            ))}
+                        </select>
 
-                    <select name="EspectedTime" id="EspectedTime-select" required>
-                        <option hidden value="">Temp Estimé</option>
-                        {EspectedTime.map((type, index) => (
-                            <option key={index} value={type}>{type}</option>
-                        ))}
-                    </select>
+                        <select name="helper" id="helperSelect" defaultValue={data.helper || ""} required>
+                            <option hidden value="">Accompagnateur</option>
+                            {options.helper.map((type, index) => (
+                                <option key={index} value={type}>{type}</option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
-
-                <div className='Column'>
-                    <TagPicker className='TagPicker' placeholder="Promo" data={Data.map(item => ({ label: item, value: item }))} required/>
-
-                    <select name="Room" id="Room-select" required>
-                        <option hidden value="">Salle</option>
-                        {Room.map((type, index) => (
-                            <option key={index} value={type}>{type}</option>
-                        ))}
-                    </select>
-
-                    <select name="Helper" id="Helper-select" required>
-                        <option hidden value="">Accompagnateur</option>
-                        {Helper.map((type, index) => (
-                            <option key={index} value={type}>{type}</option>
-                        ))}
-                    </select>
-                </div>
-
-            </div>
-            <input className='SubmitButton' type="submit" value="Valider" />
+                <input className='button-new-activity' type="submit" value="Valider" />
+                <button className='button-new-activity' type="button" onClick={closeModal}>Fermer</button>
             </form>
-
         </div>
     );
 }

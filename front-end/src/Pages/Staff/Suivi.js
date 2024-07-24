@@ -15,7 +15,7 @@ const Suivi = () => {
 
   console.log("Activity ID:", activityId);
   return (
-    <div className="container">
+    <div className="containerSuivi">
       <div className="timer-container">
         <Timer />
       </div>
