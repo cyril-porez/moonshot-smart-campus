@@ -23,7 +23,7 @@ export function ActivityPropositions() {
 
     return (
         <div className="common-table-body">
-            <h1 className="common-table-title">Activités terminées</h1>
+            <h1 className="common-table-title">Activités proposés</h1>
             <div className="common-table-container">
                 <ActivityTable type={"proposition"} data={data} />
             </div>

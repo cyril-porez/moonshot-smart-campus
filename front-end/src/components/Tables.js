@@ -45,7 +45,7 @@ export function ActivityTable({ data = [], type }) {
             case "newActivity":
                 return <NewActivity closeModal={closeModal} data={activity} />;
             case "suivi":
-                return <LaunchActivity closeModal={closeModal} data={activity} />;
+                return <LaunchActivity closeModal={closeModal} data={activity} />;               
             default:
                 return null;
         }
@@ -92,7 +92,13 @@ export function ActivityTable({ data = [], type }) {
                                         text={"Evaluer"}
                                         onClick={() => evaluateActivity()}
                                     />
-                                ) : null}
+                                )  : type === "vote" ? (
+                                    <FormButton
+                                        text={"Voter"}
+                                        onClick={() =>  console.log("add vote to "+activity.id)}
+                                    />
+                                )
+                                : null}
                             </td>
                         </tr>
                     ))}
