@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "../../style/Suivi2.css";
-import Sablier from "../../components/Sablier";
+import Timer from "../../components/Timer";
+import Hourglass from "../../components/Hourglass";
 import { getUsersByActivity } from "../../Services/getUsersByActivities";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getStudentPresentActivity } from "../../Services/getStudentPresentActivities";
 
 const Suivi2 = () => {
-  const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
-  const [totalTime] = useState(660); // 11 minutes in seconds
   const { activityId } = useParams();
   const [totalStudents, setTotalStudents] = useState(0);
   const [studentPres, setStudentPres] = useState(0);
+  const [initialTime, setInitialTime] = useState(300);
+  const [timeLeft, setTimeLeft] = useState(initialTime);
+
+  const navigate = useNavigate();
 
   const getUsers = async (id) => {
     try {
@@ -31,10 +34,15 @@ const Suivi2 = () => {
   };
 
   useEffect(() => {
+    console.log("Initial time set to:", initialTime);
+  }, [initialTime]);
+
+  useEffect(() => {
     const fetchData = async () => {
       const getStudentPres = await getStudentPresent(activityId);
       setStudentPres(getStudentPres.users_activities.data.length);
-      console.log(getStudentPres.users_activities.data.length);
+      setInitialTime(getStudentPres.time_activity * 60 * 60);
+      console.log(getStudentPres);
     };
 
     fetchData();
@@ -79,19 +87,20 @@ const Suivi2 = () => {
   }, [activityId]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+    if (timeLeft > 0) {
+      const timerId = setInterval(() => {
+        setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
+      }, 1000);
 
-  const formatTime = (seconds) => {
-    const m = Math.floor(seconds / 60)
-      .toString()
-      .padStart(2, "0");
-    const s = (seconds % 60).toString().padStart(2, "0");
-    return `${m}m ${s}s`;
-  };
+      return () => clearInterval(timerId);
+    } else {
+      // navigate(`/timer-activity/activityId/${activityId}`);
+    }
+  }, [timeLeft, navigate]);
+
+  useEffect(() => {
+    setTimeLeft(initialTime);
+  }, [initialTime]);
 
   return (
     <div className="app">
@@ -99,16 +108,13 @@ const Suivi2 = () => {
         <div className="student-count">
           nombre d'élèves : {studentPres} / {totalStudents}
         </div>
-        <div className="total-time">{formatTime(totalTime)}</div>
       </div>
       <div className="timer">
-        <Sablier />
-        <div className="time-left">{formatTime(timeLeft)} restantes</div>
-        <div className="progress-bar">
-          <div
-            className="progress"
-            style={{ width: `${(timeLeft / totalTime) * 100}%` }}
-          ></div>
+        <div className="timer-container">
+          <Timer timeLeft={timeLeft} />
+        </div>
+        <div className="hourglass-container">
+          <Hourglass timeLeft={timeLeft} />
         </div>
       </div>
       <button className="absent-students-btn">Voir les élèves absents</button>
