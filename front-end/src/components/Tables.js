@@ -34,11 +34,6 @@ const getPromoNames = (promos) => {
     return "Aucune promotion";
 };
 
-const getPromoNames2 = (promos) => {
-    return promos.map(promo => promo.attributes.name).join(", ");
-}
-
-
 export function ActivityTable({ data = [], type }) {
     const [userRole, setUserRole] = useState("")
 
@@ -245,8 +240,19 @@ export function ActivityPropositionsTable({ data = [] }) {
 
     const navigate = useNavigate();
 
-    function evaluateActivity(id) {
-        navigate("/activity-review?id=" + id);
+    const [modalState, setModalState] = useState({
+        isOpen: false,
+        type: null,
+        activity: null,
+    });
+
+    const openModal = (activity) => setModalState({ isOpen: true, activity });
+    const closeModal = () => setModalState({ isOpen: false, type: null, activity: null });
+    
+    const handleSuiviActivity = (activity) => openModal("suivi", activity);
+
+    const renderModalContent = () => {
+        return <NewActivity closeModal={closeModal} />
     }
 
     return (
@@ -264,13 +270,13 @@ export function ActivityPropositionsTable({ data = [] }) {
                     {data.map((activity) => (
                         <tr className="line" key={activity.id}>
                             <td>{activity.attributes.subject}</td>
-                            <td>{getPromoNames2(activity.attributes.promos_activitie.data.attributes.promos.data)}</td>
+                            <td>{activity.attributes.promo.data.attributes.name}</td>
                             <td>{activity.attributes.nb_votes}</td>
                             <td>
                                 <FormButton
                                     variant={"jordy-blue"}
                                     text={"Evaluer"}
-                                    onClick={() => evaluateActivity(activity.id)}
+                                    onClick={() => handleSuiviActivity(activity.id)}
                                 />
                             </td>
                         </tr>

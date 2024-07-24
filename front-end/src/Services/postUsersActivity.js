@@ -45,7 +45,7 @@ export async function getFinishedActivity() {
 export async function getOnHoldActivity() {
     try {
         const response = axios.get(
-            `${address_server}/activities?[filters][activitistate][$eq]=onhold&populate[room]=*&populate[promos_activitie][populate]=promos`,
+            `${address_server}/propositions?filters[proposition_status][$eq]=onhold&populate[promo][populate]=promos`,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('jwt')}`

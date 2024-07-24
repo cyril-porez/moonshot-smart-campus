@@ -27,10 +27,13 @@
     "proposition_status": {
       "type": "enumeration",
       "enum": [
-        "on hold",
-        "in progress",
-        "to end"
+        "onhold",
+        "inprogress",
+        "toend"
       ]
+    },
+    "nb_votes": {
+      "type": "integer"
     }
   }
 }
