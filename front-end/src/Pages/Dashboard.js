@@ -43,13 +43,10 @@ export function Dashboard({ props }) {
                         text={"Voir mon planning"}
                     />
                     <DashboardButton
-                        onClick={() => navigate("/activites-status")}
-                        iconPath={"/icons/activite.png"}
-                        text={"Status des propositions d’activités"}
+                        onClick={() => navigate("/activity-status")}
+                        iconPath={"/icons/agenda.png"}
+                        text={"Voir le statut des activités"}
                     />
-                    
-                    
-                    
                 </div>
             </>
         )
