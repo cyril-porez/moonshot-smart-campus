@@ -196,7 +196,7 @@ function App() {
                                 />
                             </>
                         ) : null}
-
+                        
                         {/* Routes staff */}
                         {user?.status_role?.name === "responsable" ? (
                             <>
@@ -207,7 +207,7 @@ function App() {
                                 <Route path="/responsible-presence" element={<ResponsiblePresence />} />
                                 <Route path="/feelings-accompanying" element={<FeelingsAccompanying />} />
                             </>
-                        ) : user?.status_role?.name === "Accompagnateur" ? (
+                        ) : user?.status_role?.name === "accompagnateur" ? (
                             <>
                                 <Route
                                     path="/activity-review"

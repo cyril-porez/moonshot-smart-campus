@@ -32,6 +32,11 @@ export function Dashboard({ props }) {
                         iconPath={"/icons/activite.png"}
                         text={"Mes activités"}
                     />
+                     <DashboardButton
+                        onClick={() => navigate("/vote-activites")}
+                        iconPath={"/icons/activite.png"}
+                        text={"vote d'activités"}
+                    />
                     <DashboardButton
                         onClick={() => navigate("/activites-terminees")}
                         iconPath={"/icons/liste-de-controle.png"}
@@ -86,7 +91,7 @@ export function Dashboard({ props }) {
             </div>
             
         )
-    } else if(userRole?.name === "Accompagnateur") {
+    } else if(userRole?.name === "accompagnateur") {
         return (
             <div className="dashboard">
                 <DashboardButton

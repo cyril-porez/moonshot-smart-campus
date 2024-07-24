@@ -109,7 +109,7 @@ export function ActivityTable({ data = [], type }) {
                                         text={"Evaluer"}
                                         onClick={() => evaluateActivity()}
                                     />
-                                ) : type === "status" ? 
+                                ) : type === "status" ? (
                                     activity.status === "Validé" ? (
                                         <td style={{color: 'green'}}>{activity.status}</td>
                                     ) : 
@@ -120,8 +120,14 @@ export function ActivityTable({ data = [], type }) {
                                             text={"Voir le motif de refus"}
                                             onClick={() => handleShowRefusal(activity)}
                                         />
-                                    ) : null
-                                }
+                                    )
+                                ) : type === "vote" ? (
+                                    <FormButton
+                                        text={"Voter"}
+                                        onClick={() =>  console.log("add vote to "+activity.id)}
+                                    />
+                                )
+                                : null}
                             </td>
                         </tr>
                     ))}
