@@ -23,6 +23,17 @@
       "relation": "oneToOne",
       "target": "api::promo.promo",
       "inversedBy": "proposition"
+    },
+    "proposition_status": {
+      "type": "enumeration",
+      "enum": [
+        "onhold",
+        "inprogress",
+        "toend"
+      ]
+    },
+    "nb_votes": {
+      "type": "integer"
     }
   }
 }

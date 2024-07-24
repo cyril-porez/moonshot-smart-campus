@@ -23,7 +23,10 @@ import SuggestActivityForm from "./components/modals/NewActivity";
 import TestNfc from "./Pages/test-nfc";
 import MyCalendar from "./Pages/Calendar"; // Utiliser default import
 
-import { ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone";
+import {
+  ActivityDone,
+  ActivityDone as ActivityDoneStudent,
+} from "./Pages/Students/ActivityDone";
 import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/ActivityReview";
 import { ActivityStatus } from "./Pages/Students/ActivityStatus";
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote";
@@ -55,7 +58,7 @@ function App() {
 
   useEffect(() => {
     initUser();
-    console.log(user);
+    // console.log(user)
   }, []);
 
   const toggleSidebar = () => {
@@ -259,7 +262,7 @@ function App() {
                   element={<Suivi2 />}
                 />
                 <Route
-                  path="/activity-review"
+                  path="/activity-review/:id"
                   element={<ActivityReviewStaff />}
                 />
                 <Route
