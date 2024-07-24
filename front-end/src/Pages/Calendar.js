@@ -123,12 +123,12 @@ const localizer = momentLocalizer(moment);
 // Définir des événements d'exemple
 const events = [
   {
-    title: 'Rendez-vous 1',
+    title: 'how to java oop',
     start: new Date(),
     end: new Date(),
   },
   {
-    title: 'Rendez-vous 2',
+    title: 'How to design pattern',
     start: new Date(moment().add(1, 'days')),
     end: new Date(moment().add(1, 'days')),
   },
@@ -212,7 +212,7 @@ const MyCalendar = () => {
             Fermer
           </Button>
           <Button variant="primary" onClick={handleNavigate}>
-            Go to Tracking Page
+            Go to  Page activity 
           </Button>
         </Modal.Footer>
       </Modal>

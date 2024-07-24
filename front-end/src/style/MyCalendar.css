@@ -86,3 +86,62 @@
 .modal-footer {
   text-align: right;
 }
+
+
+
+
+/* animation by ridha */
+
+
+.rbc-calendar {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+.rbc-event {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideInUp 0.5s forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger the animations of events using nth-child for an added effect */
+.rbc-event-container:nth-child(1) .rbc-event { animation-delay: 0.1s; }
+.rbc-event-container:nth-child(2) .rbc-event { animation-delay: 0.2s; }
+.rbc-event-container:nth-child(3) .rbc-event { animation-delay: 0.3s; }
+/* Add more if necessary based on the average number of events per day */
+
+
+
+.rbc-header {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideInDown 0.5s forwards;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
