@@ -65,8 +65,8 @@ function App() {
         [
             {
                 icon: "/icons/activite.png",
-                href: "/my-activites",
-                text: "Mes activités",
+                href: "/vote-activites",
+                text: "Voter pour une proposition d'activité",
             },
             {
                 icon: "/icons/liste-de-controle.png",
