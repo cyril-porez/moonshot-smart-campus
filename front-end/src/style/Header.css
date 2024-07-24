@@ -1,10 +1,34 @@
 header {
+    background-color: var(--bg-primary-color);
+    box-shadow: 0 2px 5px var(--bg-secondary-color);
+    
     height: 70px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 10px 50px;
-    background-color: var(--bg-primary-color);
-    box-shadow: 0 2px 5px var(--bg-secondary-color);
+    
+}
+
+.header-title{
+    color:var(--detail-primary-color);
+    text-decoration: none;
+    margin-left: 70px; 
+}
+
+.header-title::link, .header-title::visited, .header-title::hover{
+    color:var(--detail-primary-color);
+    text-decoration: none;
+}
+
+.header-logged-as button {
+    background-color: white;
+    border: 1px solid var(--detail-primary-color);
+    box-shadow: 0 0 2px var(--detail-primary-color);
+    border-radius: 5px;
+}
+
+.header-logged-as button:hover {
+    background-color:  var(--detail-primary-hover);
 }

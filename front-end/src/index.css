@@ -4,6 +4,8 @@
 :root {
     --bg-primary-color: #ffffff;   /* A changer plus tard */
     --bg-secondary-color: #eeeeee;   /* A changer plus tard */
+    --detail-primary-color: #246bce;
+    --detail-primary-hover: #e5f0ff;
 
     --red: rgb(200, 0, 0);
     --green: rgb(0, 211, 0);

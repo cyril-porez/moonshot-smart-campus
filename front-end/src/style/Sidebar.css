@@ -1,5 +1,6 @@
 .sidebar {
-    background-color: var(--bg-secondary-color);
+    background-color: white;
+    box-shadow: inset -2px 0 10px var(--bg-secondary-color);
     position: fixed;
     top: 90px;
     left: 0;
@@ -16,6 +17,9 @@
 
 .sidebar.closed {
     transform: translateX(-100%);
+}
+.sidebar-title{
+    color: var(--detail-primary-color);
 }
 
 .navbar-link {

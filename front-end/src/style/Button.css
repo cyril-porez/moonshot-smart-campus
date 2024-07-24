@@ -6,11 +6,16 @@ button {
 }
 
 .dashboard-btn-body {
-    border: 1px solid grey;
+    background-color: white;
+    border: 1px solid var(--detail-primary-color);
+    box-shadow: 0 0 3px var(--detail-primary-color);
     border-radius: 5px;
     width: 200px;
     height: 80px;
     margin: 5px;
+}
+.dashboard-btn-body:hover {
+    background-color:  var(--detail-primary-hover);
 }
 
 .dashboard-btn-body img {
