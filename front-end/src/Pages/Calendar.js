@@ -146,7 +146,7 @@ const MyCalendar = () => {
 
   const handleNavigate = () => {
     setShowModal(false); // Fermer la modal
-    navigate('/tracking'); // Rediriger vers la page de suivi
+    navigate('/Suivi2'); // Rediriger vers la page de suivi
   };
 
   const customDayPropGetter = (date) => {

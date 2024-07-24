@@ -15,28 +15,40 @@ const Suivi2 = () => {
   const getUsers = async (id) => {
     try {
       const response = await getUsersByActivity(id);
-      return response;
+      if (response && response.attributes && response.attributes.promos_activitie && response.attributes.promos_activitie.data) {
+        return response;
+      } else {
+        console.error('Unexpected response structure from getUsersByActivity:', response);
+        return { attributes: { promos_activitie: { data: [] } } }; // Provide a default value
+      }
     } catch (error) {
       console.log(error);
+      return { attributes: { promos_activitie: { data: [] } } }; // Provide a default value
     }
   };
 
   const getStudentPresent = async (id) => {
     try {
       const response = await getStudentPresentActivity(id);
-      return response;
+      if (response && response.users_activities && response.users_activities.data) {
+        return response;
+      } else {
+        console.error('Unexpected response structure from getStudentPresentActivity:', response);
+        return { users_activities: { data: [] } }; // Provide a default value
+      }
     } catch (error) {
       console.log(error);
+      return { users_activities: { data: [] } }; // Provide a default value
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const getStudentPres = await getStudentPresent(activityId);
-      setStudentPres(getStudentPres.users_activities.data.length);
-      console.log(getStudentPres.users_activities.data.length);
+      const studentPresResponse = await getStudentPresent(activityId);
+      setStudentPres(studentPresResponse.users_activities.data.length || 0);
+      console.log(studentPresResponse.users_activities.data.length || 0);
     };
-
+  
     fetchData();
   }, [activityId]);
 
@@ -108,6 +120,10 @@ const Suivi2 = () => {
           <div
             className="progress"
             style={{ width: `${(timeLeft / totalTime) * 100}%` }}
+          ></div>
+          <div
+            className="progress-blue"
+            style={{ width: `${((totalTime - timeLeft) / totalTime) * 100}%` }}
           ></div>
         </div>
       </div>
