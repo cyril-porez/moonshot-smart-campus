@@ -16,7 +16,7 @@ import TestNfc from "./Pages/test-nfc";
 
 import { ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone";
 import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/ActivityReview";
-import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/ActivityStatus";
+import { ActivityStatus } from "./Pages/Students/ActivityStatus";
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote";
 import { ActivityReview as ActivityReviewStaff } from "./Pages/Staff/ActivityReview";
 import { AccompanyingPresence } from "./Pages/Staff/AccompanyingPresence";
@@ -165,7 +165,7 @@ function App() {
                     <Routes>
                         <Route
                             path="/"
-                            element={<Dashboard props={{ user: user }} />}
+                            element={<Dashboard props={{ user: user, onOpenModal: openModal_SuggestActivity }} />}
                         />
                         {/* <Route path="/" element={<Home />} /> */}
                         <Route path="/sign-in" element={<SignIn />} />
@@ -179,33 +179,52 @@ function App() {
                         {user?.status_role?.name === "étudiant" ? (
                             <>
                                 <Route
-                                    path="/activity-done"
+                                    path="/vote-activites"
+                                    element={<ActivityVoteStudent />}
+                                />
+                                <Route
+                                    path="/activites-terminees"
                                     element={<ActivityDoneStudent />}
                                 />
                                 <Route
-                                    path="/activity-review"
+                                    path="/vote-activites"
                                     element={<ActivityReviewStudent />}
                                 />
                                 <Route
-                                    path="/activity-status"
-                                    element={<ActivityStatusStudent />}
+                                    path="/activites-status"
+                                    element={<ActivityStatus />}
                                 />
-                                <Route
-                                    path="/activity-vote"
-                                    element={<ActivityVoteStudent />}
-                                />
+
                             </>
                         ) : null}
-                        
+
                         {/* Routes staff */}
                         {user?.status_role?.name === "responsable" ? (
                             <>
                                 <Route
-                                    path="/notes-activite"
-                                    element={<ActivityNotesStaff userType={user} />}
+                                    path="/suivi-participation"
+                                    element={<ResponsiblePresence />}
                                 />
-                                <Route path="/responsible-presence" element={<ResponsiblePresence />} />
-                                <Route path="/feelings-accompanying" element={<FeelingsAccompanying />} />
+                                <Route
+                                    path="/notes-eleves"
+                                    element={<FeelingsStudents />}
+                                />
+                                <Route
+                                    path="/propositions"
+                                    element={<ActivityPropositionsStaff />}
+                                />
+                                <Route
+                                    path="/notes-accompagnateur"
+                                    element={<FeelingsAccompanying />}
+                                />
+                                <Route
+                                    path="/activites-terminees"
+                                    element={<ActivityDoneStudent />}
+                                />
+                                <Route
+                                    path="/activites-status"
+                                    element={<ActivityStatus />}
+                                />                                
                             </>
                         ) : user?.status_role?.name === "accompagnateur" ? (
                             <>
@@ -214,12 +233,25 @@ function App() {
                                     element={<ActivityReviewStaff />}
                                 />
                                 <Route
-                                    path="/activity-propositions"
+                                    path="/propositions"
                                     element={<ActivityPropositionsStaff />}
                                 />
-                                <Route path="/activity-list" element={<ActivityListStaff />} />
-                                <Route path="/accompanying-presence" element={<AccompanyingPresence />} />
-                                <Route path="/feelings-students" element={<FeelingsStudents />} />
+                                 <Route
+                                    path="/suivi-participation"
+                                    element={<AccompanyingPresence />}
+                                />
+                                <Route
+                                    path="/activites-terminees"
+                                    element={<ActivityDoneStudent />}
+                                />
+                                <Route
+                                    path="/activity-list"
+                                    element={<ActivityListStaff />}
+                                />
+                                <Route
+                                    path="/notes-eleves"
+                                    element={<FeelingsStudents />}
+                                />
                             </>
                         ) : null}
                     </Routes>
