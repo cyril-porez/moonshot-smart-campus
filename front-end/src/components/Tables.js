@@ -1,4 +1,4 @@
-import React, { act, useState } from "react";
+import React, { act, useEffect, useState } from "react";
 import { FormButton } from "./Button";
 import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
@@ -9,9 +9,16 @@ import LaunchActivity from "../components/modals/LaunchActivity";
 import "../style/Tables.css";
 import Absence from "./modals/Absence";
 import ShowRefusal from "./modals/ShowRefusal";
+import { getUserInfo } from "../Services/UserInfo";
 
 export function ActivityTable({ data = [], type }) {
+    const [userRole, setUserRole] = useState("")
+
     const navigate = useNavigate();
+
+    useEffect(() => {
+        getUserInfo().then(data => setUserRole(data.status_role.name))
+    })
 
     const [modalState, setModalState] = useState({
         isOpen: false,
@@ -29,11 +36,11 @@ export function ActivityTable({ data = [], type }) {
 
     // Staff opinion of the activity
     function evaluateActivity(id) {
-        navigate("/EvaluateActivity?id=" + id);
+        navigate("/activity-review?id=" + id);
     }
     // Student opinion of the activity
     function rateActivity(id) {
-        navigate("/ActivityReview?id=" + id);
+        navigate("/activites-avis?id=" + id);
     }
 
     const splitHourly = (hourlyString) => {
@@ -94,7 +101,6 @@ export function ActivityTable({ data = [], type }) {
                                     <th>Statut</th>
                                 </>
                         }
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody className="table-body">
@@ -102,10 +108,18 @@ export function ActivityTable({ data = [], type }) {
                         <tr className="line" key={activity.id}>
                             <td>{activity.subject}</td>
                             <td>{getPromoNames(activity.promos_activitie?.promos)}</td>
-                            <td>{splitHourly(activity.Hourly)}</td>
-                            <td>{splitTime(activity.Hourly)}</td>
-                            <td>{activity.time_activity}</td>
-                            <td>{activity.room?.name || "Non spécifié"}</td>
+                            {
+                                type !== "status" ?
+                                <>
+                                    <td>{splitHourly(activity.Hourly)}</td>
+                                    <td>{splitTime(activity.Hourly)}</td>
+                                    <td>{activity.time_activity}</td>
+                                    <td>{activity.room?.name || "Non spécifié"}</td>
+                                </>
+                                :
+                                <>
+                                </>
+                            }
                             <td>
                                 {type === "suivi" ? (
                                     <FormButton
@@ -126,7 +140,11 @@ export function ActivityTable({ data = [], type }) {
                                 ) : type === "evaluer" ? (
                                     <FormButton
                                         text={"Evaluer"}
-                                        onClick={() => evaluateActivity()}
+                                        onClick={
+                                            userRole === "étudiant" ?
+                                            () => rateActivity(activity.id) :
+                                            () => evaluateActivity(activity.id)
+                                        }
                                     />
                                 ) : type === "status" ? (
                                     activity.status === "Validé" ? (

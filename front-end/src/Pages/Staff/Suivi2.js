@@ -94,7 +94,7 @@ const Suivi2 = () => {
 
       return () => clearInterval(timerId);
     } else {
-      // navigate(`/timer-activity/activityId/${activityId}`);
+      navigate(`/activity-over/activityId/${activityId}`);
     }
   }, [timeLeft, navigate]);
 

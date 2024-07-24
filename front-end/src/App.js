@@ -225,7 +225,10 @@ function App() {
               </>
             ) : user?.status_role?.name === "accompagnateur" ? (
               <>
-                <Route path="/activity-over" element={<ActivityAfterTimer />} />
+                <Route
+                  path="/activity-over/activityId/:activityId"
+                  element={<ActivityAfterTimer />}
+                />
                 <Route
                   path="/activity-review"
                   element={<ActivityReviewStaff />}

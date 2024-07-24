@@ -3,9 +3,6 @@ import axios from "axios";
 const address_server = process.env.REACT_APP_ADRESS_SERVER;
 const authToken = process.env.REACT_APP_TOKEN_AUTH;
 
-console.log(address_server, "address");
-console.log(authToken, "authToken");
-
 export async function postUsersActivity(idUser, idActivity) {
   try {
     const response = await axios.post(

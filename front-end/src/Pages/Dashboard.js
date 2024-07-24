@@ -98,11 +98,6 @@ export function Dashboard({ props }) {
         return (
             <div className="dashboard">
                 <DashboardButton
-                    onClick={onOpenModal}
-                    iconPath={"/icons/plus.png"}
-                    text={"Créer une activité"}
-                />
-                <DashboardButton
                     onClick={() => navigate("/propositions")}
                     iconPath={"/icons/livre.png"}
                     text={"Consulter les propositions d'activité"}
