@@ -65,6 +65,14 @@
     },
     "time_to_badge": {
       "type": "integer"
+    },
+    "activitistate": {
+      "type": "enumeration",
+      "enum": [
+        "on hold",
+        "in progress",
+        "to end"
+      ]
     }
   }
 }

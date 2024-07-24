@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "propositions",
+  "info": {
+    "singularName": "proposition",
+    "pluralName": "propositions",
+    "displayName": "proposition",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subject": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "promo": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::promo.promo",
+      "inversedBy": "proposition"
+    }
+  }
+}
