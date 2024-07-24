@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { act, useState } from "react";
 import { FormButton } from "./Button";
 import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import LaunchActivity from "../components/modals/LaunchActivity";
 
 import "../style/Tables.css";
 import Absence from "./modals/Absence";
+import ShowRefusal from "./modals/ShowRefusal";
 
 export function ActivityTable({ data = [], type }) {
     const navigate = useNavigate();
@@ -18,15 +19,13 @@ export function ActivityTable({ data = [], type }) {
         activity: null,
     });
 
-    const openModal = (type, activity) =>
-        setModalState({ isOpen: true, type, activity });
-    const closeModal = () =>
-        setModalState({ isOpen: false, type: null, activity: null });
+    const openModal = (type, activity) => setModalState({ isOpen: true, type, activity });
+    const closeModal = () => setModalState({ isOpen: false, type: null, activity: null });
 
     const handleRefuseActivity = (activity) => openModal("refusal", activity);
-    const handleValidateActivity = (activity) =>
-        openModal("newActivity", activity);
+    const handleValidateActivity = (activity) => openModal("newActivity", activity);
     const handleSuiviActivity = (activity) => openModal("suivi", activity);
+    const handleShowRefusal = (activity) => openModal("showRefusal", activity);
 
     // Staff opinion of the activity
     function evaluateActivity(id) {
@@ -46,6 +45,8 @@ export function ActivityTable({ data = [], type }) {
                 return <NewActivity closeModal={closeModal} data={activity} />;
             case "suivi":
                 return <LaunchActivity closeModal={closeModal} data={activity} />;
+            case "showRefusal":
+                return <ShowRefusal closeModal={closeModal} data={activity}  />
             default:
                 return null;
         }
@@ -58,9 +59,18 @@ export function ActivityTable({ data = [], type }) {
                     <tr className="line">
                         <th>Sujet</th>
                         <th>Promo</th>
-                        <th>Date</th>
-                        <th>Heure</th>
-                        <th></th>
+                        {
+                            type !== "status" ?
+                            <>
+                                <th>Date</th>  
+                                <th>Heure</th>
+                                <th></th>
+                            </>
+                            :
+                            <>
+                                <th>Statut</th>
+                            </>
+                        }
                     </tr>
                 </thead>
                 <tbody className="table-body">
@@ -68,8 +78,15 @@ export function ActivityTable({ data = [], type }) {
                         <tr className="line" key={activity.id}>
                             <td>{activity.subject}</td>
                             <td>{activity.promo}</td>
-                            <td>{activity.date}</td>
-                            <td>{activity.time}</td>
+                            {
+                                type !== "status" ?
+                                <>
+                                    <td>{activity.date}</td>  
+                                    <td>{activity.time}</td>
+                                </>
+                                :
+                                <></>
+                            }
                             <td>
                                 {type === "suivi" ? (
                                     <FormButton
@@ -92,7 +109,19 @@ export function ActivityTable({ data = [], type }) {
                                         text={"Evaluer"}
                                         onClick={() => evaluateActivity()}
                                     />
-                                ) : null}
+                                ) : type === "status" ? 
+                                    activity.status === "Validé" ? (
+                                        <td style={{color: 'green'}}>{activity.status}</td>
+                                    ) : 
+                                    activity.status === "En attente" ? (
+                                        <td style={{fontStyle: 'italic'}}>{activity.status} ({activity.currentVotes} / {activity.maxVotes})</td>
+                                    ) : (
+                                        <FormButton
+                                            text={"Voir le motif de refus"}
+                                            onClick={() => handleShowRefusal(activity)}
+                                        />
+                                    ) : null
+                                }
                             </td>
                         </tr>
                     ))}
