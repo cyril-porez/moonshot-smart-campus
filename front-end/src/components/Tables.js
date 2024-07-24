@@ -114,7 +114,7 @@ export function ActivityTable({ data = [], type }) {
                                         <td style={{color: 'green'}}>{activity.status}</td>
                                     ) : 
                                     activity.status === "En attente" ? (
-                                        <td style={{fontStyle: 'italic'}}>{activity.status} ({activity.currentVotes} / {activity.maxVotes})</td>
+                                        <td style={{fontStyle: 'italic'}}>{activity.status} ({activity.currentVotes} votes)</td>
                                     ) : (
                                         <FormButton
                                             text={"Voir le motif de refus"}

@@ -24,8 +24,7 @@ function generateFakeActivityStatus() {
             subject: "Pointeurs", 
             promo: "B2 Logiciel", 
             status: "En attente",
-            currentVotes: 22,
-            maxVotes: 40
+            currentVotes: 22
         },
         { id: 2, 
             subject: "Strapi", 
