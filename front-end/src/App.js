@@ -16,7 +16,7 @@ import TestNfc from "./Pages/test-nfc";
 
 import { ActivityDone as ActivityDoneStudent } from "./Pages/Students/ActivityDone";
 import { ActivityReview as ActivityReviewStudent } from "./Pages/Students/ActivityReview";
-import { ActivityStatus as ActivityStatusStudent } from "./Pages/Students/ActivityStatus";
+import { ActivityStatus } from "./Pages/Students/ActivityStatus";
 import { ActivityVote as ActivityVoteStudent } from "./Pages/Students/ActivityVote";
 import { ActivityReview as ActivityReviewStaff } from "./Pages/Staff/ActivityReview";
 import { AccompanyingPresence } from "./Pages/Staff/AccompanyingPresence";
@@ -192,7 +192,7 @@ function App() {
                                 />
                                 <Route
                                     path="/activites-status"
-                                    element={<ActivityStatusStudent />}
+                                    element={<ActivityStatus />}
                                 />
 
                             </>
@@ -206,21 +206,22 @@ function App() {
                                     element={<ResponsiblePresence />}
                                 />
                                 <Route
-                                    path="/notes-activite"
-                                    element={<ActivityNotesStaff userType={user?.status_role?.name} />}
+                                    path="/notes-eleves"
+                                    element={<FeelingsStudents />}
                                 />
                                 <Route
                                     path="/propositions"
                                     element={<ActivityPropositionsStaff />}
                                 />
                                 <Route
-                                    path="/feelings-accompanying"
+                                    path="/notes-accompagnateur"
                                     element={<FeelingsAccompanying />}
                                 />
                                 <Route
                                     path="/activites-terminees"
                                     element={<ActivityDoneStudent />}
                                 />
+                                
                             </>
                         ) : user?.status_role?.name === "accompagnateur" ? (
                             <>
@@ -229,19 +230,23 @@ function App() {
                                     element={<ActivityReviewStaff />}
                                 />
                                 <Route
-                                    path="/activity-propositions"
+                                    path="/propositions"
                                     element={<ActivityPropositionsStaff />}
+                                />
+                                 <Route
+                                    path="/suivi-participation"
+                                    element={<AccompanyingPresence />}
+                                />
+                                <Route
+                                    path="/activites-terminees"
+                                    element={<ActivityDoneStudent />}
                                 />
                                 <Route
                                     path="/activity-list"
                                     element={<ActivityListStaff />}
                                 />
                                 <Route
-                                    path="/accompanying-presence"
-                                    element={<AccompanyingPresence />}
-                                />
-                                <Route
-                                    path="/feelings-students"
+                                    path="/notes-eleves"
                                     element={<FeelingsStudents />}
                                 />
                             </>

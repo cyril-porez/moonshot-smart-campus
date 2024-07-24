@@ -67,9 +67,14 @@ export function Dashboard({ props }) {
                     text={"Suivi de participation"}
                 />
                 <DashboardButton
-                    onClick={() => navigate("/notes-activite")}
+                    onClick={() => navigate("/notes-eleves")}
                     iconPath={"/icons/remarques.png"}
-                    text={"Ressenti d'activité"}
+                    text={"Ressenti d'activité d'éleves"}
+                />
+                <DashboardButton
+                    onClick={() => navigate("/notes-accompagnateur")}
+                    iconPath={"/icons/remarques.png"}
+                    text={"Ressenti d'activité d'accompagnateur"}
                 />
                 <DashboardButton
                     onClick={() => navigate("/propositions")}
@@ -101,14 +106,14 @@ export function Dashboard({ props }) {
                     text={"Créer une activité"}
                 />
                 <DashboardButton
+                    onClick={() => navigate("/propositions")}
+                    iconPath={"/icons/livre.png"}
+                    text={"Consulter les propositions d'activité"}
+                />
+                <DashboardButton
                     onClick={() => navigate("/suivi-participation")}
                     iconPath={"/icons/stats.png"}
                     text={"Suivi de participation"}
-                />
-                <DashboardButton
-                    onClick={() => navigate("/activity-list")}
-                    iconPath={"/icons/agenda.png"}
-                    text={"Voir les activités à venir"}
                 />
                 <DashboardButton
                     onClick={() => navigate("/activites-terminees")}
@@ -116,25 +121,21 @@ export function Dashboard({ props }) {
                     text={"Voir les activités terminées"}
                 />
                 <DashboardButton
+                    onClick={() => navigate("/activity-list")}
+                    iconPath={"/icons/agenda.png"}
+                    text={"Voir les activités à venir"}
+                />
+                <DashboardButton
                     onClick={() => navigate("/calendar")}
                     iconPath={"/icons/agenda.png"}
                     text={"Voir mon planning"}
                 />
                 <DashboardButton
-                    onClick={() => navigate("/activity-propositions")}
-                    iconPath={"/icons/livre.png"}
-                    text={"Consulter les propositions d'activité"}
-                />
-                <DashboardButton
-                    onClick={() => navigate("/notes-activite")}
+                    onClick={() => navigate("/notes-eleves")}
                     iconPath={"/icons/remarques.png"}
-                    text={"Note d'activité élève"}
+                    text={"Ressenti d'activité d'éleves"}
                 />
-                <DashboardButton
-                    onClick={() => navigate("/ressenti")}
-                    iconPath={"/icons/emotion.png"}
-                    text={"Ressenti accompagnateur"}
-                />
+                
             </div>
         )
     }
