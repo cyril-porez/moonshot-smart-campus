@@ -83,7 +83,7 @@ const Suivi2 = () => {
     };
 
     const putData = async () => {
-      const response = await putActivity(activityId, "on hold");
+      const response = await putActivity(activityId, "in progress");
       console.log(response);
     };
 
