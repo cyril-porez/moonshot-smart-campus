@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "../../style/Suivi2.css";
-import Sablier from "../../components/Sablier";
-import { getUsersByActivity } from "../../Services/getUsersByActivities";
+import "../../../style/Suivi2.css";
+import Sablier from "../../../components/Sablier";
+import { getUsersByActivity } from "../../../Services/getUsersByActivities";
 import { useParams } from "react-router-dom";
-import { getStudentPresentActivity } from "../../Services/getStudentPresentActivities";
+import { getStudentPresentActivity } from "../../../Services/getStudentPresentActivities";
 
 const Suivi2 = () => {
   const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds

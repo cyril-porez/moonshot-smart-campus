@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../style/Button.css";
+import "../../style/Button.css";
 
 function getVariant(variant) {
   switch (variant) {
@@ -31,9 +31,12 @@ export function DashboardButton({ onClick, iconPath, text, variant }) {
   );
 }
 
-export function FormButton({ onClick, text, variant }) {
+export function FormButton({ onClick, text, variant, className }) {
   return (
-    <button onClick={onClick} className={`form-btn ${getVariant(variant)}`}>
+    <button
+      onClick={onClick}
+      className={`form-btn ${getVariant(variant)} ${className}`}
+    >
       {text}
     </button>
   );

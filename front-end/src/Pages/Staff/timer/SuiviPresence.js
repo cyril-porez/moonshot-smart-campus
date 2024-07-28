@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Timer from "../../components/Timer";
-import Hourglass from "../../components/Hourglass";
-import "../../style/Suivi.css";
+import Timer from "../../../components/Timer";
+import Hourglass from "../../../components/Hourglass";
+import "../../../style/Suivi.css";
 import { useParams, useNavigate } from "react-router-dom";
-import { getBadgesByActivity } from "../../Services/getBadges";
+import { getBadgesByActivity } from "../../../Services/getBadges";
 import { io } from "socket.io-client";
-import { postUsersActivity as postUsersActivityService } from "../../Services/postUersActivity";
+import { postUsersActivity as postUsersActivityService } from "../../../Services/postUersActivity";
 
 /**
  * Page d'où les responsables/accompagnateurs pourront suivre la présence des élèves

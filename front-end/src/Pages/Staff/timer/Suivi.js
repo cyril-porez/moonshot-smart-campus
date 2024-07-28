@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Timer from "../../components/Timer";
-import Hourglass from "../../components/Hourglass";
-import "../../style/Suivi.css"; // Make sure to create and import this CSS file
+import Timer from "../../../components/Timer";
+import Hourglass from "../../../components/Hourglass";
+// Make sure to create and import this CSS file
 
 import { useSearchParams } from "react-router-dom";
 
@@ -15,11 +15,11 @@ const Suivi = () => {
 
   console.log("Activity ID:", activityId);
   return (
-    <div className="containerSuivi">
-      <div className="timer-container">
+    <div className="">
+      <div className="">
         <Timer />
       </div>
-      <div className="hourglass-container">
+      <div className="">
         <Hourglass />
       </div>
     </div>

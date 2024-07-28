@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
-import { GoogleButton } from "../../components/Button";
+import { GoogleButton } from "../../components/button/Button";
 import "../../style/AuthForm.css";
 import { authLogin } from "../../Services/AuthService";
 
@@ -33,7 +33,7 @@ export default function SignIn(params) {
 
     if (result.status === 200) {
       console.log("Success:", result.data);
-      localStorage.setItem('jwt', result.data?.jwt);
+      localStorage.setItem("jwt", result.data?.jwt);
       navigate("/");
     } else {
       console.log("Error:", result.data);

@@ -1,5 +1,5 @@
 import React from "react";
-import { GoogleButton } from "../../components/Button";
+import { GoogleButton } from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
 import "../../style/AuthForm.css";
 import { useForm } from "react-hook-form";
