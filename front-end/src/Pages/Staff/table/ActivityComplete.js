@@ -60,7 +60,7 @@ export default function ActivityComplete() {
       </div>
       <div className=" flex justify-center mt-[3%]">
         <div className="w-4/5">
-          <Table textButton="Voir Note" datas={datas} />
+          <Table textButton="Evaluer" datas={datas} />
         </div>
       </div>
     </div>

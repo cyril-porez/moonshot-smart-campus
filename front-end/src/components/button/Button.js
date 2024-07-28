@@ -1,28 +1,8 @@
 import React, { useState } from "react";
-import "../../style/Button.css";
 
-function getVariant(variant) {
-  switch (variant) {
-    case "red":
-      return "variant-red";
-
-    case "green":
-      return "variant-green";
-
-    case "blue":
-      return "variant-blue";
-
-    default:
-      return "";
-  }
-}
-
-export function DashboardButton({ onClick, iconPath, text, variant }) {
+export function DashboardButton({ onClick, iconPath, text }) {
   return (
-    <button
-      onClick={onClick}
-      className={`dashboard-btn-body ${getVariant(variant)}`}
-    >
+    <button onClick={onClick} className={`dashboard-btn-body `}>
       <div className="dashboard-btn-inner">
         {iconPath ? <img src={iconPath} alt="" width={32} height={32} /> : null}
         <p>{text}</p>
@@ -31,11 +11,11 @@ export function DashboardButton({ onClick, iconPath, text, variant }) {
   );
 }
 
-export function FormButton({ onClick, text, variant, className }) {
+export function FormButton({ onClick, text, className }) {
   return (
     <button
       onClick={onClick}
-      className={`form-btn ${getVariant(variant)} ${className}`}
+      className={`form-btn w-24 rounded-lg ${className}`}
     >
       {text}
     </button>

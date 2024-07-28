@@ -17,8 +17,8 @@ export default function TableVoteProposition({
   return (
     <div className="w-full">
       <table className="table-auto w-full">
-        <thead>
-          <tr className="border border-slate-300">
+        <thead className="h-16 bg-[#92B4F4]">
+          <tr className="border border-slate-300 text-white">
             <th className="text-center">Sujet</th>
             <th className="text-center">Promo</th>
             <th className="text-center">Elève</th>
@@ -27,9 +27,14 @@ export default function TableVoteProposition({
           </tr>
         </thead>
         <tbody>
-          {datas.map((data) => {
+          {datas.map((data, index) => {
             return (
-              <tr className="border border-slate-300 ">
+              <tr
+                key={index}
+                className={`border border-slate-300 ${
+                  index % 2 === 0 ? "bg-white" : "bg-[#CFDEE7]"
+                } `}
+              >
                 <td className="text-center">{data.subject}</td>
                 <td className="text-center">{data.promo}</td>
                 <td className="text-center">{data.student}</td>
@@ -44,7 +49,7 @@ export default function TableVoteProposition({
                   <FormButton
                     onClick={() => bob()}
                     text={ButtonAction}
-                    className="mr-2"
+                    className="mr-2 border border-2 border-[#92B4F4] bg-white  text-white"
                   />
                 </td>
               </tr>

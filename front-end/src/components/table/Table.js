@@ -10,8 +10,8 @@ export default function Table({ textButton, datas = [] }) {
     <div className="w-full">
       <table className="table-auto w-full">
         <thead className="h-16 bg-[#92B4F4]">
-          <tr className="border border-slate-300">
-            <th className="text-center">Sujet</th>
+          <tr className="border border-slate-300 text-white ">
+            <th className="text-center ">Sujet</th>
             <th className="text-center">Promo</th>
             <th className="text-center">Date</th>
             <th className="text-center">Heure</th>
@@ -20,9 +20,14 @@ export default function Table({ textButton, datas = [] }) {
           </tr>
         </thead>
         <tbody>
-          {datas.map((data) => {
+          {datas.map((data, index) => {
             return (
-              <tr className="border border-slate-300  ">
+              <tr
+                key={index}
+                className={`border border-slate-300 ${
+                  index % 2 === 0 ? "bg-white" : "bg-[#CFDEE7]"
+                } `}
+              >
                 <td className="text-center">{data.subject}</td>
                 <td className="text-center">{data.promo}</td>
                 <td className="text-center">{data.date}</td>
@@ -33,7 +38,7 @@ export default function Table({ textButton, datas = [] }) {
                     <FormButton
                       onClick={() => handleClick()}
                       text={textButton}
-                      className="mr-2"
+                      className="mr-2 border border-2 border-[#CFDEE7] bg-[#92B4F4]  text-white "
                     />
                   </div>
                 </td>

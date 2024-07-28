@@ -202,7 +202,10 @@ function App() {
 
             {/* STAFF ROUTE */}
             <Route path="/activity-launch" element={<ActivityLaunch />} />
-            <Route path="/propositions" element={<ActivityPropositions />} />
+            <Route
+              path="/activity-propositions"
+              element={<ActivityPropositions />}
+            />
             <Route
               path="/list-absent-students"
               element={<ListAbsentStudent />}
